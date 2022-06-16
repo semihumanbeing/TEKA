@@ -13,37 +13,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-body {
-	background-color: #448811;
-}
-
 /* main.css */
-#header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 80px;
-	background-color: #cccccc;
-}
-
-#title {
-	width: 13%;
-	text-align: left;
-	float: left;
-	font-weight: bold;
-	margin-left: 20px;
-	margin-top: 0px;
-}
-
-#title>h1 {
-	margin-top: 15px;
-}
-
 #content {
 	padding-top: 80px;
 	width: 55%;
-	border: 1px solid black;
 	margin-left: 0px;
 	float: left;
 }
@@ -51,38 +24,10 @@ body {
 #sub_content {
 	padding-top: 80px;
 	width: 35%;
-	border: 1px solid black;
 	margin-left: 0px;
 	float: left;
 	margin-top: 120px;
 	margin-left: 50px;
-}
-
-/* main_menu.css */
-#main_menu {
-	list-style: none;
-	width: 40%;
-	float: left;
-	padding-left: 0px;
-}
-
-#main_menu>li {
-	display: inline-block;
-	margin: 0 10px;
-}
-
-#main_menu li+a {
-	width: 50%;
-}
-
-#main_menu>li>a {
-	display: block;
-	text-align: left;
-	text-decoration: none;
-	line-height: 50px;
-	font-size: 15px;
-	font-weight: 700;
-	color: white;
 }
 
 /* content */
@@ -95,20 +40,21 @@ body {
 
 /* card */
 #card-container{
-	background-color: white;
+	background-color: #CFD8FF;
 	width: 70%;
 	height: 330px; 
 	border-radius: 100px;
 	margin: auto;
 	margin-top: 50px;
+	border: 1px solid #CFD8FF;
 }
 
 .card {
-	
 	line-height: 270px;
 	width: 300px;
 	height: 270px;
 	margin: 0 auto;
+	margin-top: 5%;
 }
 
 .card-inner {
@@ -116,28 +62,30 @@ body {
 	width: 100%;
 	height: 100%;
 	text-align: center;
-	transition: transform 0.2s;
+	transition: transform 0.8s;
 	transform-style: preserve-3d; 
-	
 }
 
 .card.flipped .card-inner {
-	transform: rotateY(180deg);
+	transform: rotateX(180deg);
 }
 
 .card-front, .card-back {
 	position: absolute;
-	top:30px;
+	top:0%;
+	bottom:0%;
 	width: 100%;
 	height: 100%;
-	background-color: gray;
-	border: 1px solid #333;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 1px 1px 4px black;
 	box-sizing: border-box;
+	-webkit-backface-visibility: hidden; /* Safari */
 	backface-visibility: hidden;
 }
 
 .card-back {
-	transform: rotateY(180deg);
+	transform: rotateX(180deg);
 }
 </style>
 <script type="text/javascript">
@@ -153,6 +101,7 @@ $(document).ready(function(){
 <body>
 <div id="main-container">
 	<div id="header">
+		<%@include file="header/mainmenu.jsp" %>
 	</div>
 	
 	<div id="content">

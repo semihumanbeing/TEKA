@@ -22,7 +22,7 @@
 
 	<!-- header -->
 	<div id="header">
-		<%@include file="header/mainmenu_header.jsp" %>>
+		<%@include file="header/mainmenu.jsp" %>>
 	</div>
 	
 	<!-- top-content -->

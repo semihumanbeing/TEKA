@@ -35,7 +35,7 @@
 <body>
 <div id="box">
 <div id="mainmenu">
-<%@ include file="mainmenu.jsp" %>
+<%@ include file="header/mainmenu.jsp" %>
 </div>
 <div id="content">
 <%@ include file="content.jsp" %>

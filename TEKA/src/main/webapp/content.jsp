@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.cards {
+.card-container {
 	text-decoration: none;
 	margin-top: 10px;
 	padding: 10px;
@@ -17,7 +17,7 @@
 	
 }
 
-.flip-card {
+.card {
   float: left;
   background-color: transparent;
   width: 420px;
@@ -27,7 +27,7 @@
 }
 
 /* This container is needed to position the front and back side */
-.flip-card-inner {
+.card-inner {
   position: relative;
   width: 100%;
   height: 100%;
@@ -36,14 +36,12 @@
   transform-style: preserve-3d;
  
 }
-
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
-  transform: rotateX(180deg);
+.card.flipped .card-inner {
+	transform: rotateX(180deg);
 }
 
 /* Position the front and back side */
-.flip-card-front, .flip-card-back {
+.card-front, .card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -54,17 +52,17 @@
 }
 
 /* Style the front side (fallback if image is missing) */
-.flip-card-front {
+.card-front {
   background-color: white;
 }
 
 /* Style the back side */
-.flip-card-back {
+.card-back {
   background-color: white;
   transform: rotateX(180deg);
 }
 
-.flip-card-front>h1, .flip-card-back>h1{
+.card-front>h1, .card-back>h1{
 	font-weight: bolder;
 	padding-top: 90px;
 }
@@ -80,17 +78,25 @@
 	padding-top: 30px;
 }
 </style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".card").click(function(){
+		$(this).toggleClass("flipped");
+	});	
+});
+</script>
 </head>
 <body>
 
 	<c:forEach begin="1" end="7">
-		<div class="cards">
-			<div class="flip-card">
-				<div class="flip-card-inner">
-					<div class="flip-card-front">
+		<div class="card-container">
+			<div class="card">
+				<div class="card-inner">
+					<div class="card-front">
 						<h1>앞면입니다</h1>
 					</div>
-					<div class="flip-card-back">
+					<div class="card-back">
 						<h1>뒷면이예요</h1>
 					</div>
 				</div>
