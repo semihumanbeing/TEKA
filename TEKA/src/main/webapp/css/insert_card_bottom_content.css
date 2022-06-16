@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+#semi_card{
+	width      : 100%;
+	margin     : auto;
+	margin-top : 40px;	
+}
+
+.table{
+	width  : 100%;
+	margin : auto;	
+	margin-bottom : 40px;
+}
+
+th, td{
+	width : 100%;
+}
+
+#btn_card_insert{
+	margin-top    : 30px;
+	margin-bottom : 80px;
+	margin : 4px;
+	text-align: center;
+}

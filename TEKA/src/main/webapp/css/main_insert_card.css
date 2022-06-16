@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+#top_content{
+	width      : 83%;
+	height     : 390px;
+	margin     : auto;
+	margin-top : 87px;
+}
+
+#bottom_content{
+	width      : 83%;
+	min-height : 200px;
+	margin     : auto;
+	margin-top : 60px;
+}
