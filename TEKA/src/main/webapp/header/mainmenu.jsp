@@ -60,7 +60,7 @@ height: 80px;
 					<li><a href="loginForm.do"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
 				</c:if>
 				<c:if test="${!empty user }">
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
+					<li><a href="logout.do"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
 				</c:if>
 			</ul>
 			
