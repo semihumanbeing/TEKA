@@ -14,6 +14,7 @@ alter table member3
 add constraint pk_member3 primary key(m_idx)
 
 select * from member3
+select * from member3 where m_id = 'yhn032'
 
 insert into member3 values(seq_m_idx.nextVal, 'yhn032', '홍길동', '1999-04-10', 'yhn032@naver.com', 'yhn032');
 insert into member3 values(seq_m_idx.nextVal, 'yhn033', '일길동', '1989-12-12', 'yhn033@daum.net', 'khn033');

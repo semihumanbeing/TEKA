@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>기술 면접 플래시 카드</title>
 
+<!-- BootStrap 3.x -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -108,13 +109,13 @@ $(document).ready(function(){
 		<div id="card-container">
 			<div class="card">
 				<div class="card-inner">
-					<div class="card-front">기술면접</div>
-					<div class="card-back">취업을 위해 니가 공부해야 할 것이지~</div>
+					<div class="card-front">TEKA</div>
+					<div class="card-back">Tech Kard : 기술 면접 준비</div>
 				</div>
 			</div>
 		</div><br>
 		<input class="tutorial" type="button" value="나도 만들어보기"><br>
-		<input class="tutorial" type="button" value="다른 학습세트보기">
+		<input class="tutorial" type="button" value="다른 학습세트보기"  onclick="location.href='list.do'">
 	</div>
 	
 	<div id="sub_content">
@@ -125,7 +126,7 @@ $(document).ready(function(){
 				지금 바로 다른 사람의 학습법을 공유받으세요.<br>
 			</p>
 		</div><br>
-		<input class="tutorial" type="button" value="로그인">
+		<input class="tutorial" type="button" value="로그인" onclick="location.href='loginForm.do'">
 		<input class="tutorial" type="button" value="회원가입">
 	</div>
 </div>
