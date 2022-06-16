@@ -14,6 +14,7 @@ margin-left: 20px;
 }
 
 #bar{
+width: 100%;
 padding-top: 15px;
 height: 80px;
 }
