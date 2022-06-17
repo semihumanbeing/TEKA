@@ -127,7 +127,7 @@ $(document).ready(function(){
 			</p>
 		</div><br>
 		<input class="tutorial" type="button" value="로그인" onclick="location.href='loginForm.do'">
-		<input class="tutorial" type="button" value="회원가입">
+		<input class="tutorial" type="button" value="회원가입" onclick="location.href='signUpForm.do'">
 	</div>
 </div>
 </body>

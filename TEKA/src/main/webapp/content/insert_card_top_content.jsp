@@ -91,7 +91,7 @@
 	</div>
 	
 	<!-- 부유속성해제 -->
-	<div stye="clear:both;"></div>
+	<div style="clear:both;"></div>
 </div>
 
 
