@@ -23,7 +23,7 @@ public class LogoutAction extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		request.getSession().removeAttribute("user");
-		request.getSession().removeAttribute("RSA_WEB_KEY");
+		//request.getSession().removeAttribute("RSA_WEB_KEY");
 		response.sendRedirect("list.do");
 
 	}
