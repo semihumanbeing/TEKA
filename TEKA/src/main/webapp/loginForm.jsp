@@ -10,6 +10,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/rsa.js"></script>
+<script type="text/javascript" src="js/jsbn.js"></script>
+<script type="text/javascript" src="js/prng4.js"></script>
+<script type="text/javascript" src="js/rng.js"></script>
 
 <style>
 .mainHeader {
@@ -155,6 +159,12 @@ a {
 <script type="text/javascript">
 	$(document).ready(function(){
 		setTimeout(showMessage, 100);
+		
+		$("#loginForm").keypress(function(e){
+			if(e.keyCode == 13){
+				send(document.loginForm);
+			}
+		});
 	});
 	
 	function showMessage(){
@@ -170,27 +180,57 @@ a {
 	}
 
 	function send(f){
-		var m_id  = $("#id").val().trim();
-		var m_pwd = $("#pwd").val().trim();
+		var m_id  = f.m_id.value.trim();
+		var m_pwd = f.m_pwd.value.trim();
 		
 		if(m_id == ''){
 			alert('아이디를 입력하세요.');
-			$("#id").val('');
-			$("#id").focus();
+			$("#m_id").val('');
+			$("#m_pwd").focus();
 			return;
 		}
 		
 		//비밀번호는 정규식 추가해야 할 것 같음
 		if(m_pwd == ''){
 			alert('비밀번호를 입력하세요.');
-			$("#pwd").val('');
-			$("#pwd").focus();
+			$("#m_pwd").val('');
+			$("#m_pwd").focus();
 			return;
 		}
 		
-		f.action="login.do";
+		alert(m_id + "##" + m_pwd);
 		
-		f.submit();
+		//서버로 전송하기 비로 전에 값을 암호화한다.
+		var rsa = new RSAKey();
+		rsa.setPublic($("#RSAModulus").val(), $("#RSAExponent").val());
+		
+		//사용자 계정정보를 암호화 처리 
+		m_id  = rsa.encrypt(m_id);
+		m_pwd = rsa.encrypt(m_pwd);
+		alert(m_id + "##" + m_pwd);
+		
+		
+		//ajax로 서버에 암호화한 데이터를 보낸다. 
+		$.ajax({
+			type: "POST",
+			url	: "login.do",
+			data: {"m_id":m_id, "m_pwd":m_pwd},
+			dataType:"json",
+			success: function(res_data){
+				if(res_data.state == 4){
+					location.href="list.do";
+				}else if(res_data.state== 2){
+					alert("아이디를 확인하세요.");
+				}else if(res_data.state== 3){
+					alert("비밀번호를 확인하세요.");
+				}else{
+					alert("잘못된 경로로 접근, 암호화 인증 실패");
+				}
+			},
+			error:function(err){
+				console.log(err.responseText);
+			}
+		});
 		
 	}
 </script>
@@ -199,7 +239,10 @@ a {
 	<div><%@include file="header/mainmenu.jsp" %></div>
 	<div class="container" id="container">
 		<div class="formContainer logInContainer">
-			<form id="loginForm" action="#">
+			<form id="loginForm" name="loginForm">
+				<input type="hidden" id="RSAModulus"  value="${RSAModulus }" /> <!-- 서버에서 전달해준 공개키 저장(세션트래킹) -->
+				<input type="hidden" id="RSAExponent" value="${RSAExponent }" /> <!-- 서버에서 전달해준 공개키 저장(세션트래킹) -->
+				
 				<div class="mainHeader">
 					<h1>Sign-in</h1>
 				</div>
@@ -208,7 +251,7 @@ a {
 					<a href="#" class="social"><i class="fa fa-google fa-2x"></i></a>
 				</div>
 				<span>or use your account</span> 
-				<input type="text"     id="id"  name="m_id"    value="${param.m_id }" placeholder="id" /> 
+				<input type="text"     id="id"  name="m_id"    placeholder="id" /> 
 				<input type="password" id="pwd" name="m_pwd"   placeholder="Password" /> 
 				<a href="#">Forgot your password?</a>
 				<input id="loginBtn" type="button" value="Sign In" onclick="send(this.form);" />
