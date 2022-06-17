@@ -198,7 +198,7 @@ a {
 			return;
 		}
 		
-		//alert(m_id + "##" + m_pwd);
+		alert(m_id + "##" + m_pwd);
 		
 		//서버로 전송하기 비로 전에 값을 암호화한다.
 		var rsa = new RSAKey();
@@ -207,7 +207,7 @@ a {
 		//사용자 계정정보를 암호화 처리 
 		m_id  = rsa.encrypt(m_id);
 		m_pwd = rsa.encrypt(m_pwd);
-		//alert(m_id + "##" + m_pwd);
+		alert(m_id + "##" + m_pwd);
 		
 		
 		//ajax로 서버에 암호화한 데이터를 보낸다. 

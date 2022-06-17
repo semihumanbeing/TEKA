@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.RSAPublicKeySpec;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import vo.MemberVo;
 
 /**
  * Servlet implementation class LoginFormAction
@@ -32,11 +35,11 @@ public class LoginFormAction extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		try {
-			KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");//RSA알고리즘으로 키 쌍을 생성
-			generator.initialize(1024);//키의 크기는 1024
+			KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+			generator.initialize(1024);
 			KeyPair keyPair       = generator.genKeyPair();
 			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-			PublicKey publicKey   = keyPair.getPublic(); //공유키
+			PublicKey publicKey   = keyPair.getPublic(); //공유기
 			PrivateKey privateKey = keyPair.getPrivate();//개인키
 			
 			session.setAttribute("RSA_WEB_KEY", privateKey);//세션에 개인키를 저장
