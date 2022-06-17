@@ -9,6 +9,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member3 where m_id=#{m_id}
 	</select>
 	
+	<!-- 회원가입 -->
+	<insert id="memberInsert" parameterType="vo.MemberVo">
+		insert into member3 values
+		(
+			m_idx=#{m_idx},
+			m_id=#{m_id},
+			m_nickname=#{m_nickname},
+			m_birthdate=to_date('1996-03-12','YYYY-MM-DD'),
+			m_email=#{m_email},
+			m_pwd=#{m_pwd}
+		)
+	</insert>
+	
+	
 </mapper>
 
 

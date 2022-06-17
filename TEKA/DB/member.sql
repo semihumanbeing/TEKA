@@ -20,3 +20,6 @@ insert into member3 values(seq_m_idx.nextVal, 'yhn032', '홍길동', '1999-04-10', 
 insert into member3 values(seq_m_idx.nextVal, 'yhn033', '일길동', '1989-12-12', 'yhn033@daum.net', 'khn033');
 insert into member3 values(seq_m_idx.nextVal, 'yhn034', '이길동', '1979-03-15', 'yhn034@nate.com', 'two034');
 insert into member3 values(seq_m_idx.nextVal, 'yhn035', '삼길동', '2012-08-20', 'yhn035@naver.com', 'thr035');
+insert into member3 values(seq_m_idx.nextVal, 'admin', '관리자', to_date('2012-08-20','YYYY-MM-DD'), 'yhn035@naver.com', 'admin');
+
+delete from member3 where m_idx = 6
