@@ -35,14 +35,16 @@ public class LoginFormAction extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		try {
-			KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-			generator.initialize(1024);
+			KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");	//키 쌍 생성 RSA알고리즘
+			generator.initialize(1024);											//키 사이즈 1024
 			KeyPair keyPair       = generator.genKeyPair();
 			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
 			PublicKey publicKey   = keyPair.getPublic(); //공유기
 			PrivateKey privateKey = keyPair.getPrivate();//개인키
 			
 			session.setAttribute("RSA_WEB_KEY", privateKey);//세션에 개인키를 저장
+			
+			//공개키를 16진 문자열로 바꾸어 클라이언트에 전달한다. 
 			RSAPublicKeySpec publicSpec = keyFactory.getKeySpec(publicKey, RSAPublicKeySpec.class);
 			
 			String publicKeyModulus    = publicSpec.getModulus().toString(16);

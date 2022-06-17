@@ -34,16 +34,19 @@ public class LoginAction extends HttpServlet {
 		String m_id  = request.getParameter("m_id");
 		String m_pwd = request.getParameter("m_pwd");
 		
-		System.out.println(m_id);
-		System.out.println(m_pwd);
 		HttpSession session = request.getSession();
-		System.out.println("# 암호화 된 아이디 : " + m_id + ", # 암호화 된 비밀번호 : " + m_pwd);
+		//System.out.println("# 암호화 된 아이디 : " + m_id + ", # 암호화 된 비밀번호 : " + m_pwd);
 		
 		//로그인 전에 세션에 저장한 개인키를 가져온다. 
 		PrivateKey privateKey = (PrivateKey) session.getAttribute("RSA_WEB_KEY");
 		
+		//동일한 개인키로 중복 로그인하는 것을 방지하기 위해 값을 꺼내자마자 세션에서 삭제해버린다. 세션에 개인키가 쌓이는 것을 방지한다. 
+		//로그인 시에는 항상 새로운 개인키를 이용하도록 강제한다.
+		//이렇게 하면 버그가 생기네 일단 더 고려해보겠음.
+		//session.removeAttribute("RSA_WEB_KEY");
+		
 		if(privateKey == null) {
-			System.out.println("# 로그인 체크 실패");
+			//System.out.println("# 로그인 체크 실패");
 			json.put("state", 1);
 		}else {
 			
@@ -52,29 +55,31 @@ public class LoginAction extends HttpServlet {
 				String _m_id  = decryptRSA(privateKey, m_id);
 				String _m_pwd = decryptRSA(privateKey, m_pwd);
 				
-				System.out.println("#복호화 된 아이디 : " + _m_id + ", # 복호화 된 비밀번호 : " + _m_pwd);
+				//System.out.println("#복호화 된 아이디 : " + _m_id + ", # 복호화 된 비밀번호 : " + _m_pwd);
 				//복호화 처리된 계정 정보를 사용해서 로그인 검증을 시작한다. 
 				MemberVo user = MemberDao.getInstance().selectOneById(_m_id);
 				
 				//id 체크
 				if(user == null) {
-					System.out.println("id 오류");
+					//System.out.println("id 오류");
 					json.put("state", 2);
 				} //pwd체크 
 				else if(!user.getM_pwd().equals(_m_pwd)) {//user != null && 비밀번호 다름
-					System.out.println(user.getM_pwd());
-					System.out.println("pwd 오류");
+					//System.out.println(user.getM_pwd());
+					//System.out.println("pwd 오류");
 					json.put("state", 3);
 				}else {
-					System.out.println("로그인 체크 성공");
-					System.out.println(privateKey);
+					////System.out.println("로그인 체크 성공");
+					//System.out.println(privateKey);
 					json.put("state", 4);
+					
+					//로그인 성공 시 유저정보 세션에 저장
 					session.setAttribute("user", user);
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
 				json.put("state", 5);
-				System.out.println("로그인 체크 실패. Error : " + e.getMessage());
+				//System.out.println("로그인 체크 실패. Error : " + e.getMessage());
 			}
 		}
 		/*
@@ -86,7 +91,7 @@ public class LoginAction extends HttpServlet {
 		*/
 		
 		String json_str = json.toJSONString();
-		System.out.println(json_str);
+		//System.out.println(json_str);
 		response.setContentType("text/json; charset=utf-8;");
 		response.getWriter().print(json_str);
 	}
@@ -107,7 +112,9 @@ public class LoginAction extends HttpServlet {
 		}
 		return decryptedValue;
 	}
-
+	
+	
+	//16진 문자열을 다시 바이트 배열로 바꾸는 작업
 	private byte[] hexToByteArray(String m_id) {
 		// TODO Auto-generated method stub
 		if(m_id == null || m_id.length()%2 != 0) {
