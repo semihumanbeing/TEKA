@@ -162,6 +162,12 @@ a {
 </style>
 
 <script type="text/javascript">
+	//로그인 성공시 브라우저 뒤로 가기 버튼으로 다시 로그인 페이지로 이동할 수 없도록 막기
+	window.history.forward();
+	function noBack(){
+		window.history.forward();
+	}
+	
 	$(document).ready(function(){
 		setTimeout(showMessage, 100);
 		
@@ -235,7 +241,7 @@ a {
 	}
 </script>
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	<div><%@include file="header/mainmenu.jsp" %></div>
 	<div class="container" id="container">
 		<div class="formContainer logInContainer">
