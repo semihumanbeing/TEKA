@@ -21,6 +21,11 @@
 
 </style>
 <script type="text/javascript">
+ window.history.forward();
+ function noBack(){window.history.forward();}
+</script>
+
+<script type="text/javascript">
 	var checkID = /^[a-zA-Z0-9]{4,16}$/;
 	var checkPWD = /^[a-zA-Z0-9]{4,20}$/;
 	var checkNICKNAME = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
@@ -203,7 +208,7 @@
 	}
 </script>
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	<div><%@include file="header/mainmenu.jsp"%></div>
 	<form>
 		<div class="panel panel-default" id="registerForm">
