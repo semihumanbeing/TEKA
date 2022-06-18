@@ -30,9 +30,8 @@ public class LoginAction extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		JSONObject json = new JSONObject();
-		String m_id  = request.getParameter("m_id");
-		String m_pwd = request.getParameter("m_pwd");
+		String encryptedID  = request.getParameter("encryptedID");
+		String encryptedPWD = request.getParameter("encryptedPWD");
 		
 		HttpSession session = request.getSession();
 		//System.out.println("# 암호화 된 아이디 : " + m_id + ", # 암호화 된 비밀번호 : " + m_pwd);
@@ -42,43 +41,40 @@ public class LoginAction extends HttpServlet {
 		
 		//동일한 개인키로 중복 로그인하는 것을 방지하기 위해 값을 꺼내자마자 세션에서 삭제해버린다. 세션에 개인키가 쌓이는 것을 방지한다. 
 		//로그인 시에는 항상 새로운 개인키를 이용하도록 강제한다.
-		//이렇게 하면 버그가 생기네 일단 더 고려해보겠음.
-		//session.removeAttribute("RSA_WEB_KEY");
+		session.removeAttribute("RSA_WEB_KEY");
 		
 		if(privateKey == null) {
-			//System.out.println("# 로그인 체크 실패");
-			json.put("state", 1);
-		}else {
+			
+			throw new RuntimeException("암호화된 개인키를 찾을 수 없습니다. 새로고침을 해주세요.");
+			
+		}else {//개인키가 존재한다면,,,
 			
 			try {
 				//암호화된 데이터를 복호화 처리한다.
-				String _m_id  = decryptRSA(privateKey, m_id);
-				String _m_pwd = decryptRSA(privateKey, m_pwd);
+				String m_id  = decryptRSA(privateKey, encryptedID);
+				String m_pwd = decryptRSA(privateKey, encryptedPWD);
 				
 				//System.out.println("#복호화 된 아이디 : " + _m_id + ", # 복호화 된 비밀번호 : " + _m_pwd);
 				//복호화 처리된 계정 정보를 사용해서 로그인 검증을 시작한다. 
-				MemberVo user = MemberDao.getInstance().selectOneById(_m_id);
+				MemberVo user = MemberDao.getInstance().selectOneById(m_id);
 				
 				//id 체크
 				if(user == null) {
-					//System.out.println("id 오류");
-					json.put("state", 2);
+					response.sendRedirect("loginForm.do?reason=failId");
+					return;
 				} //pwd체크 
-				else if(!user.getM_pwd().equals(_m_pwd)) {//user != null && 비밀번호 다름
-					//System.out.println(user.getM_pwd());
-					//System.out.println("pwd 오류");
-					json.put("state", 3);
-				}else {
-					////System.out.println("로그인 체크 성공");
-					//System.out.println(privateKey);
-					json.put("state", 4);
-					
-					//로그인 성공 시 유저정보 세션에 저장
-					session.setAttribute("user", user);
+				
+				if(!user.getM_pwd().equals(m_pwd)) {//user != null && 비밀번호 다름
+					response.sendRedirect("loginForm.do?reason=failPwd");
+					return;
 				}
+				
+				//로그인 성공 시 유저정보 세션에 저장
+				session.setAttribute("user", user);
+				response.sendRedirect("list.do");
+				
 			} catch (Exception e) {
 				// TODO: handle exception
-				json.put("state", 5);
 				//System.out.println("로그인 체크 실패. Error : " + e.getMessage());
 			}
 		}
@@ -90,10 +86,6 @@ public class LoginAction extends HttpServlet {
 			5	:  예외 발생
 		*/
 		
-		String json_str = json.toJSONString();
-		//System.out.println(json_str);
-		response.setContentType("text/json; charset=utf-8;");
-		response.getWriter().print(json_str);
 	}
 
 	private String decryptRSA(PrivateKey privateKey, String m_id) {

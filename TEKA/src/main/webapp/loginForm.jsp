@@ -6,15 +6,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- BootStrap 3.x -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/rsa.js"></script>
+
+<!-- RSA JS Library -->
 <script type="text/javascript" src="js/jsbn.js"></script>
+<script type="text/javascript" src="js/rsa.js"></script>
 <script type="text/javascript" src="js/prng4.js"></script>
 <script type="text/javascript" src="js/rng.js"></script>
 
+<!-- SweetAlert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
 .mainHeader {
 	color: #9a3dff;
@@ -162,26 +167,28 @@ a {
 		
 		$("#loginForm").keypress(function(e){
 			if(e.keyCode == 13){
-				send(document.loginForm);
+				checkValidate();
 			}
 		});
 	});
 	
 	function showMessage(){
-		if("${param.reason eq 'fail_id'}" == "true"){
+		if("${param.reason eq 'failId'}" == "true"){
 			alert('아이디가 틀렸습니다.');
 			return;
 		}
 		
-		if("${param.reason eq 'fail_pwd'}" == "true"){
+		if("${param.reason eq 'failPwd'}" == "true"){
 			alert('비밀번호가 틀렸습니다.');
 			return;
 		}
 	}
 
-	function send(f){
-		var m_id  = f.m_id.value.trim();
-		var m_pwd = f.m_pwd.value.trim();
+	function checkValidate(){
+		
+		//사용자 입력값 체크
+		var m_id  = $("#m_id").val().trim();
+		var m_pwd = $("#m_pwd").val().trim();
 		
 		if(m_id == ''){
 			alert('아이디를 입력하세요.');
@@ -200,38 +207,31 @@ a {
 		
 		//alert(m_id + "##" + m_pwd);
 		
-		//서버로 전송하기 비로 전에 값을 암호화한다.
+		try{
+			var RSAPublicKeyModulus  = $("#RSAModulus").val();
+			var RSAPublicKeyExponent = $("#RSAExponent").val();
+			submitEncryptedForm(m_id, m_pwd, RSAPublicKeyModulus, RSAPublicKeyExponent);
+		}catch(err){
+			console.log(err);
+		}
+		
+		return false;
+	}
+	
+	function submitEncryptedForm(m_id, m_pwd, RSAPublicKeyModulus, RSAPublicKeyExponent){
+		//서버로 전송하기 비로 전에 값을 암호화한다. 바이트배열을 16진 문자열로 바꾼다.
 		var rsa = new RSAKey();
-		rsa.setPublic($("#RSAModulus").val(), $("#RSAExponent").val());
+		rsa.setPublic(RSAPublicKeyModulus, RSAPublicKeyExponent);
 		
 		//사용자 계정정보를 암호화 처리 
-		m_id  = rsa.encrypt(m_id);
-		m_pwd = rsa.encrypt(m_pwd);
-		//alert(m_id + "##" + m_pwd);
+		var securedM_id  = rsa.encrypt(m_id);
+		var securedM_pwd = rsa.encrypt(m_pwd);
 		
+		//숨겨진 폼에 값을 설정하고 서브밋한다. 
+		$("#encryptedID").val(securedM_id);
+		$("#encryptedPWD").val(securedM_pwd);
 		
-		//ajax로 서버에 암호화한 데이터를 보낸다. 
-		$.ajax({
-			type: "POST",
-			url	: "login.do",
-			data: {"m_id":m_id, "m_pwd":m_pwd},
-			dataType:"json",
-			success: function(res_data){
-				if(res_data.state == 4){
-					location.href="list.do";
-				}else if(res_data.state== 2){
-					alert("아이디를 확인하세요.");
-				}else if(res_data.state== 3){
-					alert("비밀번호를 확인하세요.");
-				}else{
-					alert("잘못된 경로로 접근, 암호화 인증 실패");
-				}
-			},
-			error:function(err){
-				console.log(err.responseText);
-			}
-		});
-		
+		securedForm.submit();
 	}
 </script>
 </head>
@@ -242,7 +242,6 @@ a {
 			<form id="loginForm" name="loginForm">
 				<input type="hidden" id="RSAModulus"  value="${RSAModulus }" /> <!-- 서버에서 전달해준 공개키 저장(세션트래킹) -->
 				<input type="hidden" id="RSAExponent" value="${RSAExponent }" /> <!-- 서버에서 전달해준 공개키 저장(세션트래킹) -->
-				
 				<div class="mainHeader">
 					<h1>Sign-in</h1>
 				</div>
@@ -251,10 +250,16 @@ a {
 					<a href="#" class="social"><i class="fa fa-google fa-2x"></i></a>
 				</div>
 				<span>or use your account</span> 
-				<input type="text"     id="id"  name="m_id"    placeholder="id" /> 
-				<input type="password" id="pwd" name="m_pwd"   placeholder="Password" /> 
+				<input type="text"     id="m_id"  name="m_id"    placeholder="id" /> 
+				<input type="password" id="m_pwd" name="m_pwd"   placeholder="Password" /> 
 				<a href="#">Forgot your password?</a>
-				<input id="loginBtn" type="button" value="Sign In" onclick="send(this.form);" />
+				<input id="loginBtn" type="button" value="Sign In" onclick="checkValidate(); return false;" />
+			</form>
+			
+			<!-- 실제로 서버에 전송할 데이터를 담을 폼 -->
+			<form id="securedForm" name="securedForm" method="POST" action="login.do" style="display: none;">
+				<input type="hidden" id="encryptedID"  name="encryptedID"  value="" /> <!-- 서버에서 전달해준 공개키 저장(세션트래킹) -->
+				<input type="hidden" id="encryptedPWD" name="encryptedPWD" value="" /> <!-- 서버에서 전달해준 공개키 저장(세션트래킹) -->
 			</form>
 		</div>
 		<div class="overlayContainer">
