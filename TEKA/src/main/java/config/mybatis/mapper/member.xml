@@ -9,16 +9,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member3 where m_id=#{m_id}
 	</select>
 	
+	<!-- nickname에 해당되는 1건 데이터 조회 -->
+	<select id="memberListByNickname" parameterType="String" resultType="vo.MemberVo">
+		select * from member3 where m_nickname=#{m_nickname}
+	</select>
+	
+	<!-- email에 해당되는 1건 데이터 조회 -->
+	<select id="memberListByEmail" parameterType="String" resultType="vo.MemberVo">
+		select * from member3 where m_email=#{m_email}
+	</select>
+	
 	<!-- 회원가입 -->
-	<insert id="memberInsert" parameterType="vo.MemberVo">
+	<insert id="insert" parameterType="vo.MemberVo">
 		insert into member3 values
 		(
-			m_idx=#{m_idx},
-			m_id=#{m_id},
-			m_nickname=#{m_nickname},
-			m_birthdate=to_date('1996-03-12','YYYY-MM-DD'),
-			m_email=#{m_email},
-			m_pwd=#{m_pwd}
+			seq_m_idx.nextVal,
+			#{m_id},
+			#{m_nickname},
+			to_date('1996-03-12','YYYY-MM-DD'),<!-- 생년월일 삭제예정 -->
+			#{m_email},
+			#{m_pwd}
 		)
 	</insert>
 	
