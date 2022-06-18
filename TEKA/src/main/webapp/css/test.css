@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+
+#card_view{
+	height : 850px;
+}
+
+
+/* card */
+.card {	
+	line-height  : 270px;
+	width        : 300px;
+	height       : 270px;
+	margin       : right;
+	margin-right : 250px;
+	float        : right;
+	margin-top   : 200px;
+}
+.card-inner {
+	position   : relative;
+	width      : 100%;
+	height     : 100%;
+	text-align : center;
+	transition : transform 0.8s;
+	transform-style: preserve-3d; 
+}
+.card.flipped .card-inner {
+	transform: rotateX(180deg);
+}
+.card-front, .card-back {
+	position: absolute;
+	top:0%;
+	bottom:0%;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 1px 1px 4px black;
+	box-sizing: border-box;
+	-webkit-backface-visibility: hidden; /* Safari */
+	backface-visibility: hidden;
+	font-weight: bold;
+	font-size  : 30px;
+}
+.card-back {
+	transform: rotateX(180deg);
+}
+
+#text{
+	font-weight : bold;
+	font-size   : 34px; 
+	margin-left : 190px;
+	margin-top  : 270px;
+	float       : left;
+	color       : white;
+}
+
+#subject_view{
+	height : 2200px;
+}
+
+#sel2{
+	height     : 180px;
+	width      : 500px;
+	font-size  : 20px;
+	font-weight: bold;
+}
+
+#text_area{
+	margin-left: 10px;
+	float : right;
+	width : 100%;
+}
+
+#q_text{
+	resize        : none;
+	width         : 100%;
+	height        : 50px;
+	display       : block;
+	margin-bottom : 5px;
+}
+
+#a_text{
+	resize  : none;
+	width   : 100%;
+	height  : 200px;
+	display : block;
+}
+
+#btn_insert{
+	float      : right;	
+	margin-top : 5px;
+}
+
+#card_ex {	
+	line-height  : 270px;
+	width        : 100%;
+	height       : 350px;
+	float        : right;
+	margin-top   : 100px;
+}
+
+
+
+
+

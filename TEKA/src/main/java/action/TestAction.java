@@ -10,22 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MainAction
- */
-@WebServlet("/main.do")
-public class MainAction extends HttpServlet {
+*  Servlet implementation class TestAction
+*/
+
+@WebServlet("/test.do")
+public class TestAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
-	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
-		//forward
-		String forward_page = "quiztis_main.jsp";
+		String forward_page = "test.jsp";
 		RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 		disp.forward(request, response);
 
