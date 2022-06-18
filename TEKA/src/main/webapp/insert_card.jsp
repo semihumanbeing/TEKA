@@ -30,11 +30,10 @@
 		<%@include file="content/insert_card_top_content.jsp" %>
 	</div>
 	
-	<!-- content2 -->
+	<!-- bottom-content -->
 	<div id="bottom_content">
 		<%@include file="content/insert_card_bottom_content.jsp" %>
 	</div>
 	
-
 </body>
 </html>

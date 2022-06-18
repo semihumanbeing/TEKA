@@ -114,7 +114,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div><br>
-		<input class="tutorial" type="button" value="나도 만들어보기"><br>
+		<input class="tutorial" type="button" value="나도 만들어보기" onclick="location.href='test.do'"><br>
 		<input class="tutorial" type="button" value="다른 학습세트보기"  onclick="location.href='list.do'">
 	</div>
 	
