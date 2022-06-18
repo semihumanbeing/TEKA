@@ -46,17 +46,17 @@
 	transform: rotateX(180deg);
 }
 
-#text{
+.text{
 	font-weight : bold;
 	font-size   : 34px; 
 	margin-left : 190px;
 	margin-top  : 270px;
 	float       : left;
-	color       : white;
+	font-family : 맑은고딕체; 
 }
 
 #subject_view{
-	height : 2200px;
+	height : 3300px;
 }
 
 #sel2{
@@ -67,9 +67,7 @@
 }
 
 #text_area{
-	margin-left: 10px;
-	float : right;
-	width : 100%;
+	margin-left : 10px;
 }
 
 #q_text{
@@ -83,24 +81,30 @@
 #a_text{
 	resize  : none;
 	width   : 100%;
-	height  : 200px;
+	height  : 100px;
 	display : block;
 }
 
 #btn_insert{
-	float      : right;	
-	margin-top : 5px;
+	margin-top  : 10px;
+	margin      : left;
+	margin-left : 350px;
 }
 
-#card_ex {	
-	line-height  : 270px;
-	width        : 100%;
-	height       : 350px;
-	float        : right;
-	margin-top   : 100px;
+#text_insert{
+	margin-left   : 10px;
+	width         : 100%;
+	float         : right;
 }
 
+#card_box{
+	width         : 50%;
+	margin-top    : 20px;
+	margin-bottom : 40px;
+}
 
-
-
-
+#last_btn{
+	margin:10px;
+	margin-right:10px;
+	display : block;
+}
