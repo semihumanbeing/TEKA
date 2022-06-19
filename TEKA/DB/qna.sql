@@ -27,8 +27,10 @@ insert into qna values(seq_q_idx.nextVal, 1, '객체지향이 뭔지아니?', '객체지향이
 insert into qna values(seq_q_idx.nextVal, 1, '컴포넌트가 뭔지아니?', '컴포넌트다!');
 
 
-insert into qna values(seq_q_idx.nextVal, 3, '스케줄러가 뭔지 아니?', '내가알겠냐!');
-insert into qna values(seq_q_idx.nextVal, 3, '운영체제가 뭔지 아니?', '너는아냐?!');
-insert into qna values(seq_q_idx.nextVal, 3, 'RAID0가 뭔지 아니?', '잘 모른다!');
-insert into qna values(seq_q_idx.nextVal, 3, '교착상태가 뭔지 아니?', '교착!!');
-insert into qna values(seq_q_idx.nextVal, 3, '상호배제가 뭔지 아니?', '배제!!');
+insert into qna values(seq_q_idx.nextVal, 2, '스케줄러가 뭔지 아니?', '내가알겠냐!');
+insert into qna values(seq_q_idx.nextVal, 2, '운영체제가 뭔지 아니?', '너는아냐?!');
+insert into qna values(seq_q_idx.nextVal, 2, 'RAID0가 뭔지 아니?', '잘 모른다!');
+insert into qna values(seq_q_idx.nextVal, 2, '교착상태가 뭔지 아니?', '교착!!');
+insert into qna values(seq_q_idx.nextVal, 2, '상호배제가 뭔지 아니?', '배제!!');
+
+update qna set c_idx = 2 where c_idx = 3 

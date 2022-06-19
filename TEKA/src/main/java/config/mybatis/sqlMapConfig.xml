@@ -21,5 +21,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- Mapping하는 작업 -->
 	<mappers>
 		<mapper resource="config/mybatis/mapper/member.xml" />
+		<mapper resource="config/mybatis/mapper/card.xml" />
 	</mappers>
 </configuration>

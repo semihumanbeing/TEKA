@@ -89,24 +89,24 @@ $(document).ready(function(){
 </head>
 <body>
 
-	<c:forEach begin="1" end="7">
+	<c:forEach var="qna" items="${ list }">
 		<div class="card-container">
 			<div class="card">
 				<div class="card-inner">
 					<div class="card-front">
-						<h1>앞면입니다</h1>
+						<h1>${ qna.q_question }</h1>
 					</div>
 					<div class="card-back">
-						<h1>뒷면이예요</h1>
+						<h1>${ qna.q_answer }</h1>
 					</div>
 				</div>
 			</div>
 			
 			<div class="side">
-				<h2>게시글입니다</h2>
+				<h2>${qna.c_name}</h2>
 				<span class="badge">알고리즘</span>
 				<button type="button" class="btn btn-xs btn-primary">
-					추천 <span class="badge">7</span>
+					추천 <span class="badge">${qna.c_prefer}</span>
 				</button>
 				<p class="introduction">소개글입니다</p>
 			</div>
