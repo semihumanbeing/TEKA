@@ -40,3 +40,12 @@ select * from card
 
 insert into card values(seq_c_idx.nextVal, 0, '자바완전정복!', 30, 1);
 insert into card values(seq_c_idx.nextVal, 0, '운영체제별거없지!', 20, 4);
+
+-- qna(left) card(right) left outer join
+create or replace view qnacard
+as
+select * from qna t1
+left outer join card t2
+using (c_idx)
+
+select * from qnacard
