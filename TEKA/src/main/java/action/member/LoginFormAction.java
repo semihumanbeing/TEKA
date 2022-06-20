@@ -1,4 +1,4 @@
-package action;
+package action.member;
 
 import java.io.IOException;
 import java.security.KeyFactory;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LoginFormAction
  */
-@WebServlet("/loginForm.do")
+@WebServlet("/member/loginForm.do")
 public class LoginFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

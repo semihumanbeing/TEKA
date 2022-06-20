@@ -12,27 +12,25 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- css파일 연결 -->
-<link rel="stylesheet" href="css/mainmenu_header.css">
-<link rel="stylesheet" href="css/main_insert_card.css">
-<link rel="stylesheet" href="css/insert_card_top_content.css">
-<link rel="stylesheet" href="css/insert_card_bottom_content.css">
+<link rel="stylesheet" href="../css/mainmenuHeader.css">
+<link rel="stylesheet" href="../css/mainInsertCard.css">
 
 </head>
 <body>
 
 	<!-- header -->
 	<div id="header">
-		<%@include file="header/mainmenu.jsp" %>>
+		<%@include file="../header/mainmenu.jsp" %>>
 	</div>
 	
 	<!-- top-content -->
 	<div id="top_content">
-		<%@include file="content/insert_card_top_content.jsp" %>
+		<%@include file="../content/insertCardTopContent.jsp" %>
 	</div>
 	
 	<!-- bottom-content -->
 	<div id="bottom_content">
-		<%@include file="content/insert_card_bottom_content.jsp" %>
+		<%@include file="../content/insertCardBottomContent.jsp" %>
 	</div>
 	
 </body>

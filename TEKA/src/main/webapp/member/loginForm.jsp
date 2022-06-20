@@ -13,10 +13,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- RSA JS Library -->
-<script type="text/javascript" src="js/jsbn.js"></script>
-<script type="text/javascript" src="js/rsa.js"></script>
-<script type="text/javascript" src="js/prng4.js"></script>
-<script type="text/javascript" src="js/rng.js"></script>
+<script type="text/javascript" src="../js/jsbn.js"></script>
+<script type="text/javascript" src="../js/rsa.js"></script>
+<script type="text/javascript" src="../js/prng4.js"></script>
+<script type="text/javascript" src="../js/rng.js"></script>
 
 <!-- SweetAlert -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -242,7 +242,7 @@ a {
 </script>
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
-	<div><%@include file="header/mainmenu.jsp" %></div>
+	<div><%@include file="../header/mainmenu.jsp" %></div>
 	<div class="container" id="container">
 		<div class="formContainer logInContainer">
 			<form id="loginForm" name="loginForm">

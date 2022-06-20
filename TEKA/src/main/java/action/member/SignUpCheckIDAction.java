@@ -1,4 +1,4 @@
-package action;
+package action.member;
 
 import java.io.IOException;
 
@@ -15,10 +15,10 @@ import dao.MemberDao;
 import vo.MemberVo;
 
 /**
- * Servlet implementation class SignUpCheckEmailAction
+ * Servlet implementation class SignUpCheckIDAction
  */
-@WebServlet("/checkEmail.do")
-public class SignUpCheckEmailAction extends HttpServlet {
+@WebServlet("/member/checkID.do")
+public class SignUpCheckIDAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -29,8 +29,8 @@ public class SignUpCheckEmailAction extends HttpServlet {
 		
 		// 파라미터 받기
 		request.setCharacterEncoding("utf-8");
-		String m_email = request.getParameter("m_email");
-		MemberVo vo = MemberDao.getInstance().selectOneByEmail(m_email);
+		String m_id = request.getParameter("m_id");
+		MemberVo vo = MemberDao.getInstance().selectOneById(m_id);
 		
 		// 아이디 사용 유무 확인하기
 		boolean bResult = false;

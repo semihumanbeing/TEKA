@@ -102,7 +102,7 @@ $(document).ready(function(){
 <body>
 <div id="main-container">
 	<div id="header">
-		<%@include file="header/mainmenu.jsp" %>
+		<%@include file="../header/mainmenu.jsp" %>
 	</div>
 	
 	<div id="content">
@@ -126,8 +126,8 @@ $(document).ready(function(){
 				지금 바로 다른 사람의 학습법을 공유받으세요.<br>
 			</p>
 		</div><br>
-		<input class="tutorial" type="button" value="로그인" onclick="location.href='loginForm.do'">
-		<input class="tutorial" type="button" value="회원가입" onclick="location.href='signUpForm.do'">
+		<input class="tutorial" type="button" value="로그인" onclick="location.href='../member/loginForm.do'">
+		<input class="tutorial" type="button" value="회원가입" onclick="location.href='../member/signUpForm.do'">
 	</div>
 </div>
 </body>

@@ -1,23 +1,18 @@
-package action;
+package action.member;
 
 import java.io.IOException;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.CardDao;
-import vo.QnaCardVo;
-
 /**
- * Servlet implementation class AllListAction
+ * Servlet implementation class LogoutAction
  */
-@WebServlet("/list.do")
-public class AllListAction extends HttpServlet {
+@WebServlet("/member/logout.do")
+public class LogoutAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -26,15 +21,10 @@ public class AllListAction extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		List<QnaCardVo> list = CardDao.getInstance().selectList();
-		
-		request.setAttribute("list", list);
 
-		//forward
-		String forward_page = "list.jsp";
-		RequestDispatcher disp = request.getRequestDispatcher(forward_page);
-		disp.forward(request, response);
+		request.getSession().removeAttribute("user");
+		//request.getSession().removeAttribute("RSA_WEB_KEY");
+		response.sendRedirect("../card/list.do");
 
 	}
 

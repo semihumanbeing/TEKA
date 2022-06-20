@@ -1,4 +1,4 @@
-package action;
+package action.card;
 
 import java.io.IOException;
 
@@ -10,17 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
-*  Servlet implementation class TestAction
-*/
-
-@WebServlet("/test.do")
-public class TestAction extends HttpServlet {
+ * Servlet implementation class MainAction
+ */
+@WebServlet("/card/main.do")
+public class MainAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 */
+	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 
-		String forward_page = "test.jsp";
+		//forward
+		String forward_page = "quiztisMain.jsp";
 		RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 		disp.forward(request, response);
 

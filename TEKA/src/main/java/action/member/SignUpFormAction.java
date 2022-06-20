@@ -1,7 +1,8 @@
-package action;
+package action.member;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LogoutAction
+ * Servlet implementation class SignUpFormAction
  */
-@WebServlet("/logout.do")
-public class LogoutAction extends HttpServlet {
+@WebServlet("/member/signUpForm.do")
+public class SignUpFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -22,11 +23,11 @@ public class LogoutAction extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		request.getSession().removeAttribute("user");
-		//request.getSession().removeAttribute("RSA_WEB_KEY");
-		response.sendRedirect("list.do");
+		//forward
+		String forward_page = "signUpForm.jsp";
+		RequestDispatcher disp = request.getRequestDispatcher(forward_page);
+		disp.forward(request, response);
 
 	}
 
 }
-

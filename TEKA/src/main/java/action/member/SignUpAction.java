@@ -1,4 +1,4 @@
-package action;
+package action.member;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import vo.MemberVo;
 /**
  * Servlet implementation class SignUpAction
  */
-@WebServlet("/signUp.do")
+@WebServlet("/member/signUp.do")
 public class SignUpAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

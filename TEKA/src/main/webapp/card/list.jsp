@@ -35,10 +35,10 @@
 <body>
 <div id="box">
 <div id="mainmenu">
-<%@ include file="header/mainmenu.jsp" %>
+<%@ include file="../header/mainmenu.jsp" %>
 </div>
 <div id="content">
-<%@ include file="content.jsp" %>
+<%@ include file="../content/mainCardListContent.jsp" %>
 </div>
 <div id="footer">
 foooooooooooooooooooooooooooooooooooooooooooooter

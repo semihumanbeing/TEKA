@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- css연결 -->
-<link rel="stylesheet" href="css/test.css">
+<link rel="stylesheet" href="../css/test.css">
 <!-- 스크립트 -->
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -39,7 +39,7 @@
 <body>
 <!-- header -->
 <div id="header">
-	<%@include file="header/mainmenu.jsp" %>
+	<%@include file="../header/mainmenu.jsp" %>
 
 	<div id="card_view" style="background-color: #222222;">
 		<div class="text">
@@ -96,7 +96,7 @@
 			<p class="count">&nbsp;셋.</p><br>
 			<p class="ment">다른 사람의 학습세트를 공부할 수 있어요.</p><br>
 			<!-- 사진 수정예정 -->
-			<input type="image" src="image/will_modify.png" style="width:70%; margin:auto;">
+			<input type="image" src="../image/will_modify.png" style="width:70%; margin:auto;">
 		</div>
 
 		<div class="text" style="margin-top:380px;">
@@ -106,7 +106,7 @@
 				<input type="button" value="홈화면으로 돌아가기" class="btn btn-default btn-lg"
 														onclick="send();">
 				<input type="button" value="회원가입" class="btn btn-default btn-lg"
-														onclick="location.href='signUpForm.do'">
+														onclick="location.href='../member/signUpForm.do'">
 			</div>			
 		</div>
 	</div><!-- subject_view end -->

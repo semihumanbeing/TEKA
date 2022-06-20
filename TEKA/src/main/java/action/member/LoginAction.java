@@ -1,4 +1,4 @@
-package action;
+package action.member;
 
 import java.io.IOException;
 import java.security.PrivateKey;
@@ -19,7 +19,7 @@ import vo.MemberVo;
 /**
  * Servlet implementation class LoginAction
  */
-@WebServlet("/login.do")
+@WebServlet("/member/login.do")
 public class LoginAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -71,7 +71,7 @@ public class LoginAction extends HttpServlet {
 				
 				//로그인 성공 시 유저정보 세션에 저장
 				session.setAttribute("user", user);
-				response.sendRedirect("list.do");
+				response.sendRedirect("../card/list.do");
 				
 			} catch (Exception e) {
 				// TODO: handle exception

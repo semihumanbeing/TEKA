@@ -209,7 +209,7 @@
 </script>
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
-	<div><%@include file="header/mainmenu.jsp"%></div>
+	<div><%@include file="../header/mainmenu.jsp"%></div>
 	<form>
 		<div class="panel panel-default" id="registerForm">
 			<div class="panel-heading">

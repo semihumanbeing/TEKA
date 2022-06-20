@@ -27,11 +27,11 @@ height: 80px;
 		<div class="container-fluid">
 		
 			<div class="navbar-header">
-				<a class="navbar-brand" href="main.do" style="font-size: x-large; font-weight: bolder;">QuizTIS</a>
+				<a class="navbar-brand" href="../card/main.do" style="font-size: x-large; font-weight: bolder;">QuizTIS</a>
 			</div>
 			
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="main.do">홈페이지</a></li>
+				<li class="active"><a href="../card/main.do">홈페이지</a></li>
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">주제 <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">운영체제</a></li>
@@ -41,7 +41,7 @@ height: 80px;
 						<li><a href="#">Java</a></li>
 						<li><a href="#">Spring</a></li>
 					</ul>
-				<li><a href="list.do">모든 학습세트</a></li>
+				<li><a href="../card/list.do">모든 학습세트</a></li>
 				<li><a href="#">내 학습세트</a></li>
 			</ul>
 			
@@ -56,12 +56,12 @@ height: 80px;
 			
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${empty user }">
-					<li><a href="signUpForm.do"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
-					<li><a href="loginForm.do"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
+					<li><a href="../member/signUpForm.do"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+					<li><a href="../member/loginForm.do"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
 				</c:if>
 				<c:if test="${!empty user }">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>${user.m_nickname }님</a></li>
-					<li><a href="logout.do"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
+					<li><a href="../member/logout.do"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
 				</c:if>
 			</ul>
 			

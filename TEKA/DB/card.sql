@@ -49,3 +49,5 @@ left outer join card t2
 using (c_idx)
 
 select * from qnacard
+
+update card set c_idx=2 where c_idx=3
