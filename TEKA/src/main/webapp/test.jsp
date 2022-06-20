@@ -23,15 +23,13 @@
 		var q_text = $("#q_text").val().trim();
 		var a_text = $("#a_text").val().trim();
 		
-		var q = $("#q").val().trim();
-		var a = $("#a").val().trim();
 		$("#q").html(q_text);
 		$("#a").html(a_text);
 	}
 	
 	function send(){
 		
-		if(confirm('아쉽네요... 다음번엔 QuizTIS와 함께해주세요')==false) return;
+		if(!confirm('아쉽네요... 다음번엔 QuizTIS와 함께해주세요')) return;
 		
 		location.href="main.do";
 	}
@@ -45,8 +43,8 @@
 
 	<div id="card_view" style="background-color: #222222;">
 		<div class="text">
-			<span style="color:white;">QuizTIS 학습세트를 직접 만들어보세요</span><br><br>
-			<span style="color:white;">카드를 클릭해보세요!</span><br>
+			<p style="color:white; font-weight:500;">QuizTIS 학습세트를 직접 만들어보세요.<br><br>
+									카드를 클릭해보세요!</p><br><br>
 		</div>
 
 		<div class="card">
@@ -61,7 +59,8 @@
 	
 	<div id="subject_view">
 		<div class="text">
-			<span style="color:black;">하나. 원하는 주제별로 카테고리를 설정해요</span><br><br><br>
+			<p class="count">&nbsp;하나.</p><br>
+			<p class="ment">원하는 주제별로 카테고리를 설정해요.</p><br>
      		 <select multiple class="form-control" id="sel2">
 		        <option>네트워크</option>
 		        <option>운영체제</option>
@@ -69,8 +68,9 @@
 		        <option>알고리즘</option>
 		        <option>Spring Framework</option>
 		        <option>Java</option>
-	     	 </select><br><br><br><br>
-			<span style="color:black;">둘. 내용을 입력하세요 카드를 클릭하면 뜻을 볼 수 있어요</span><br><br><br>
+	     	 </select><br><br><br>
+			<p class="count">&nbsp;둘.</p><br>
+			<p class="ment">내용을 입력하세요. 카드를 클릭하면 뜻을 볼 수 있어요.&#128161;</p><br>
 			<div id="text_area">
 				<div class="card" id="card_box">
 					<div class="card-inner" style="color:black;">
@@ -80,28 +80,28 @@
 				</div>
 				
 				<div id="text_insert">
-					<label for="sel2" style="color:black; font-size: 20px;">카드앞면</label>
-						<textarea id="q_text" class="form-control"></textarea>
-					<label for="sel2" style="color:black;  font-size: 20px;">카드뒷면</label>
-						<textarea id="a_text" class="form-control"></textarea>
+					<label for="sel2" style="color:black; font-size: 17px; color:#696969;">카드앞면</label>
+						<textarea id="q_text" class="form-control" placeholder="카드앞면을 입력하세요."></textarea>
+					<label for="sel2" style="color:black; font-size: 17px; color:#696969;">카드뒷면</label>
+						<textarea id="a_text" class="form-control" placeholder="카드뒷면을 입력하세요."></textarea>
 					<div id="btn_insert">
 						<input type="button" value="카드만들기" class="btn btn-default btn-lg" onclick="make_card();">
 						<div style="clear:both;"></div>
 					</div>
 				</div><!-- text_insert -->
 			</div>
-		</div><!-- text end -->
+		</div><!-- text_area end -->
 	
-		<div class="text" style="margin-top:200px;">
-			<span style="color:black;">셋. 다른 사람의 학습세트를 공부할 수 있어요(사진수정예정)</span><br><br><br>
+		<div class="text" style="margin-top:150px;">
+			<p class="count">&nbsp;셋.</p><br>
+			<p class="ment">다른 사람의 학습세트를 공부할 수 있어요.</p><br>
 			<!-- 사진 수정예정 -->
 			<input type="image" src="image/will_modify.png" style="width:70%; margin:auto;">
 		</div>
 
-		<div class="text" style="margin-top:400px;">
-			<span style="color:black;">자, 이제 QuizTIS에서 학습할 준비가 끝났어요</span><br><br>
-			<span style="color:black;">멋진 학습세트를 만들어보세요!</span><br><br><br>
-			
+		<div class="text" style="margin-top:380px;">
+			<p style="font-weight:550;">자, 이제 QuizTIS에서 학습할 준비가 끝났어요.<br><br>
+										멋진 학습세트를 만들어보세요!</p><br><br>
 			<div id="last_btn">
 				<input type="button" value="홈화면으로 돌아가기" class="btn btn-default btn-lg"
 														onclick="send();">
@@ -110,8 +110,6 @@
 			</div>			
 		</div>
 	</div><!-- subject_view end -->
-	
-
 </div><!-- header end -->
 
 </body>
