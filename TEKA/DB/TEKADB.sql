@@ -25,7 +25,7 @@ alter table card
 -- 작성자인덱스 외래키
 alter table card
 	add constraint fk_m_idx_card foreign key(m_idx)
-	references member(m_idx)
+	references tekamember(m_idx)
 	
 -- 삭제
 drop table card
@@ -54,12 +54,12 @@ alter table mycardset
 -- 학습자 멤버번호 외래키
 alter table mycardset
 	add constraint fk_m_idx_mycardset foreign key(m_idx)
-	references member(m_idx)
+	references tekamember(m_idx)
 	
 -- 카드(게시글)외래키
 alter table mycardset
 	add constraint fk_c_idx_mycardset foreign key(c_idx)
-	references card
+	references card(c_idx)
 
 -- 삭제
 drop table mycardset
@@ -114,7 +114,7 @@ alter table wrongqna
 add constraint fk_wrong_card foreign key(c_idx) references card(c_idx)
 
 alter table wrongqna
-add constraint fk_wrong_member foreign key(m_idx) references card(m_idx)
+add constraint fk_wrong_member foreign key(m_idx) references tekamember(m_idx)
 
 --삭제
 drop table wrongqna
@@ -123,41 +123,41 @@ drop sequence seq_w_idx
 --/////////////////////////////////////////////////////////////////////////////////
 -- 멤버테이블
 --시퀀스
-create sequence seq_member_m_idx
+create sequence seq_tekamember_m_idx
 
-create table member
+create table tekamember
 (
    m_idx      int,                                   --멤버인덱스(PK)
    m_id       varchar2(30)  not null,                --멤버아이디(unique)
    m_pwd      varchar2(30)  not null,                --멤버비번
    m_nickname varchar2(30)  not null,                --멤버닉네임(unique)
    m_email    varchar2(100) not null,                --멤버이메일(unique)
-   m_grade    varchar2(30)  not null default '일반'  --멤버등급
+   m_grade    varchar2(30)  default '일반' not null   --멤버등급
 )
 
 --기본키
-alter table member
-   add constraint pk_member_m_idx primary key(m_idx);
+alter table tekamember
+   add constraint pk_tekamember_m_idx primary key(m_idx);
    
 --유니크
-alter table member
-   add constraint unique unique_member_m_nickname unique(m_nickname);
+alter table tekamember
+add constraint unique_tekamember_m_nickname unique(m_nickname);
    
-alter table member
-add constraint unique unique_member_m_email unique(m_email);
+alter table tekamember
+add constraint unique_tekamember_m_email unique(m_email);
 
 
 --체크
-alter table member
-   add constraint check_member_m_grade check(m_grade in ('일반', '관리자'))
+alter table tekamember
+   add constraint check_tekamember_m_grade check(m_grade in ('일반', '관리자'))
 
 
-select * from member
+select * from tekamember
 
 --샘플데이터
-insert into member values(seq_member_m_idx.nextVal, 'one',  '1111', '일길동', 'one@naver.com', default);
-insert into member values(seq_member_m_idx.nextVal, 'two',  '2222', '이길동', 'two@naver.com', default);
-insert into member values(seq_member_m_idx.nextVal, 'hong', '3333', '홍길동', 'hong@naver.com', '관리자');
+insert into tekamember values(seq_tekamember_m_idx.nextVal, 'one',  '1111', '일길동', 'one@naver.com', default);
+insert into tekamember values(seq_tekamember_m_idx.nextVal, 'two',  '2222', '이길동', 'two@naver.com', default);
+insert into tekamember values(seq_tekamember_m_idx.nextVal, 'hong', '3333', '홍길동', 'hong@naver.com', '관리자');
 
 --/////////////////////////////////////////////////////////////////////////////////
 
@@ -186,7 +186,7 @@ insert into subject values(6, '스프링');
 --시퀀스
 create sequence seq_like_l_grade
 
-create table like
+create table likey
 (
    l_grade int,           --추천번호(PK) 
    l_like  int default 0, --카드추천수
@@ -195,11 +195,11 @@ create table like
 )
 
 --외래키
-alter table like
-   add constraint fk_like_c_idx foreign key(c_idx) references card(c_idx)
+alter table likey
+   add constraint fk_likey_c_idx foreign key(c_idx) references card(c_idx)
 
-alter table like
-   add constraint fk_lick_m_idx foreign key(m_idx) references member(m_idx)
+alter table likey
+   add constraint fk_likey_m_idx foreign key(m_idx) references tekamember(m_idx)
    
 
    
