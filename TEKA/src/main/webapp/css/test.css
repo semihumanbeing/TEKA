@@ -1,11 +1,4 @@
 @charset "UTF-8";
-
-
-#card_view{
-	height : 850px;
-}
-
-
 /* card */
 .card {	
 	line-height  : 270px;
@@ -39,13 +32,27 @@
 	box-sizing: border-box;
 	-webkit-backface-visibility: hidden; /* Safari */
 	backface-visibility: hidden;
-	font-weight: bold;
-	font-size  : 30px;
+	font-weight     : bold;
+	font-size       : 30px;
+	display         : flex;
+	align-items     : center;
+	justify-content : center;
+	line-height     : 30px;
 }
 .card-back {
 	transform: rotateX(180deg);
 }
 
+/* content */
+#cardView{
+	height : 850px;
+}
+#q, #a{
+	margin-left  : 7px;
+	margin-right : 7px;
+	word-break   : break-all;
+	word-wrap    : break-word;
+}
 .text{
 	font-weight : 500;
 	font-size   : 34px; 
@@ -54,67 +61,56 @@
 	float       : left;
 	font-family : Yoon 윤고딕 700;
 }
-
-#subject_view{
+#subjectView{
 	height : 3300px;
 }
-
-#sel2{
+#multiBox{
 	height     : 180px;
 	width      : 500px;
 	font-size  : 20px;
 	font-weight: bold;
 }
-
-#text_area{
+#textArea{
 	margin-left : 10px;
 }
-
-#q_text{
+#qText{
 	resize        : none;
 	width         : 80%;
 	height        : 50px;
 	display       : block;
 	margin-bottom : 5px;
 }
-
-#a_text{
+#aText{
 	resize  : none;
 	width   : 80%;
 	height  : 60px;
 	display : block;
 }
-
-#btn_insert{
+#btnInsert{
 	margin-top  : 10px;
 	margin      : left;
 	margin-left : 200px;
 }
-
-#text_insert{
+#textInsert{
 	margin-left   : 10px;
 	width         : 100%;
 	float         : right;
 }
-
-#card_box{
+#cardBox{
 	width         : 50%;
 	margin-top    : 20px;
 	margin-bottom : 40px;
 	height        : 250px;
 }
-
-#last_btn{
+#lastBtn{
 	margin       :10px;
 	margin-right :10px;
 	display      : block;
 }
-
 .count{
 	font-weight: bold;
 	font-size  : 30px;
 }
-
 .ment{
 	font-size   : 28px;
 	font-weight : 500px;

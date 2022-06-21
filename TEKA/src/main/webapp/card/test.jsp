@@ -19,34 +19,38 @@
 			$(this).toggleClass("flipped");
 		});
 	});
-	function make_card(){
-		var q_text = $("#q_text").val().trim();
-		var a_text = $("#a_text").val().trim();
+	function makeCard(){
+		var qText = $("#qText").val().trim();
+		var aText = $("#aText").val().trim();
 		
-		$("#q").html(q_text);
-		$("#a").html(a_text);
+		//글자 수가 110이상인 경우 폰트사이즈 변경
+		if(qText.length>=110){
+			$("#q").html(qText).css("font-size", "16.5px");
+		}else {
+			$("#q").html(qText).css("font-size", "20px");
+		}
+		if(aText.length>=110){
+			$("#a").html(aText).css("font-size", "16.5px");
+		}else {
+			$("#a").html(aText).css("font-size", "20px");
+		}
 	}
 	
 	function send(){
-		
 		if(!confirm('아쉽네요... 다음번엔 QuizTIS와 함께해주세요')) return;
-		
 		location.href="main.do";
 	}
 </script>
-
 </head>
 <body>
 <!-- header -->
 <div id="header">
 	<%@include file="../header/mainmenu.jsp" %>
-
-	<div id="card_view" style="background-color: #222222;">
+<!-- 카드 보여주기 cardView -->
+	<div id="cardView" style="background-color: #222222;">
 		<div class="text">
-			<p style="color:white; font-weight:500;">QuizTIS 학습세트를 직접 만들어보세요.<br><br>
-									카드를 클릭해보세요!</p><br><br>
+			<p style="color:white; font-weight:500;">QuizTIS 학습세트를 직접 만들어보세요.<br><br>카드를 클릭해보세요!</p><br><br>
 		</div>
-
 		<div class="card">
 			<div class="card-inner">
 				<div class="card-front">Click here!</div>
@@ -55,13 +59,12 @@
 		</div>
 		<div style="clear: both;"></div>
 	</div><!-- card_view end -->
-	
-	
-	<div id="subject_view">
+<!-- 튜토리얼 subjectView -->	
+	<div id="subjectView">
 		<div class="text">
 			<p class="count">&nbsp;하나.</p><br>
 			<p class="ment">원하는 주제별로 카테고리를 설정해요.</p><br>
-     		 <select multiple class="form-control" id="sel2">
+     		 <select multiple class="form-control" id="multiBox">
 		        <option>네트워크</option>
 		        <option>운영체제</option>
 		        <option>자료구조</option>
@@ -71,46 +74,40 @@
 	     	 </select><br><br><br>
 			<p class="count">&nbsp;둘.</p><br>
 			<p class="ment">내용을 입력하세요. 카드를 클릭하면 뜻을 볼 수 있어요.&#128161;</p><br>
-			<div id="text_area">
-				<div class="card" id="card_box">
-					<div class="card-inner" style="color:black;">
-						<div class="card-front" id="q"></div>
-						<div class="card-back" id="a"></div>
+			<div id="textArea">
+				<div class="card" id="cardBox">
+					<div class="card-inner">
+						<div class="card-front"><div id="q"></div></div>
+						<div class="card-back"><div id="a"></div></div>
 					</div>
 				</div>
-				
-				<div id="text_insert">
-					<label for="sel2" style="color:black; font-size: 17px; color:#696969;">카드앞면</label>
-						<textarea id="q_text" class="form-control" placeholder="카드앞면을 입력하세요."></textarea>
-					<label for="sel2" style="color:black; font-size: 17px; color:#696969;">카드뒷면</label>
-						<textarea id="a_text" class="form-control" placeholder="카드뒷면을 입력하세요."></textarea>
-					<div id="btn_insert">
-						<input type="button" value="카드만들기" class="btn btn-default btn-lg" onclick="make_card();">
+				<div id="textInsert">
+					<label for="textInsert" style="font-size: 17px; color:#696969;">카드앞면</label>
+						<textarea maxlength="145" id="qText" class="form-control" placeholder="카드앞면을 입력하세요.(150자 이내)"></textarea>
+					<label for="textInsert" style="font-size: 17px; color:#696969;">카드뒷면</label>
+						<textarea maxlength="145" id="aText" class="form-control" placeholder="카드뒷면을 입력하세요.(150자 이내)"></textarea>
+					<div id="btnInsert">
+						<input type="button" value="카드만들기" class="btn btn-default btn-lg" onclick="makeCard();">
 						<div style="clear:both;"></div>
 					</div>
-				</div><!-- text_insert -->
+				</div><!-- textInsert -->
 			</div>
-		</div><!-- text_area end -->
-	
+		</div><!-- textArea end -->
 		<div class="text" style="margin-top:150px;">
 			<p class="count">&nbsp;셋.</p><br>
 			<p class="ment">다른 사람의 학습세트를 공부할 수 있어요.</p><br>
-			<!-- 사진 수정예정 -->
+<!-- 사진 수정예정 -->
 			<input type="image" src="../image/will_modify.png" style="width:70%; margin:auto;">
 		</div>
-
 		<div class="text" style="margin-top:380px;">
 			<p style="font-weight:550;">자, 이제 QuizTIS에서 학습할 준비가 끝났어요.<br><br>
 										멋진 학습세트를 만들어보세요!</p><br><br>
-			<div id="last_btn">
-				<input type="button" value="홈화면으로 돌아가기" class="btn btn-default btn-lg"
-														onclick="send();">
-				<input type="button" value="회원가입" class="btn btn-default btn-lg"
-														onclick="location.href='../member/signUpForm.do'">
+			<div id="lastBtn">
+				<input type="button" value="홈화면으로 돌아가기" class="btn btn-default btn-lg" onclick="send();">
+				<input type="button" value="회원가입"            class="btn btn-default btn-lg" onclick="location.href='../member/signUpForm.do'">
 			</div>			
 		</div>
-	</div><!-- subject_view end -->
+	</div><!-- subjectView end -->
 </div><!-- header end -->
-
 </body>
 </html>

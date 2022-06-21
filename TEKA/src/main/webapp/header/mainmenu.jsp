@@ -21,6 +21,16 @@ padding-top: 15px;
 height: 80px;
 }
 </style>
+<!-- 스크립트 -->
+<script type="text/javascript">
+	
+	function sido(){
+		
+		if(!confirm('회원가입 후 이용가능합니다.\n회원가입하시겠습니까?')) return;
+		location.href="../member/signUpForm.do"
+	}
+	
+</script>
 </head>
 <body>
 	<nav id="bar" class="navbar navbar-inverse navbar-fixed-top">
@@ -42,10 +52,24 @@ height: 80px;
 						<li><a href="#">Spring</a></li>
 					</ul>
 				<li><a href="../card/list.do">모든 학습세트</a></li>
-				<li><a href="#">내 학습세트</a></li>
+				<li>
+					<c:if test="${empty user}">
+						<a href="#" onclick="sido();">내 학습세트</a>
+					</c:if>
+					<c:if test="${!empty user}">
+						<a href="#">내 학습세트</a>
+					</c:if>
+				</li>
 			</ul>
 			
-			<button id="makebtn" class="btn btn-success navbar-btn navbar-left">만들기</button>
+			<!-- 회원가입 전 -->
+			<c:if test="${empty user}">
+				<button id="makebtn" class="btn btn-success navbar-btn navbar-left" onclick="sido();">만들기</button>
+			</c:if>
+			<!-- 회원가입 후 -->
+			<c:if test="${!empty user}">
+				<button id="makebtn" class="btn btn-success navbar-btn navbar-left" onclick="location.href='../card/insertCard.jsp'">만들기</button>
+			</c:if>
 			
 			<form id="searchbar" class="navbar-form navbar-left">
 				<div class="form-group">
