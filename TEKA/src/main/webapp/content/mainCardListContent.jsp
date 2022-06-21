@@ -9,21 +9,22 @@
 <style type="text/css">
 .card-container {
 	text-decoration: none;
-	margin-top: 10px;
-	padding: 10px;
 	margin: auto;
-	width: 750px;
+	width: 640px;
 	height: 300px;
-	
+	border: 2px solid navy;
+	border-radius: 10px;
+ 	box-shadow: 1px 1px 4px purple;
+ 	display: flex;
 }
 
 .card {
-  float: left;
   background-color: transparent;
   width: 420px;
   height: 280px;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
-  
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 /* This container is needed to position the front and back side */
@@ -49,6 +50,9 @@
   box-shadow: 1px 1px 4px black;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Style the front side (fallback if image is missing) */
@@ -62,20 +66,40 @@
   transform: rotateX(180deg);
 }
 
-.card-front>h1, .card-back>h1{
+#question, #answer{
 	font-weight: bolder;
-	padding-top: 90px;
+	font-size: 30px;
 }
 
 .side {
 	padding: 10px;
 	margin-left: 15px;
-	width: 280px;
+	margin-top: 20px;
+	width: 150px;
 	height: 280px;
-	float: left;
 }
 .introduction{
 	padding-top: 30px;
+}
+
+#grid_container{
+	margin: auto;
+	width: 1460px;
+	padding-top: 15px;
+	display: grid;
+	grid-template-columns: 725px 725px;
+	grid-template-rows: 300px 300px;
+	row-gap: 50px;
+	column-gap: 20px;
+	border: 1px solid gray;
+	border-radius: 20px;
+	box-shadow: inset 3px 3px 5px 2px black;
+}
+
+#filter{
+	margin: auto;
+	width: 1460px;
+	height: 100px;
 }
 </style>
 
@@ -88,34 +112,42 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-
-	<c:forEach var="qna" items="${ list }">
-		<div class="card-container">
-			<div class="card">
-				<div class="card-inner">
-					<div class="card-front">
-						<h1>${ qna.q_question }</h1>
-					</div>
-					<div class="card-back">
-						<h1>${ qna.q_answer }</h1>
+	<div id="filter">
+		<hr>
+			<b>여기에서는 검색 필터를 지정할 수 있습니다.</b>
+			<select name="category" style="height: 40px;">
+				<option value="">검색조건</option>
+				<option value="com001">인기순</option>
+				<option value="ele002">추천순</option>
+				<option value="sp003">최근순</option>
+			</select>
+			<input type="button" value="검색" style="height: 40px; width: 80px;">
+		<hr>
+	</div>
+	<div id="grid_container">
+		<c:forEach var="qna" items="${ list }">
+			<div class="card-container">
+				<div class="card">
+					<div class="card-inner">
+						<div class="card-front">
+							<div id="question"><b>${ qna.c_name }</b></div>
+						</div>
+						<div class="card-back">
+							<div id="answer"><b>소개하는 글입니다.</b></div>
+						</div>
 					</div>
 				</div>
+				
+				<div class="side">
+					<span class="badge">알고리즘</span>
+					<button type="button" class="btn btn-xs btn-primary">
+						추천 <span class="badge">${qna.c_prefer}</span>
+					</button><br>
+					<input type="button" value="미리보기" style="text-align:center; width: 100%; height: 60px; margin-top: 40px;">
+					<input type="button" value="내 학습세트에 추가하기" style="text-align:center; width: 100%; height: 60px; margin-top: 40px;">
+				</div>
 			</div>
-			
-			<div class="side">
-				<h2>${qna.c_name}</h2>
-				<span class="badge">알고리즘</span>
-				<button type="button" class="btn btn-xs btn-primary">
-					추천 <span class="badge">${qna.c_prefer}</span>
-				</button>
-				<p class="introduction">소개글입니다</p>
-			</div>
-			
-		</div>
-		
-	</c:forEach>
-	<div>
-	
+		</c:forEach>
 	</div>
 </body>
 </html>

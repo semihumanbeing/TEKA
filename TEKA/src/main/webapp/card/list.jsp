@@ -19,7 +19,6 @@
 }
 #content{
 	margin: auto;
-	width: 1000px;
 	min-height: 700px;
 	background-color: white;
 }
