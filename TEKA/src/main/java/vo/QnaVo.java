@@ -1,15 +1,11 @@
 package vo;
 
-public class QnaCardVo {
+public class QnaVo {
 	
 	int q_idx;
 	int c_idx;
 	String q_question;
 	String q_answer;
-	int c_prefer;
-	String c_name;
-	int s_idx;
-	int m_idx;
 	
 	public int getQ_idx() {
 		return q_idx;
@@ -35,33 +31,4 @@ public class QnaCardVo {
 	public void setQ_answer(String q_answer) {
 		this.q_answer = q_answer;
 	}
-	public int getC_prefer() {
-		return c_prefer;
-	}
-	public void setC_prefer(int c_prefer) {
-		this.c_prefer = c_prefer;
-	}
-	public String getC_name() {
-		return c_name;
-	}
-	public void setC_name(String c_name) {
-		this.c_name = c_name;
-	}
-	public int getS_idx() {
-		return s_idx;
-	}
-	public void setS_idx(int s_idx) {
-		this.s_idx = s_idx;
-	}
-	public int getM_idx() {
-		return m_idx;
-	}
-	public void setM_idx(int m_idx) {
-		this.m_idx = m_idx;
-	}
-	
-	
-	
-	
-
 }

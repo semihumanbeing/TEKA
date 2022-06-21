@@ -1,4 +1,4 @@
-package action.member;
+package action.tekamember;
 
 import java.io.IOException;
 
@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.MemberDao;
-import vo.MemberVo;
+import dao.TekaMemberDao;
+import vo.TekaMemberVo;
 
 /**
  * Servlet implementation class SignUpAction
  */
-@WebServlet("/member/signUp.do")
+@WebServlet("/tekamember/signUp.do")
 public class SignUpAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,14 +34,14 @@ public class SignUpAction extends HttpServlet {
 		String m_pwd = request.getParameter("m_pwd");
 		
 		// 포장
-		MemberVo vo = new MemberVo();
+		TekaMemberVo vo = new TekaMemberVo();
 		vo.setM_id(m_id);
 		vo.setM_nickname(m_nickname);
 		vo.setM_email(m_email);
 		vo.setM_pwd(m_pwd);
 		
 		// 입력
-		MemberDao.getInstance().insertMember(vo);
+		TekaMemberDao.getInstance().insertMember(vo);
 		
 		// 로그인폼
 		response.sendRedirect("loginForm.do");

@@ -104,7 +104,7 @@
 										멋진 학습세트를 만들어보세요!</p><br><br>
 			<div id="lastBtn">
 				<input type="button" value="홈화면으로 돌아가기" class="btn btn-default btn-lg" onclick="send();">
-				<input type="button" value="회원가입"            class="btn btn-default btn-lg" onclick="location.href='../member/signUpForm.do'">
+				<input type="button" value="회원가입"            class="btn btn-default btn-lg" onclick="location.href='../tekamember/signUpForm.do'">
 			</div>			
 		</div>
 	</div><!-- subjectView end -->

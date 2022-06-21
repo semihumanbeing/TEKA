@@ -1,4 +1,4 @@
-package action.member;
+package action.tekamember;
 
 import java.io.IOException;
 import java.security.KeyFactory;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LoginFormAction
  */
-@WebServlet("/member/loginForm.do")
+@WebServlet("/tekamember/loginForm.do")
 public class LoginFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

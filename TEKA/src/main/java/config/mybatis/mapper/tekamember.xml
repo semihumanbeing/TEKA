@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tekamember">
+
+	<!-- id에 해당되는 1건 데이터 조회 -->
+	<select id="memberListById" parameterType="String" resultType="member">
+		select * from tekamember where m_id=#{m_id}
+	</select>
+	
+	<!-- nickname에 해당되는 1건 데이터 조회 -->
+	<select id="memberListByNickname" parameterType="String" resultType="member">
+		select * from tekamember where m_nickname=#{m_nickname}
+	</select>
+	
+	<!-- email에 해당되는 1건 데이터 조회 -->
+	<select id="memberListByEmail" parameterType="String" resultType="member">
+		select * from tekamember where m_email=#{m_email}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insert" parameterType="member">
+		insert into tekamember values
+		(
+			seq_tekamember_m_idx.nextVal,
+			#{m_id},
+			#{m_pwd},
+			#{m_nickname},
+			#{m_email},
+			default
+		)
+	</insert>
+	
+	
+</mapper>

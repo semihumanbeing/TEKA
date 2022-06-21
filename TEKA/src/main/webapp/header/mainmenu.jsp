@@ -26,8 +26,8 @@ height: 80px;
 	
 	function sido(){
 		
-		if(!confirm('회원가입 후 이용가능합니다.\n회원가입하시겠습니까?')) return;
-		location.href="../member/signUpForm.do"
+		if(!confirm('로그인 후 이용가능합니다.\로그인 하시겠습니까?')) return;
+		location.href="../tekamember/loginForm.do"
 	}
 	
 </script>
@@ -80,12 +80,12 @@ height: 80px;
 			
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${empty user }">
-					<li><a href="../member/signUpForm.do"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
-					<li><a href="../member/loginForm.do"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
+					<li><a href="../tekamember/signUpForm.do"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+					<li><a href="../tekamember/loginForm.do"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
 				</c:if>
 				<c:if test="${!empty user }">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>${user.m_nickname }님</a></li>
-					<li><a href="../member/logout.do"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
+					<li><a href="../tekamember/logout.do"><span class="glyphicon glyphicon-log-in"></span>로그아웃</a></li>
 				</c:if>
 			</ul>
 			

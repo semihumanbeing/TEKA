@@ -35,30 +35,9 @@
 			$("#a_text").focus();
 			return;
 		}
-/*		
-		//제이쿼리 ajax로 요청
-		$.ajax({
-			
-			url : '',
-			data : {},
-			dataType : 'json',
-			success : funcion(result_data){
-				//insert_card_bottom_content.jsp의 table말고 context나 
-				//카드추가 한 번 할 때마다 추가한 테이블과 새롭게 추가한 테이블이 계속 같이 있었으면 좋겠음
-			},
-			
-			error : function(err){
-				alert(err.responseText);
-			}
-		});//ajax 종료
-*/		
-		
 	}//card_insert() end
-
-
 </script>
 <!-- 스크립트 종료 -->
-
 </head>
 <body>
 

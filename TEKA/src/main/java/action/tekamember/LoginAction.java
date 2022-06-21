@@ -1,4 +1,4 @@
-package action.member;
+package action.tekamember;
 
 import java.io.IOException;
 import java.security.PrivateKey;
@@ -13,13 +13,13 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
-import dao.MemberDao;
-import vo.MemberVo;
+import dao.TekaMemberDao;
+import vo.TekaMemberVo;
 
 /**
  * Servlet implementation class LoginAction
  */
-@WebServlet("/member/login.do")
+@WebServlet("/tekamember/login.do")
 public class LoginAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -56,7 +56,7 @@ public class LoginAction extends HttpServlet {
 				
 				//System.out.println("#복호화 된 아이디 : " + _m_id + ", # 복호화 된 비밀번호 : " + _m_pwd);
 				//복호화 처리된 계정 정보를 사용해서 로그인 검증을 시작한다. 
-				MemberVo user = MemberDao.getInstance().selectOneById(m_id);
+				TekaMemberVo user = TekaMemberDao.getInstance().selectOneById(m_id);
 				
 				//id 체크
 				if(user == null) {

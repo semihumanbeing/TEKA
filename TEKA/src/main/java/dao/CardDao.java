@@ -1,13 +1,12 @@
 package dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import service.MyBatisConnector;
-import vo.QnaCardVo;
+import vo.CardVo;
 
 public class CardDao {
 	//single-ton : 객체 1개만 생성해서 사용하자
@@ -27,10 +26,10 @@ public class CardDao {
 	private CardDao() {
 		factory = MyBatisConnector.getInstance().getSqlSessionFactory();
 	}
-	
-	public List<QnaCardVo> selectList() {
+//전체카드조회	
+	public List<CardVo> selectList() {
 
-		List<QnaCardVo> list = null;
+		List<CardVo> list = null;
 		
 		SqlSession sqlSession = factory.openSession();
 		
@@ -40,6 +39,8 @@ public class CardDao {
 
 		return list;
 	} 
-	
 
+	
+	
+	
 }

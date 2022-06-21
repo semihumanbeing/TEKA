@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CardDao;
-import vo.QnaCardVo;
+import vo.CardVo;
 
 /**
  * Servlet implementation class AllListAction
@@ -25,9 +25,8 @@ public class AllListAction extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		List<QnaCardVo> list = CardDao.getInstance().selectList();
+
+		List<CardVo> list = CardDao.getInstance().selectList();
 		
 		request.setAttribute("list", list);
 
@@ -35,8 +34,5 @@ public class AllListAction extends HttpServlet {
 		String forward_page = "list.jsp";
 		RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 		disp.forward(request, response);
-
 	}
-
 }
-

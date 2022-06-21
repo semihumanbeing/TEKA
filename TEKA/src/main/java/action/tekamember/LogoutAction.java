@@ -1,8 +1,7 @@
-package action.member;
+package action.tekamember;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SignUpFormAction
+ * Servlet implementation class LogoutAction
  */
-@WebServlet("/member/signUpForm.do")
-public class SignUpFormAction extends HttpServlet {
+@WebServlet("/tekamember/logout.do")
+public class LogoutAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -23,11 +22,11 @@ public class SignUpFormAction extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		//forward
-		String forward_page = "signUpForm.jsp";
-		RequestDispatcher disp = request.getRequestDispatcher(forward_page);
-		disp.forward(request, response);
+		request.getSession().removeAttribute("user");
+		//request.getSession().removeAttribute("RSA_WEB_KEY");
+		response.sendRedirect("../card/list.do");
 
 	}
 
 }
+

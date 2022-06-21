@@ -1,13 +1,12 @@
 package vo;
 
-public class MemberVo {
+public class TekaMemberVo {
 	int    m_idx;
 	String m_id;
-	String m_nickname;
-	String m_birthdate;
-	String m_email;
 	String m_pwd;
-	
+	String m_nickname;
+	String m_email;
+	String m_grade;
 	
 	public int getM_idx() {
 		return m_idx;
@@ -27,12 +26,6 @@ public class MemberVo {
 	public void setM_nickname(String m_nickname) {
 		this.m_nickname = m_nickname;
 	}
-	public String getM_birthdate() {
-		return m_birthdate;
-	}
-	public void setM_birthdate(String m_birthdate) {
-		this.m_birthdate = m_birthdate;
-	}
 	public String getM_email() {
 		return m_email;
 	}
@@ -45,5 +38,10 @@ public class MemberVo {
 	public void setM_pwd(String m_pwd) {
 		this.m_pwd = m_pwd;
 	}
-	
+	public String getM_grade() {
+		return m_grade;
+	}
+	public void setM_grade(String m_grade) {
+		this.m_grade = m_grade;
+	}
 }

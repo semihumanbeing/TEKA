@@ -1,4 +1,4 @@
-package action.member;
+package action.tekamember;
 
 import java.io.IOException;
 
@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
-import dao.MemberDao;
-import vo.MemberVo;
+import dao.TekaMemberDao;
+import vo.TekaMemberVo;
 
 /**
  * Servlet implementation class SignUpCheckNicknameAction
  */
-@WebServlet("/member/checkNickname.do")
+@WebServlet("/tekamember/checkNickname.do")
 public class SignUpCheckNicknameAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class SignUpCheckNicknameAction extends HttpServlet {
 		// 파라미터 받기
 		request.setCharacterEncoding("utf-8");
 		String m_nickname = request.getParameter("m_nickname");
-		MemberVo vo = MemberDao.getInstance().selectOneByNickname(m_nickname);
+		TekaMemberVo vo = TekaMemberDao.getInstance().selectOneByNickname(m_nickname);
 		
 		// 아이디 사용 유무 확인하기
 		boolean bResult = false;

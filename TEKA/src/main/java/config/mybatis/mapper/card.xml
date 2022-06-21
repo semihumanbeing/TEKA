@@ -5,22 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="card">
 	
 	<!-- 전체 카드 조회 -->
-	<select id="selectAll" resultType="vo.QnaCardVo">
-		select * from qnacard
+	<select id="selectAll" resultType="vo.CardVo">
+		select * from card
 	</select>
 	
 	
 	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-

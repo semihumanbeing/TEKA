@@ -4,38 +4,38 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import service.MyBatisConnector;
-import vo.MemberVo;
+import vo.TekaMemberVo;
 
-public class MemberDao {
+public class TekaMemberDao {
 
 	SqlSessionFactory factory;
 
 	// single-ton : 객체 1개만 생성해서 사용하자
-	static MemberDao single = null;
+	static TekaMemberDao single = null;
 
-	public static MemberDao getInstance() {
+	public static TekaMemberDao getInstance() {
 
 		// 객체가 생성되어 있지 않으면 만들어라.
 		if (single == null) {
-			single = new MemberDao();
+			single = new TekaMemberDao();
 		}
 		// 이전에 만들어 놨던 객체를 그대로 반환한다.
 		return single;
 	}
 
 	// 외부에서 생성하지 못하도록 접근제한. 객체는 getInstance메소드를 통해서만 생성가능.
-	private MemberDao() {
+	private TekaMemberDao() {
 		// TODO Auto-generated constructor stub
 		factory = MyBatisConnector.getInstance().getSqlSessionFactory();
 	}
 
 	// id값으로 사용자 조회
-	public MemberVo selectOneById(String m_id) {
-		MemberVo vo = null;
+	public TekaMemberVo selectOneById(String m_id) {
+		TekaMemberVo vo = null;
 
 		SqlSession sqlSession = factory.openSession();
 
-		vo = sqlSession.selectOne("member.memberListById", m_id);
+		vo = sqlSession.selectOne("tekamember.memberListById", m_id);
 
 		sqlSession.close();
 
@@ -43,12 +43,12 @@ public class MemberDao {
 	}
 
 	// nickname값으로 사용자 조회
-	public MemberVo selectOneByNickname(String m_nickname) {
-		MemberVo vo = null;
+	public TekaMemberVo selectOneByNickname(String m_nickname) {
+		TekaMemberVo vo = null;
 
 		SqlSession sqlSession = factory.openSession();
 
-		vo = sqlSession.selectOne("member.memberListByNickname", m_nickname);
+		vo = sqlSession.selectOne("tekamember.memberListByNickname", m_nickname);
 
 		sqlSession.close();
 
@@ -56,12 +56,12 @@ public class MemberDao {
 	}
 	
 	// email값으로 사용자 조회
-	public MemberVo selectOneByEmail(String m_email) {
-		MemberVo vo = null;
+	public TekaMemberVo selectOneByEmail(String m_email) {
+		TekaMemberVo vo = null;
 
 		SqlSession sqlSession = factory.openSession();
 
-		vo = sqlSession.selectOne("member.memberListByEmail", m_email);
+		vo = sqlSession.selectOne("tekamember.memberListByEmail", m_email);
 
 		sqlSession.close();
 
@@ -69,13 +69,13 @@ public class MemberDao {
 	}
 	
 	// 회원정보 insert
-	public int insertMember(MemberVo vo) {
+	public int insertMember(TekaMemberVo vo) {
 		// TODO Auto-generated method stub
 		int res = 0;
 		
 		SqlSession sqlSession = factory.openSession(true);
 		
-		res = sqlSession.insert("member.insert", vo);
+		res = sqlSession.insert("tekamember.insert", vo);
 		
 		sqlSession.close();
 		
