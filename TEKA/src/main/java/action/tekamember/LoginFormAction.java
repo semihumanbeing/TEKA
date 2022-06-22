@@ -29,6 +29,7 @@ public class LoginFormAction extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String url = request.getParameter("url");
 		HttpSession session = request.getSession();
 		
 		try {
@@ -46,6 +47,10 @@ public class LoginFormAction extends HttpServlet {
 			
 			String publicKeyModulus    = publicSpec.getModulus().toString(16);
 			String publicKeyExponenet  = publicSpec.getPublicExponent().toString(16);
+			
+			if(url != null && !url.isEmpty()) {
+				request.setAttribute("url", url);
+			}
 			
 			request.setAttribute("RSAModulus", publicKeyModulus);
 			request.setAttribute("RSAExponent", publicKeyExponenet);

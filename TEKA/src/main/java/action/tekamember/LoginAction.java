@@ -32,6 +32,7 @@ public class LoginAction extends HttpServlet {
 		
 		String encryptedID  = request.getParameter("encryptedID");
 		String encryptedPWD = request.getParameter("encryptedPWD");
+		String url			= request.getParameter("url");
 		
 		HttpSession session = request.getSession();
 		//System.out.println("# 암호화 된 아이디 : " + m_id + ", # 암호화 된 비밀번호 : " + m_pwd);
@@ -71,6 +72,11 @@ public class LoginAction extends HttpServlet {
 				
 				//로그인 성공 시 유저정보 세션에 저장
 				session.setAttribute("user", user);
+				
+				if(url != null && !url.isEmpty()) {
+					response.sendRedirect(url);
+					return;
+				}
 				response.sendRedirect("../card/list.do");
 				
 			} catch (Exception e) {

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import service.MyBatisConnector;
 import vo.CardVo;
+import vo.ViewVo;
 
 public class CardDao {
 	//single-ton : 객체 1개만 생성해서 사용하자
@@ -26,14 +27,29 @@ public class CardDao {
 	private CardDao() {
 		factory = MyBatisConnector.getInstance().getSqlSessionFactory();
 	}
-//전체카드조회	
-	public List<CardVo> selectList() {
+	
+	//전체카드조회	
+	public List<ViewVo> selectList() {
 
-		List<CardVo> list = null;
+		List<ViewVo> list = null;
 		
 		SqlSession sqlSession = factory.openSession();
 		
 		list = sqlSession.selectList("card.selectAll");
+		
+		sqlSession.close();
+
+		return list;
+	}
+
+	public List<ViewVo> selectCard() {
+		// TODO Auto-generated method stub
+		
+		List<ViewVo> list = null;
+		
+		SqlSession sqlSession = factory.openSession();
+		
+		list = sqlSession.selectList("card.selectCard");
 		
 		sqlSession.close();
 
