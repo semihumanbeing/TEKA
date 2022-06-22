@@ -130,19 +130,20 @@ $(document).ready(function(){
 				<div class="card">
 					<div class="card-inner">
 						<div class="card-front">
-							<div id="question"><b>학습세트제목:${ card.c_title }</b></div>
+							<div id="question"><b>${ card.c_title }</b></div>
 						</div>
 						<div class="card-back">
-							<div id="answer"><b>소개글:${card.c_content}</b></div>
+							<div id="answer"><b>${card.c_content}</b></div>
 						</div>
 					</div>
 				</div>
 				
 				<div class="side">
-					<span class="badge">${card.s_idx}</span>
+					<span class="label label-info">${card.s_name}</span>
 					<button type="button" class="btn btn-xs btn-primary">
-						추천 <span class="badge"><%-- ${card.} --%></span>
+						추천 <span class="badge">${card.l_like}</span>
 					</button><br>
+					<span class="badge">${card.m_nickname }</span><br>
 					<input type="button" value="미리보기" style="text-align:center; width: 100%; height: 60px; margin-top: 40px;">
 					<input type="button" value="내 학습세트에 추가하기" style="text-align:center; width: 100%; height: 60px; margin-top: 40px;">
 				</div>

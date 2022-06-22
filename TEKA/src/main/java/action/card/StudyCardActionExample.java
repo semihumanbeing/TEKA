@@ -14,10 +14,10 @@ import dao.CardDao;
 import vo.ViewVo;
 
 /**
- * Servlet implementation class AllListAction
+ * Servlet implementation class StudyCardActionExample
  */
-@WebServlet("/card/list.do")
-public class AllListAction extends HttpServlet {
+@WebServlet("/exam.do")
+public class StudyCardActionExample extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,14 +25,20 @@ public class AllListAction extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		List<ViewVo> list = CardDao.getInstance().selectList();
+		// TODO Auto-generated method stub
+		
+		List<ViewVo> list = CardDao.getInstance().selectCard();
 		
 		request.setAttribute("list", list);
-
+		
+		System.out.println(list.get(0).getQ_question());
+		
 		//forward
-		String forward_page = "list.jsp";
+		String forward_page = "slideCard.jsp";
 		RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 		disp.forward(request, response);
+
 	}
+
 }
+

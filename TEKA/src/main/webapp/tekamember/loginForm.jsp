@@ -264,6 +264,7 @@ a {
 			
 			<!-- 실제로 서버에 전송할 데이터를 담을 폼 -->
 			<form id="securedForm" name="securedForm" method="POST" action="login.do" style="display: none;">
+				<input type="hidden" id="url" name="url" value="${url }">
 				<input type="hidden" id="encryptedID"  name="encryptedID"  value="" /> <!-- 서버에서 전달해준 공개키 저장(세션트래킹) -->
 				<input type="hidden" id="encryptedPWD" name="encryptedPWD" value="" /> <!-- 서버에서 전달해준 공개키 저장(세션트래킹) -->
 			</form>

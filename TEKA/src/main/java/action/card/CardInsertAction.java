@@ -1,7 +1,6 @@
 package action.card;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,14 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.CardDao;
-import vo.ViewVo;
-
 /**
- * Servlet implementation class AllListAction
+ * Servlet implementation class CardInsertAction
  */
-@WebServlet("/card/list.do")
-public class AllListAction extends HttpServlet {
+@WebServlet("/card/insert.do")
+public class CardInsertAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,14 +21,14 @@ public class AllListAction extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		List<ViewVo> list = CardDao.getInstance().selectList();
-		
-		request.setAttribute("list", list);
+		// TODO Auto-generated method stub
 
 		//forward
-		String forward_page = "list.jsp";
+		String forward_page = "insertCard.jsp";
 		RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 		disp.forward(request, response);
+
 	}
+
 }
+

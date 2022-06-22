@@ -24,10 +24,29 @@ height: 80px;
 <!-- 스크립트 -->
 <script type="text/javascript">
 	
-	function sido(){
+	//로그인 하지 않고 카드만들기 하려는 경우 -> 로그인 후에 카드 만들기를 바로 하러 가도록 세션 트래킹
+	function insertCard(){
 		
-		if(!confirm('로그인 후 이용가능합니다.\로그인 하시겠습니까?')) return;
-		location.href="../tekamember/loginForm.do"
+		if(!confirm('로그인 후 이용가능합니다.\로그인 하시겠습니까?')) {
+			return;
+		}
+		
+		var url_insert = "http://localhost:9090/TEKA/card/insert.do"
+		
+		location.href="../tekamember/loginForm.do?url=" + encodeURIComponent(url_insert);
+	}
+	
+	//로그인 하지 않고 나의 학습세트로 이동 하려는 경우 -> 로그인 후에 나의 학습세트로 이동하도록 세션 트래킹
+	function myCardSet(){
+		
+		if(!confirm('로그인 후 이용가능합니다.\로그인 하시겠습니까?')) {
+			return;
+		}
+		
+		//마이페이지 만들면 추가하기
+		var url_myCardSet = "";
+		
+		location.href="../tekamember/loginForm.do?url=" + encodeURIComponent(url_myCardSet);
 	}
 	
 </script>
@@ -54,7 +73,7 @@ height: 80px;
 				<li><a href="../card/list.do">모든 학습세트</a></li>
 				<li>
 					<c:if test="${empty user}">
-						<a href="#" onclick="sido();">내 학습세트</a>
+						<a href="#" onclick="myCardSet();">내 학습세트</a>
 					</c:if>
 					<c:if test="${!empty user}">
 						<a href="#">내 학습세트</a>
@@ -64,11 +83,11 @@ height: 80px;
 			
 			<!-- 회원가입 전 -->
 			<c:if test="${empty user}">
-				<button id="makebtn" class="btn btn-success navbar-btn navbar-left" onclick="sido();">만들기</button>
+				<button id="makebtn" class="btn btn-success navbar-btn navbar-left" onclick="insertCard();">만들기</button>
 			</c:if>
 			<!-- 회원가입 후 -->
 			<c:if test="${!empty user}">
-				<button id="makebtn" class="btn btn-success navbar-btn navbar-left" onclick="location.href='../card/insertCard.jsp'">만들기</button>
+				<button id="makebtn" class="btn btn-success navbar-btn navbar-left" onclick="location.href='../card/insert.do'">만들기</button>
 			</c:if>
 			
 			<form id="searchbar" class="navbar-form navbar-left">
