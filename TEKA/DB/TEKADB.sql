@@ -119,6 +119,9 @@ insert into qna values(seq_q_idx.nextVal, 1, '자바란?', '자바칩프라푸치노', defa
 insert into qna values(seq_q_idx.nextVal, 1, '객체지향', 'Object Oriented Programming', default);
 insert into qna values(seq_q_idx.nextVal, 1, 'JVM', '자바가상머신', default);
 insert into qna values(seq_q_idx.nextVal, 1, '인터페이스', '사용설명서', default);
+insert into qna values(seq_q_idx.nextVal, 1, '추상화', '공통기능묶기', default);
+insert into qna values(seq_q_idx.nextVal, 1, '캡슐화', '넌 쓰는법만 알면 돼!', default);
+insert into qna values(seq_q_idx.nextVal, 1, '오토박싱', '제가 객체로 감싸드려요', default);
 
 
 

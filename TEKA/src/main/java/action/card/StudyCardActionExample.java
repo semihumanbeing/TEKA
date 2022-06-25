@@ -31,7 +31,6 @@ public class StudyCardActionExample extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		
-		System.out.println(list.get(0).getQ_question());
 		
 		//forward
 		String forward_page = "slideCard.jsp";
