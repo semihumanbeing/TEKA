@@ -9,11 +9,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from subjectCard
 	</select>
 	
+	<!--특정 카드 조회-->
+	<select id="selectBySubject" parameterType="java.lang.String" resultType="vo.ViewVo">
+		select * from subjectCard where s_name=#{s_name}
+	</select>
+	
 	<!-- 질문답변&카드 조회 -->
 	<select id="selectCard" resultType="vo.ViewVo">
 		select * from qnaCard
 	</select>
 	
+	<!-- 이미 추가된 카드인지 확인하기 -->
+	<select id="selectCheckMyCard" parameterType="int" resultType="vo.MyCardSetVo">
+		select * from mycardset where c_idx=#{c_idx}
+	</select>
 	
+	<!-- 나의 학습세트에 카드 추가하기 -->
+	<insert id="insertMyCard" parameterType="vo.MyCardSetVo">
+		insert into myCardSet values(seq_mc_idx.nextVal, #{s_idx}, #{m_idx}, #{c_idx})
+	</insert>
 	
 </mapper>

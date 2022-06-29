@@ -101,6 +101,22 @@
 	width: 1460px;
 	height: 100px;
 }
+
+#title{
+	margin: auto;
+	width: 1460px;
+	height: 50px;
+	line-height: 100px;
+	font-size: 45px;
+}
+
+.plusCard{
+	text-align:center; 
+	width: 100%; 
+	height: 60px;
+	margin-top: 40px;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -108,10 +124,35 @@ $(document).ready(function(){
 	$(".card").click(function(){
 		$(this).toggleClass("flipped");
 	});	
+	
+	setTimeout(showMsg, 100);
+	
 });
+
+function showMsg(){
+	if("${param.reason eq 'exist'}" == "true"){
+		if(confirm("이미 저장되어 있는 학습카드입니다.\n나의 학습카드로 이동하시겠습니까?") == false) return;
+		
+		location.href="myCardList.do";
+	}
+	
+	if("${param.reason eq 'success'}" == "true"){
+		if(confirm("선택한 카드를 나의 학습세트에 저장했습니다.\n나의 학습카드로 이동하시겠습니까?") == false) return;
+		
+		location.href="myCardList.do";
+	}
+}
+
+	
 </script>
 </head>
 <body>
+	<c:if test="${!empty subject }">
+		<div id="title">
+			<i class="fas fa-award" style="color: navy;"></i>&nbsp<b>${subject }</b>
+		</div>
+	
+	</c:if>
 	<div id="filter">
 		<hr>
 			<b>여기에서는 검색 필터를 지정할 수 있습니다.</b>
@@ -125,6 +166,10 @@ $(document).ready(function(){
 		<hr>
 	</div>
 	<div id="grid_container">
+		<c:if test="${empty list }">
+			<div style="color: red; text-align: center; line-height: 333px;">카드가 없습니다.</div>
+		</c:if>
+		
 		<c:forEach var="card" items="${ list }">
 			<div class="card-container">
 				<div class="card">
@@ -144,8 +189,8 @@ $(document).ready(function(){
 						추천 <span class="badge">${card.l_like}</span>
 					</button><br>
 					<span class="badge">${card.m_nickname }</span><br>
-					<input type="button" value="미리보기" style="text-align:center; width: 100%; height: 60px; margin-top: 40px;">
-					<input type="button" value="내 학습세트에 추가하기" style="text-align:center; width: 100%; height: 60px; margin-top: 40px;">
+					<input type="button" class="plusCard" value="미리보기">
+					<input type="button" class="plusCard" value="내 학습세트에 추가하기" onclick="location.href='myCardInsert.do?c_idx=${card.c_idx}&s_idx=${card.s_idx }'">
 				</div>
 			</div>
 		</c:forEach>

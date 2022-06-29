@@ -78,6 +78,7 @@ alter table mycardset
 -- 삭제
 drop table mycardset
 
+select * from mycardset
 
 
 
@@ -123,7 +124,7 @@ insert into qna values(seq_q_idx.nextVal, 1, '추상화', '공통기능묶기', default);
 insert into qna values(seq_q_idx.nextVal, 1, '캡슐화', '넌 쓰는법만 알면 돼!', default);
 insert into qna values(seq_q_idx.nextVal, 1, '오토박싱', '제가 객체로 감싸드려요', default);
 
-
+select * from qna
 
 
 
@@ -256,12 +257,14 @@ as
 	select
 		c_idx, c_title, c_content, c_isPublic, c_regdate,		
       	m_nickname,											
-        s_name	
+        s_name, s_idx	
     from card c join tekamember m using(m_idx)
     	join subject s using(s_idx)		
 
 select * from subjectCard
 
+--뷰에 s_idx추가!
+drop view subjectCard
 
 -- 3. 카드테이블 + 멤버테이블 + 주제테이블
 create or replace view qnaCard
