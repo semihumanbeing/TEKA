@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CardInsertAction
  */
-@WebServlet("/card/insert.do")
-public class CardInsertAction extends HttpServlet {
+@WebServlet("/card/insertCardForm.do")
+public class InsertCardFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -29,6 +29,4 @@ public class CardInsertAction extends HttpServlet {
 		disp.forward(request, response);
 
 	}
-
 }
-
