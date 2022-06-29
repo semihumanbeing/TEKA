@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+::after ::before{
+	box-sizing: inherit;
+	font-family: 윤고딕700;
+}
+
+#box, .list{
+	text-align: center;
+	margin : auto;
+	width  : 900px;
+	margin-top: 30px;
+	height : 250px;
+}
+
+.list{
+	counter-reset: number 0; /* 카운트환경 셋팅 */
+	
+	margin-bottom: 30px;
+}
+
+.row{
+	border : 2px solid black;
+	margin-top: 30px;
+	height : 250px; 
+	box-shadow: 1px 1px 3px black;
+	border-radius: 15px;
+	counter-increment: number 1; /* 카운트 증가 */
+	/* display: table-row; */
+}
+/* 카운트증가 */
+.cnt::before{
+	content      : counter(number); /* 증가한 카운터 보여주기 */
+	display      : inline-block;
+    text-align   : center;
+    line-height  : 1.5;
+    width        : 25px;
+    height       : 25px;
+    margin-right : 10px;
+    font-size    : 16px;
+    font-weight  : 700;
+}
+.cnt{
+	float:left;
+}
+
+.qArea{
+	float: left;
+	text-align: left;
+	margin-right: 30px;	
+	margin-left: 50px;	
+	width: 30%;
+	margin-top : 27px;
+}
+
+.aArea{
+	float: left;
+	text-align: left;	
+	width: 60%;
+}
+
+p{
+	font-size: 16px;
+}
+#insert_btn{
+	
+	width:100px;
+	height:60px;
+	box-shadow: 1px 1px 3px black;
+	border-radius: 15px;
+	text-align: center;
+	margin : auto;
+	margin-top : 30px;
+}
+
+#delBtn{
+	float: right; /* 버튼 우측정렬 */
+}
+
+textarea {
+	resize: none;
+}
+.tArea{
+	margin : auto;
+}

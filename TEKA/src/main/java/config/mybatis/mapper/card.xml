@@ -13,7 +13,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCard" resultType="vo.ViewVo">
 		select * from qnaCard
 	</select>
-	
+
+<!-- DML -->
+	<!-- 학습세트추가(카드만들기) -->
+	<insert id="insertCard" parameterType="vo.QnaVo">
+		<!-- insert into qna values(seq_q_idx.nextVal, seq_c_idx.nextVal, #{q_question}, #{q_answer}, default) -->
+		<!-- qna테이블에 저장한다. -->
+	</insert>	
 	
 	
 </mapper>

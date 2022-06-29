@@ -14,24 +14,24 @@
 <!-- css파일 연결 -->
 <link rel="stylesheet" href="../css/mainmenuHeader.css">
 <link rel="stylesheet" href="../css/mainInsertCard.css">
+<link rel="stylesheet" href="../css/addCardRow.css">
 
 </head>
 <body>
-
 	<!-- header -->
 	<div id="header">
 		<%@include file="../header/mainmenu.jsp" %>>
 	</div>
 	
-	<!-- top-content -->
-	<div id="top_content">
-		<%@include file="../content/insertCardTopContent.jsp" %>
+	<div id="subjectSelect">
+		<!-- 주제선택 -->
 	</div>
 	
-	<!-- bottom-content -->
-	<div id="bottom_content">
-		<%@include file="../content/insertCardBottomContent.jsp" %>
+	<!-- insertCard -->
+	<div id="insertCard">
+		<%@include file="addCardRow.jsp"%>
 	</div>
+	
 	
 </body>
 </html>
