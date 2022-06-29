@@ -188,6 +188,11 @@ a {
 			alert('비밀번호가 틀렸습니다.');
 			return;
 		}
+		
+		if("${param.reason eq 'sessionTimeout'}" == "true"){
+			alert('로그인해주세요.');
+			return;
+		}
 	}
 
 	function checkValidate(){

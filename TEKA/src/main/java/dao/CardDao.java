@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import service.MyBatisConnector;
 import vo.CardVo;
+import vo.MyCardSetVo;
 import vo.ViewVo;
 
 public class CardDao {
@@ -54,6 +55,45 @@ public class CardDao {
 		sqlSession.close();
 
 		return list;
+	}
+
+	public List<ViewVo> selectBySubject(String subject) {
+		// TODO Auto-generated method stub
+		List<ViewVo> list = null;
+		
+		SqlSession sqlSession = factory.openSession();
+		
+		list = sqlSession.selectList("card.selectBySubject", subject);
+		
+		sqlSession.close();
+
+		return list;
+	}
+
+	public int insertMyCard(MyCardSetVo vo) {
+		// TODO Auto-generated method stub
+		int res = 0;
+		
+		SqlSession sqlSession = factory.openSession(true);
+		
+		res = sqlSession.insert("card.insertMyCard", vo);
+		
+		sqlSession.close();
+		
+		return res;
+	}
+
+	public MyCardSetVo selectCheckMyCard(int c_idx) {
+		// TODO Auto-generated method stub
+		MyCardSetVo vo = null;
+		
+		SqlSession sqlSession = factory.openSession();
+		
+		vo = sqlSession.selectOne("card.selectCheckMyCard", c_idx);
+		
+		sqlSession.close();
+		
+		return vo;
 	} 
 
 	

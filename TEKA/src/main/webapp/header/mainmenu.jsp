@@ -44,7 +44,7 @@ height: 80px;
 		}
 		
 		//마이페이지 만들면 추가하기
-		var url_myCardSet = "";
+		var url_myCardSet = "myCardList.do";
 		
 		location.href="../tekamember/loginForm.do?url=" + encodeURIComponent(url_myCardSet);
 	}
@@ -63,12 +63,12 @@ height: 80px;
 				<li class="active"><a href="../card/main.do">홈페이지</a></li>
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">주제 <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">운영체제</a></li>
-						<li><a href="#">네트워크</a></li>
-						<li><a href="#">알고리즘</a></li>
-						<li><a href="#">자료구조</a></li>
-						<li><a href="#">Java</a></li>
-						<li><a href="#">Spring</a></li>
+						<li><a href="../card/list.do?subject=os">운영체제</a></li>
+						<li><a href="../card/list.do?subject=network">네트워크</a></li>
+						<li><a href="../card/list.do?subject=algorithm">알고리즘</a></li>
+						<li><a href="../card/list.do?subject=datastructure">자료구조</a></li>
+						<li><a href="../card/list.do?subject=java">Java</a></li>
+						<li><a href="../card/list.do?subject=spring">Spring</a></li>
 					</ul>
 				<li><a href="../card/list.do">모든 학습세트</a></li>
 				<li>
@@ -76,7 +76,7 @@ height: 80px;
 						<a href="#" onclick="myCardSet();">내 학습세트</a>
 					</c:if>
 					<c:if test="${!empty user}">
-						<a href="#">내 학습세트</a>
+						<a href="myCardList.do">내 학습세트</a>
 					</c:if>
 				</li>
 			</ul>
