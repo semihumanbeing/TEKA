@@ -109,5 +109,8 @@
 		</div>
 	</div><!-- subjectView end -->
 </div><!-- header end -->
+<div id="footer">
+	<%@ include file="../footer/footer.jsp" %>	
+</div>
 </body>
 </html>

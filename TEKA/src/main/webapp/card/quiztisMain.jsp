@@ -88,6 +88,10 @@
 .card-back {
 	transform: rotateX(180deg);
 }
+
+#footer{
+	clear: both;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -115,7 +119,7 @@ $(document).ready(function(){
 			</div>
 		</div><br>
 		<input class="tutorial" type="button" value="나도 만들어보기"    onclick="location.href='test.do'"><br>
-		<input class="tutorial" type="button" value="다른 학습세트보기"  onclick="location.href='list.do'">
+		<input class="tutorial" type="button" value="다른 학습세트보기"  onclick="location.href='mainList.do'">
 	</div>
 	
 	<div id="sub_content">
@@ -129,6 +133,9 @@ $(document).ready(function(){
 		<input class="tutorial" type="button" value="로그인"   onclick="location.href='../tekamember/loginForm.do'">
 		<input class="tutorial" type="button" value="회원가입" onclick="location.href='../tekamember/signUpForm.do'">
 	</div>
+</div>
+<div id="footer">
+	<%@ include file="../footer/footer.jsp" %>	
 </div>
 </body>
 </html>
