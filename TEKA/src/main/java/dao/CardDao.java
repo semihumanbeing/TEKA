@@ -43,20 +43,8 @@ public class CardDao {
 		return list;
 	}
 
-	public List<ViewVo> selectCard() {
-		// TODO Auto-generated method stub
-		
-		List<ViewVo> list = null;
-		
-		SqlSession sqlSession = factory.openSession();
-		
-		list = sqlSession.selectList("card.selectCard");
-		
-		sqlSession.close();
-
-		return list;
-	}
-
+	
+	//헤더에 조건을 검색하면 주제이름별로 필터링 해서 모아보기
 	public List<ViewVo> selectBySubject(String subject) {
 		// TODO Auto-generated method stub
 		List<ViewVo> list = null;
@@ -69,7 +57,8 @@ public class CardDao {
 
 		return list;
 	}
-
+	
+	//나의 학습 세트 추가하기
 	public int insertMyCard(MyCardSetVo vo) {
 		// TODO Auto-generated method stub
 		int res = 0;
@@ -82,7 +71,8 @@ public class CardDao {
 		
 		return res;
 	}
-
+	
+	//나의 학습 세트 추가하기 전 이미 추가되었는지 확인하기
 	public MyCardSetVo selectCheckMyCard(int c_idx) {
 		// TODO Auto-generated method stub
 		MyCardSetVo vo = null;
@@ -94,6 +84,19 @@ public class CardDao {
 		sqlSession.close();
 		
 		return vo;
+	}
+
+	public List<ViewVo> selectMyCardList(int m_idx) {
+		// TODO Auto-generated method stub
+		List<ViewVo> list = null;
+		
+		SqlSession sqlSession = factory.openSession();
+		
+		list = sqlSession.selectList("card.selectMyCardList", m_idx);
+		
+		sqlSession.close();
+		
+		return list;
 	} 
 
 	

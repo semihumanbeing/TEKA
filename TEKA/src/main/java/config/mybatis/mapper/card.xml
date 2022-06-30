@@ -9,10 +9,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from subjectCard
 	</select>
 	
+
+	<!--특정 카드 조회-->
+	<select id="selectBySubject" parameterType="java.lang.String" resultType="vo.ViewVo">
+		select * from subjectCard where s_name=#{s_name}
+	</select>
+
 <!-- 질문답변&카드 조회 -->
 	<select id="selectCard" resultType="vo.ViewVo">
 		select * from qnaCard
 	</select>
+
 
 	
 	<!-- 이미 추가된 카드인지 확인하기 -->
@@ -40,7 +47,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into qna values( seq_q_idx.nextVal, #{c_idx},
 		                        #{q_question}, #{q_answer}, 'true'
 								)
-
 	
 	<!-- 나의 학습세트에 카드 추가하기 -->
 	<insert id="insertMyCard" parameterType="vo.MyCardSetVo">
@@ -52,5 +58,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into mycardset values(seq_mc_idx.nextVal, #{s_idx}, #{m_idx}, #{c_idx})
 	</insert>		
 	
+	
+	<!--나의 학습세트에 추가된 학습 카드 조회하기-->
+	<select id="selectMyCardList" parameterType="int" resultType="vo.ViewVo">
+		select * from studyCard where m_idx=#{m_idx}
+	</select>
 	
 </mapper>
