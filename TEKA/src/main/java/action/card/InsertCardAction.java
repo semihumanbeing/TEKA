@@ -25,7 +25,7 @@ public class InsertCardAction extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		//¼ö½ÅÀÎÄÚµù ¼³Á¤
+		//ìˆ˜ì‹ ì¸ì½”ë”© ì„¤ì •
 		request.setCharacterEncoding("utf-8");
 		
 		int    s_idx     = Integer.parseInt(request.getParameter("s_idx"));
@@ -33,7 +33,7 @@ public class InsertCardAction extends HttpServlet {
 		String c_title   = request.getParameter("c_title");
 		String c_content = request.getParameter("c_content");
 		
-		//voÆ÷Àå
+		//voí¬ì¥
 		ViewVo vo = new ViewVo();
 		
 		vo.setS_idx(s_idx);
@@ -42,24 +42,24 @@ public class InsertCardAction extends HttpServlet {
 		vo.setC_content(c_content);
 		
 		
-		//Ä«µåÅ×ÀÌºí insert
+		//ì¹´ë“œí…Œì´ë¸” insert
 		int cardRes = ViewDao.getInstance().cardInsert(vo);
 		
 		//int c_idx = ViewDao.getInstance().selectCIdx(c_title);
 		//int c_idx = c_idxVo.getC_idx();
 		//vo.setC_idx(c_idx);
-		//Ä«µåÅ×ÀÌºí¿¡ insert ÈÄ, c_idx ±¸ÇÏ±â
+		//ì¹´ë“œí…Œì´ë¸”ì— insert í›„, c_idx êµ¬í•˜ê¸°
 		ViewVo c_idxVo = ViewDao.getInstance().selectCIdx(c_title);
 		
 		int c_idx = c_idxVo.getC_idx();
 		
-		//»õ·Î ¾ò¾î¿Â c_idx Æ÷Àå
+		//ìƒˆë¡œ ì–»ì–´ì˜¨ c_idx í¬ì¥
 		vo.setC_idx(c_idx);
 		
-		//³» ÇĞ½À¼¼Æ® Å×ÀÌºí insert
+		//ë‚´ í•™ìŠµì„¸íŠ¸ í…Œì´ë¸” insert
 		int myCardSetRes = ViewDao.getInstance().myCardSetInsert(vo);
 		
-		//¹è¿­ ÆÄ¶ó¹ÌÅÍ ¹Ş±â (½ÖÀ¸·Î ÀÔ·Â¹ŞÀ¸´Ï±î µÎ ¹è¿­ÀÇ ±æÀÌ´Â ¹«Á¶°Ç °°À½)
+		//ë°°ì—´ íŒŒë¼ë¯¸í„° ë°›ê¸° (ìŒìœ¼ë¡œ ì…ë ¥ë°›ìœ¼ë‹ˆê¹Œ ë‘ ë°°ì—´ì˜ ê¸¸ì´ëŠ” ë¬´ì¡°ê±´ ê°™ìŒ)
 		String[] q_questionStrArray = request.getParameterValues("q_question");
 		String[] q_answerStrArray   = request.getParameterValues("q_answer");
 		
@@ -68,11 +68,13 @@ public class InsertCardAction extends HttpServlet {
 			vo.setQ_question(q_questionStrArray[i]);
 			vo.setQ_answer(q_answerStrArray[i]);
 			
-			//vo¿¡ °ª ¼ÂÆÃµÉ ¶§¸¶´Ù insert
+			//voì— ê°’ ì…‹íŒ…ë  ë•Œë§ˆë‹¤ insert
 			int Qnares = ViewDao.getInstance().qnaInsert(vo);
 		}
 		
-		response.sendRedirect("myCardSet.do");
+
+		response.sendRedirect("myCardList.do");
+
 
 	}
 }

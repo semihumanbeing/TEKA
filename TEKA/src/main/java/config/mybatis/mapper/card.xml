@@ -9,16 +9,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from subjectCard
 	</select>
 	
+
+	<!--특정 카드 조회-->
+	<select id="selectBySubject" parameterType="java.lang.String" resultType="vo.ViewVo">
+		select * from subjectCard where s_name=#{s_name}
+	</select>
+
 <!-- 질문답변&카드 조회 -->
 	<select id="selectCard" resultType="vo.ViewVo">
 		select * from qnaCard
 	</select>
 
-<!-- selectOne : c_idx 1건 구하기 -->
+
+	
+	<!-- 이미 추가된 카드인지 확인하기 -->
+	<select id="selectCheckMyCard" parameterType="int" resultType="vo.MyCardSetVo">
+		select * from mycardset where c_idx=#{c_idx}
+	</select>
+	
+	<!-- selectOne : c_idx 1건 구하기 -->
 	<select id="selectCidx" parameterType="String" resultType="vo.ViewVo" >
 		select * from card where c_title=#{c_title}
 	</select>
-	
 	
 	
 <!-- DML -->
@@ -29,16 +41,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	
-<!-- 질문답변테이블 insert -->	
+
+	<!-- 질문답변테이블 insert -->	
 	<insert id="qnaInsert" parameterType="vo.ViewVo">
 		insert into qna values( seq_q_idx.nextVal, #{c_idx},
 		                        #{q_question}, #{q_answer}, 'true'
 								)
 	</insert>
-<!-- 내학습세트 insert -->	
+	
+	<!-- 나의 학습세트에 카드 추가하기 -->
+	<insert id="insertMyCard" parameterType="vo.MyCardSetVo">
+		insert into myCardSet values(seq_mc_idx.nextVal, #{s_idx}, #{m_idx}, #{c_idx})
+	</insert>
+	
+	
+	<!-- 내학습세트 insert -->	
 	<insert id="myCardSetInsert" parameterType="vo.ViewVo">
 		insert into mycardset values(seq_mc_idx.nextVal, #{s_idx}, #{m_idx}, #{c_idx})
 	</insert>		
 	
+	
+	<!--나의 학습세트에 추가된 학습 카드 조회하기-->
+	<select id="selectMyCardList" parameterType="int" resultType="vo.ViewVo">
+		select * from studyCard where m_idx=#{m_idx}
+	</select>
 	
 </mapper>

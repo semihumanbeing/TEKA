@@ -1,4 +1,4 @@
-package action.card;
+package action.studyCard;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CardDao;
+import dao.StudyCardDao;
 import vo.ViewVo;
 
 /**
  * Servlet implementation class StudyCardActionExample
  */
-@WebServlet("/exam.do")
-public class StudyCardActionExample extends HttpServlet {
+@WebServlet("/studyCard/studyCardWord.do")
+public class StudyCardWordAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -27,7 +28,7 @@ public class StudyCardActionExample extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		List<ViewVo> list = CardDao.getInstance().selectCard();
+		List<ViewVo> list = StudyCardDao.getInstance().selectCard();
 		
 		request.setAttribute("list", list);
 		

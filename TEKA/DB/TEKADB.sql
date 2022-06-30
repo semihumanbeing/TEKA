@@ -1,42 +1,46 @@
---/// 1. Ä«µå (°Ô½Ã±Û)
+--/// 1. ì¹´ë“œ (ê²Œì‹œê¸€)
 create table card
 (
-	c_idx      int,               			 -- Ä«µå¹øÈ£
-	c_title    varchar2(1000) not null, 	 -- Ä«µåÁ¦¸ñ
-	c_content  varchar2(1000) not null, 	 -- Ä«µå¼Ò°³±Û
-	c_isPublic varchar2(30) default('°ø°³'), -- °ø°³¿©ºÎ
-	s_idx      int,                          -- ÁÖÁ¦¹øÈ£
-	m_idx      int,                  	     -- ÀÛ¼ºÀÚÀÎµ¦½º
-	c_regdate varchar2(100) not null 		 -- Ä«µåµî·ÏÀÏÀÚ
+	c_idx      int,               			 -- ì¹´ë“œë²ˆí˜¸
+	c_title    varchar2(1000) not null, 	 -- ì¹´ë“œì œëª©
+	c_content  varchar2(1000) not null, 	 -- ì¹´ë“œì†Œê°œê¸€
+	c_isPublic varchar2(30) default('ê³µê°œ'), -- ê³µê°œì—¬ë¶€
+	s_idx      int,                          -- ì£¼ì œë²ˆí˜¸
+	m_idx      int,                  	     -- ì‘ì„±ìì¸ë±ìŠ¤
+	c_regdate varchar2(100) not null 		 -- ì¹´ë“œë“±ë¡ì¼ì
+	c_qCnt	   int							 -- ì¹´ë“œì— í¬í•¨ëœ ì§ˆë¬¸ ê°œìˆ˜
 )
 
--- ½ÃÄö½º 
+-- ì‹œí€€ìŠ¤ 
 create sequence seq_c_idx
 
--- Ä«µå¹øÈ£ ±âº»Å°
+-- ì¹´ë“œë²ˆí˜¸ ê¸°ë³¸í‚¤
 alter table card
 	add constraint pk_c_idx_card primary key(c_idx);
 	
--- ÁÖÁ¦¹øÈ£ ¿Ü·¡Å°
+-- ì£¼ì œë²ˆí˜¸ ì™¸ë˜í‚¤
 alter table card
 	add constraint fk_s_idx_card foreign key(s_idx)
 	references subject(s_idx)
 	
--- ÀÛ¼ºÀÚÀÎµ¦½º ¿Ü·¡Å°
+-- ì‘ì„±ìì¸ë±ìŠ¤ ì™¸ë˜í‚¤
 alter table card
 	add constraint fk_m_idx_card foreign key(m_idx)
 	references tekamember(m_idx)
-	
--- »èÁ¦
+
+--ê° ì¹´ë“œì˜ ì „ì²´ ì§ˆë¬¸ ìˆ˜ ì»¬ëŸ¼ ì¶”ê°€ & ì œí•œ ì¡°ê±´ ì„¤ì •
+alter table card add c_qCnt int				--ì¶”ê°€
+alter table card modify c_qCnt not null		--ì œí•œì¡°ê±´(nullì€ addê°€ ì•„ë‹Œ modifyë¡œ ì¶”ê°€í•œë‹¤.)
+-- ì‚­ì œ
 drop table card
 drop sequence seq_c_idx
 
 
---»ùÇÃµ¥ÀÌÅÍ
-insert into card values(seq_c_idx.nextVal, 'ÀÚ¹ÙÀÎ»ı', 'ÀÚ¹ÙÀÚ¹Ù', default, 5, 4, sysdate);
-insert into card values(seq_c_idx.nextVal, '¾È³ç¾È³ç', '¾È´¨´¨´¨', default, 5, 4, sysdate);
-insert into card values(seq_c_idx.nextVal, 'È«±æµ¿µ¿', '±æµ¿±æµ¿', default, 5, 4, sysdate);
-insert into card values(seq_c_idx.nextVal, '³×Æ®¿öÅ©', 'OSI-7Layer', default, 2, 1, sysdate);
+--ìƒ˜í”Œë°ì´í„°
+insert into card values(seq_c_idx.nextVal, 'ìë°”ì¸ìƒ', 'ìë°”ìë°”', default, 5, 4, sysdate);
+insert into card values(seq_c_idx.nextVal, 'ì•ˆë…•ì•ˆë…•', 'ì•ˆë‡½ë‡½ë‡½', default, 5, 4, sysdate);
+insert into card values(seq_c_idx.nextVal, 'í™ê¸¸ë™ë™', 'ê¸¸ë™ê¸¸ë™', default, 5, 4, sysdate);
+insert into card values(seq_c_idx.nextVal, 'ë„¤íŠ¸ì›Œí¬', 'OSI-7Layer', default, 2, 1, sysdate);
 
 select * from card
 
@@ -45,37 +49,37 @@ select * from card
 
 --/////////////////////////////////////////////////////////////////////////////////
 
---/// 2. ³» ÇĞ½À¼¼Æ®¿¡ Ãß°¡
+--/// 2. ë‚´ í•™ìŠµì„¸íŠ¸ì— ì¶”ê°€
 create table mycardset
 (
-	mc_idx int, -- ³» Ä«µå¹øÈ£
-	s_idx  int, -- ÁÖÁ¦¹øÈ£
-	m_idx  int, -- ÇĞ½ÀÀÚ ¸â¹ö¹øÈ£
-	c_idx  int  -- Ä«µå(°Ô½Ã±Û)¹øÈ£
+	mc_idx int, -- ë‚´ ì¹´ë“œë²ˆí˜¸
+	s_idx  int, -- ì£¼ì œë²ˆí˜¸
+	m_idx  int, -- í•™ìŠµì ë©¤ë²„ë²ˆí˜¸
+	c_idx  int  -- ì¹´ë“œ(ê²Œì‹œê¸€)ë²ˆí˜¸
 )
--- ³» Ä«µå¹øÈ£ ½ÃÄö½º 
+-- ë‚´ ì¹´ë“œë²ˆí˜¸ ì‹œí€€ìŠ¤ 
 create sequence seq_mc_idx
 
--- ³» Ä«µå¹øÈ£ ±âº»Å°
+-- ë‚´ ì¹´ë“œë²ˆí˜¸ ê¸°ë³¸í‚¤
 alter table mycardset
 	add constraint mc_idx_pk_mycardset primary key(mc_idx)
 
--- ÁÖÁ¦¹øÈ£ ¿Ü·¡Å°
+-- ì£¼ì œë²ˆí˜¸ ì™¸ë˜í‚¤
 alter table mycardset
 	add constraint fk_s_idx_mycardset foreign key(s_idx)
 	references subject(s_idx)
 	
--- ÇĞ½ÀÀÚ ¸â¹ö¹øÈ£ ¿Ü·¡Å°
+-- í•™ìŠµì ë©¤ë²„ë²ˆí˜¸ ì™¸ë˜í‚¤
 alter table mycardset
 	add constraint fk_m_idx_mycardset foreign key(m_idx)
 	references tekamember(m_idx)
 	
--- Ä«µå(°Ô½Ã±Û)¿Ü·¡Å°
+-- ì¹´ë“œ(ê²Œì‹œê¸€)ì™¸ë˜í‚¤
 alter table mycardset
 	add constraint fk_c_idx_mycardset foreign key(c_idx)
 	references card(c_idx)
 
--- »èÁ¦
+-- ì‚­ì œ
 drop table mycardset
 
 select * from mycardset
@@ -84,45 +88,45 @@ select * from mycardset
 
 --/////////////////////////////////////////////////////////////////////////////////
 
---3. Áú¹®&´äº¯ Å×ÀÌºí
+--3. ì§ˆë¬¸&ë‹µë³€ í…Œì´ë¸”
 create table qna
 (
-   q_idx        int,                         --Áú¹®¹øÈ£
-   c_idx        int,                         --Ä«µå¹øÈ£
-   q_question   varchar2(1000) not null,     --Áú¹®
-   q_answer     varchar2(1000) not null,     --´äº¯
-   q_correct	varchar2(20)   default 'false' --Á¤´ä¿©ºÎ(false:Á¤´ä. true:¿À´ä)
+   q_idx        int,                         --ì§ˆë¬¸ë²ˆí˜¸
+   c_idx        int,                         --ì¹´ë“œë²ˆí˜¸
+   q_question   varchar2(1000) not null,     --ì§ˆë¬¸
+   q_answer     varchar2(1000) not null,     --ë‹µë³€
+   q_correct	varchar2(20)   default 'false' --ì •ë‹µì—¬ë¶€(false:ì •ë‹µ. true:ì˜¤ë‹µ)
 )
 
---½ÃÄö½º
+--ì‹œí€€ìŠ¤
 create sequence seq_q_idx
 
---±âº»Å° 
+--ê¸°ë³¸í‚¤ 
 alter table qna
 add constraint pk_qna_q_idx primary key(q_idx)
 
---¿Ü·¡Å° 
+--ì™¸ë˜í‚¤ 
 alter table qna
 add constraint fk_qna_card foreign key(c_idx) references card(c_idx)
 
---ÄÃ·³Ãß°¡
+--ì»¬ëŸ¼ì¶”ê°€
 alter table qna drop column q_correct
 alter table qna add q_correct varchar2(20) default('false')
 alter table qna
    add constraint check_qna_q_correct check(q_correct in ('false', 'true'))
---»èÁ¦
+--ì‚­ì œ
 drop table qna
 drop sequence seq_q_idx
 
 
---»ùÇÃµ¥ÀÌÅÍ
-insert into qna values(seq_q_idx.nextVal, 1, 'ÀÚ¹Ù¶õ?', 'ÀÚ¹ÙÄ¨ÇÁ¶óÇªÄ¡³ë', default);
-insert into qna values(seq_q_idx.nextVal, 1, '°´Ã¼ÁöÇâ', 'Object Oriented Programming', default);
-insert into qna values(seq_q_idx.nextVal, 1, 'JVM', 'ÀÚ¹Ù°¡»ó¸Ó½Å', default);
-insert into qna values(seq_q_idx.nextVal, 1, 'ÀÎÅÍÆäÀÌ½º', '»ç¿ë¼³¸í¼­', default);
-insert into qna values(seq_q_idx.nextVal, 1, 'Ãß»óÈ­', '°øÅë±â´É¹­±â', default);
-insert into qna values(seq_q_idx.nextVal, 1, 'Ä¸½¶È­', '³Í ¾²´Â¹ı¸¸ ¾Ë¸é µÅ!', default);
-insert into qna values(seq_q_idx.nextVal, 1, '¿ÀÅä¹Ú½Ì', 'Á¦°¡ °´Ã¼·Î °¨½Îµå·Á¿ä', default);
+--ìƒ˜í”Œë°ì´í„°
+insert into qna values(seq_q_idx.nextVal, 1, 'ìë°”ë€?', 'ìë°”ì¹©í”„ë¼í‘¸ì¹˜ë…¸', default);
+insert into qna values(seq_q_idx.nextVal, 1, 'ê°ì²´ì§€í–¥', 'Object Oriented Programming', default);
+insert into qna values(seq_q_idx.nextVal, 1, 'JVM', 'ìë°”ê°€ìƒë¨¸ì‹ ', default);
+insert into qna values(seq_q_idx.nextVal, 1, 'ì¸í„°í˜ì´ìŠ¤', 'ì‚¬ìš©ì„¤ëª…ì„œ', default);
+insert into qna values(seq_q_idx.nextVal, 1, 'ì¶”ìƒí™”', 'ê³µí†µê¸°ëŠ¥ë¬¶ê¸°', default);
+insert into qna values(seq_q_idx.nextVal, 1, 'ìº¡ìŠí™”', 'ë„Œ ì“°ëŠ”ë²•ë§Œ ì•Œë©´ ë¼!', default);
+insert into qna values(seq_q_idx.nextVal, 1, 'ì˜¤í† ë°•ì‹±', 'ì œê°€ ê°ì²´ë¡œ ê°ì‹¸ë“œë ¤ìš”', default);
 
 select * from qna
 
@@ -130,42 +134,42 @@ select * from qna
 
 --/////////////////////////////////////////////////////////////////////////////////
 
---4. ¸â¹öÅ×ÀÌºí
---½ÃÄö½º
+--4. ë©¤ë²„í…Œì´ë¸”
+--ì‹œí€€ìŠ¤
 create sequence seq_tekamember_m_idx
 
 create table tekamember
 (
-   m_idx      int,                                   --¸â¹öÀÎµ¦½º(PK)
-   m_id       varchar2(30)  not null,                --¸â¹ö¾ÆÀÌµğ(unique)
-   m_pwd      varchar2(30)  not null,                --¸â¹öºñ¹ø
-   m_nickname varchar2(30)  not null,                --¸â¹ö´Ğ³×ÀÓ(unique)
-   m_email    varchar2(100) not null,                --¸â¹öÀÌ¸ŞÀÏ(unique)
-   m_grade    varchar2(30)  default 'ÀÏ¹İ' not null  --¸â¹öµî±Ş
+   m_idx      int,                                   --ë©¤ë²„ì¸ë±ìŠ¤(PK)
+   m_id       varchar2(30)  not null,                --ë©¤ë²„ì•„ì´ë””(unique)
+   m_pwd      varchar2(30)  not null,                --ë©¤ë²„ë¹„ë²ˆ
+   m_nickname varchar2(30)  not null,                --ë©¤ë²„ë‹‰ë„¤ì„(unique)
+   m_email    varchar2(100) not null,                --ë©¤ë²„ì´ë©”ì¼(unique)
+   m_grade    varchar2(30)  default 'ì¼ë°˜' not null  --ë©¤ë²„ë“±ê¸‰
 )
 
---±âº»Å°
+--ê¸°ë³¸í‚¤
 alter table tekamember
    add constraint pk_tekamember_m_idx primary key(m_idx);
 
---À¯´ÏÅ©
+--ìœ ë‹ˆí¬
 alter table tekamember
 add constraint unique_tekamember_m_nickname unique(m_nickname);
    
 alter table tekamember
 add constraint unique_tekamember_m_email unique(m_email);
 
---Ã¼Å©
+--ì²´í¬
 alter table tekamember
-   add constraint check_tekamember_m_grade check(m_grade in ('ÀÏ¹İ', '°ü¸®ÀÚ'))
+   add constraint check_tekamember_m_grade check(m_grade in ('ì¼ë°˜', 'ê´€ë¦¬ì'))
 
 
 select * from tekamember
 
---»ùÇÃµ¥ÀÌÅÍ
-insert into tekamember values(seq_tekamember_m_idx.nextVal, 'one',  '1111', 'ÀÏ±æµ¿', 'one@naver.com', default);
-insert into tekamember values(seq_tekamember_m_idx.nextVal, 'two',  '2222', 'ÀÌ±æµ¿', 'two@naver.com', default);
-insert into tekamember values(seq_tekamember_m_idx.nextVal, 'hong', '3333', 'È«±æµ¿', 'hong@naver.com', '°ü¸®ÀÚ');
+--ìƒ˜í”Œë°ì´í„°
+insert into tekamember values(seq_tekamember_m_idx.nextVal, 'one',  '1111', 'ì¼ê¸¸ë™', 'one@naver.com', default);
+insert into tekamember values(seq_tekamember_m_idx.nextVal, 'two',  '2222', 'ì´ê¸¸ë™', 'two@naver.com', default);
+insert into tekamember values(seq_tekamember_m_idx.nextVal, 'hong', '3333', 'í™ê¸¸ë™', 'hong@naver.com', 'ê´€ë¦¬ì');
 
 
 
@@ -173,24 +177,24 @@ insert into tekamember values(seq_tekamember_m_idx.nextVal, 'hong', '3333', 'È«±
 
 --/////////////////////////////////////////////////////////////////////////////////
 
---5. ÁÖÁ¦Å×ÀÌºí
+--5. ì£¼ì œí…Œì´ë¸”
 create table subject
 (
-   s_idx  int,                   --ÁÖÁ¦¹øÈ£(PK)
-   s_name varchar2(30) not null  --ÁÖÁ¦¸í
+   s_idx  int,                   --ì£¼ì œë²ˆí˜¸(PK)
+   s_name varchar2(30) not null  --ì£¼ì œëª…
 )
 
---±âº»Å°
+--ê¸°ë³¸í‚¤
 alter table subject
    add constraint pk_subject_s_idx primary key(s_idx);
 
---µ¥ÀÌÅÍ
-insert into subject values(1, '¿î¿µÃ¼Á¦');   
-insert into subject values(2, '³×Æ®¿öÅ©');   
-insert into subject values(3, '¾Ë°í¸®Áò');   
-insert into subject values(4, 'ÀÚ·á±¸Á¶');   
-insert into subject values(5, 'ÀÚ¹Ù');   
-insert into subject values(6, '½ºÇÁ¸µ');   
+--ë°ì´í„°
+insert into subject values(1, 'ìš´ì˜ì²´ì œ');   
+insert into subject values(2, 'ë„¤íŠ¸ì›Œí¬');   
+insert into subject values(3, 'ì•Œê³ ë¦¬ì¦˜');   
+insert into subject values(4, 'ìë£Œêµ¬ì¡°');   
+insert into subject values(5, 'ìë°”');   
+insert into subject values(6, 'ìŠ¤í”„ë§');   
 
 select * from subject
 
@@ -199,19 +203,19 @@ select * from subject
 
 --/////////////////////////////////////////////////////////////////////////////////
 
---6. ÁÁ¾Æ¿ä
---½ÃÄö½º
+--6. ì¢‹ì•„ìš”
+--ì‹œí€€ìŠ¤
 create sequence seq_like_l_grade
 
 create table likey
 (
-   l_idx int,             --ÃßÃµ¹øÈ£(PK) 
-   l_like  int default 0, --Ä«µåÃßÃµ¼ö
-   c_idx   int,           --Ä«µå¹øÈ£(FK)
-   m_idx   int            --¸â¹ö¹øÈ£(FK)
+   l_idx int,             --ì¶”ì²œë²ˆí˜¸(PK) 
+   l_like  int default 0, --ì¹´ë“œì¶”ì²œìˆ˜
+   c_idx   int,           --ì¹´ë“œë²ˆí˜¸(FK)
+   m_idx   int            --ë©¤ë²„ë²ˆí˜¸(FK)
 )
 
---¿Ü·¡Å°
+--ì™¸ë˜í‚¤
 alter table likey
    add constraint fk_likey_c_idx foreign key(c_idx) references card(c_idx)
 
@@ -219,25 +223,25 @@ alter table likey
    add constraint fk_likey_m_idx foreign key(m_idx) references tekamember(m_idx)
 
 alter table likey rename column l_grade to l_idx
--- Å×ÀÌºí »ı¼º ÀÌÈÄ default Ç¥Çö½Ä Ãß°¡ / º¯°æ
-alter table Å×ÀÌºí¸í
-modify ÄÃ·³¸í[ÀÚ·áÇü] default ±âº»°ª
+-- í…Œì´ë¸” ìƒì„± ì´í›„ default í‘œí˜„ì‹ ì¶”ê°€ / ë³€ê²½
+alter table í…Œì´ë¸”ëª…
+modify ì»¬ëŸ¼ëª…[ìë£Œí˜•] default ê¸°ë³¸ê°’
 
--- Å×ÀÌºí »ı¼º ÀÌÈÄ deault Ç¥Çö½Ä Á¦°Å(»èÁ¦)
-alter table Å×ÀÌºí¸í
-modify ÄÃ·³¸í[ÀÚ·áÇü] default null
+-- í…Œì´ë¸” ìƒì„± ì´í›„ deault í‘œí˜„ì‹ ì œê±°(ì‚­ì œ)
+alter table í…Œì´ë¸”ëª…
+modify ì»¬ëŸ¼ëª…[ìë£Œí˜•] default null
 
 
---»ùÇÃµ¥ÀÌÅÍ
+--ìƒ˜í”Œë°ì´í„°
 insert into likey values(seq_like_l_grade.nextVal, default, 1, 4);
 select * from likey 
   
 
 
--- ºä   
+-- ë·°   
 --/////////////////////////////////////////////////////////////////////////////////
 
--- 1. Ä«µåÅ×ÀÌºí + ¸â¹öÅ×ÀÌºí + ÁÁ¾Æ¿äÅ×ÀÌºí + ÁÖÁ¦Å×ÀÌºí
+-- 1. ì¹´ë“œí…Œì´ë¸” + ë©¤ë²„í…Œì´ë¸” + ì¢‹ì•„ìš”í…Œì´ë¸” + ì£¼ì œí…Œì´ë¸”
 create or replace view likedCard
 as
 	select
@@ -251,7 +255,7 @@ as
 
 select * from likedCard
     	
--- 2. Ä«µåÅ×ÀÌºí + ¸â¹öÅ×ÀÌºí + ÁÖÁ¦Å×ÀÌºí
+-- 2. ì¹´ë“œí…Œì´ë¸” + ë©¤ë²„í…Œì´ë¸” + ì£¼ì œí…Œì´ë¸”
 create or replace view subjectCard
 as
 	select
@@ -263,10 +267,10 @@ as
 
 select * from subjectCard
 
---ºä¿¡ s_idxÃß°¡!
+--ë·°ì— s_idxì¶”ê°€!
 drop view subjectCard
 
--- 3. Ä«µåÅ×ÀÌºí + ¸â¹öÅ×ÀÌºí + ÁÖÁ¦Å×ÀÌºí
+-- 3. ì¹´ë“œí…Œì´ë¸” + ë©¤ë²„í…Œì´ë¸” + ì£¼ì œí…Œì´ë¸”
 create or replace view qnaCard
 as
 select q_idx, c_idx, q_question, q_answer, q_correct,
@@ -277,10 +281,27 @@ select q_idx, c_idx, q_question, q_answer, q_correct,
 
 select * from qnaCard    
 
--- 4. Ä«µå¸¸µé±â¿ë : Ä«µåÅ×ÀÌºí + ÁÖÁ¦Å×ÀÌºí
+
+-- 4. ì¹´ë“œë§Œë“¤ê¸°ìš© : ì¹´ë“œí…Œì´ë¸” + ì£¼ì œí…Œì´ë¸”
 create or replace view insertCard
 as
 	select 
 		c_idx, m_idx, s_idx, c_title, c_content, c_isPublic, 
 		c_regdate
 	from card c join subject s using(s_idx)
+
+
+--5. ë‚´ í•™ìŠµì„¸íŠ¸ ì¡°íšŒìš© : ì¹´ë“œ í…Œì´ë¸” + ì£¼ì œ í…Œì´ë¸” + ë‚˜ì˜ ì¹´ë“œì…‹ + ë©¤ë²„
+create or replace view studyCard
+as
+	select
+		c_idx, c_title, c_regdate, c_content, c_qCnt,
+		mc_idx,
+		m_idx, m_nickname,
+		s_idx, s_name
+	from card c join tekamember m using(m_idx)
+				join subject s using(s_idx)
+				join mycardset mc using(c_idx)
+
+select * from studyCard
+	

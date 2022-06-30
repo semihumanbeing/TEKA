@@ -19,7 +19,15 @@ public class ViewVo {
 	int s_idx;
 	int m_idx;
 	
+	//특정 카드의 qna개수
+	int c_qCnt;
 	
+	public int getC_qCnt() {
+		return c_qCnt;
+	}
+	public void setC_qCnt(int c_qCnt) {
+		this.c_qCnt = c_qCnt;
+	}
 	public int getC_idx() {
 		return c_idx;
 	}

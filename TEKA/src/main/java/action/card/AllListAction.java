@@ -16,7 +16,7 @@ import vo.ViewVo;
 /**
  * Servlet implementation class AllListAction
  */
-@WebServlet("/card/list.do")
+@WebServlet("/card/mainList.do")
 public class AllListAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -61,7 +61,7 @@ public class AllListAction extends HttpServlet {
 			request.setAttribute("subject", subject);
 			
 			//forward
-			String forward_page = "list.jsp";
+			String forward_page = "mainList.jsp";
 			RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 			disp.forward(request, response);
 			
@@ -72,7 +72,7 @@ public class AllListAction extends HttpServlet {
 			request.setAttribute("list", list);
 			
 			//forward
-			String forward_page = "list.jsp";
+			String forward_page = "mainList.jsp";
 			RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 			disp.forward(request, response);
 		}
