@@ -158,9 +158,9 @@ function showMsg(){
 			<b>여기에서는 검색 필터를 지정할 수 있습니다.</b>
 			<select name="category" style="height: 40px;">
 				<option value="">검색조건</option>
-				<option value="com001">인기순</option>
-				<option value="ele002">추천순</option>
-				<option value="sp003">최근순</option>
+				<option value="newest">최신순</option>
+				<option value="mostLiked">추천순</option>
+				<option value="oldest">오래된순</option>
 			</select>
 			<input type="button" value="검색" style="height: 40px; width: 80px;">
 		<hr>
