@@ -63,12 +63,12 @@ height: 80px;
 				<li class="active"><a href="../card/main.do">홈페이지</a></li>
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">주제 <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="../card/list.do?subject=os">운영체제</a></li>
-						<li><a href="../card/list.do?subject=network">네트워크</a></li>
-						<li><a href="../card/list.do?subject=algorithm">알고리즘</a></li>
-						<li><a href="../card/list.do?subject=datastructure">자료구조</a></li>
-						<li><a href="../card/list.do?subject=java">Java</a></li>
-						<li><a href="../card/list.do?subject=spring">Spring</a></li>
+						<li><a href="../card/mainList.do?subject=os">운영체제</a></li>
+						<li><a href="../card/mainList.do?subject=network">네트워크</a></li>
+						<li><a href="../card/mainList.do?subject=algorithm">알고리즘</a></li>
+						<li><a href="../card/mainList.do?subject=datastructure">자료구조</a></li>
+						<li><a href="../card/mainList.do?subject=java">Java</a></li>
+						<li><a href="../card/mainList.do?subject=spring">Spring</a></li>
 					</ul>
 				<li><a href="../card/mainList.do">모든 학습세트</a></li>
 				<li>

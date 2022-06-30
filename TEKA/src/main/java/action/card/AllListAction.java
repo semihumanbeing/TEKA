@@ -61,7 +61,7 @@ public class AllListAction extends HttpServlet {
 			request.setAttribute("subject", subject);
 			
 			//forward
-			String forward_page = "list.jsp";
+			String forward_page = "mainList.jsp";
 			RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 			disp.forward(request, response);
 			
