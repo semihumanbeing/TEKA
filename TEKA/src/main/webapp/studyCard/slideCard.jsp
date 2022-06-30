@@ -14,7 +14,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- css -->
-<link rel="stylesheet" href="css/slideCard.css">
+<link rel="stylesheet" href="../css/slideCard.css">
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
 <!-- 스크립트 -->
 <script type="text/javascript">
 var timer = null;
@@ -28,6 +31,8 @@ $(document).ready(function(){
 	});
 	
 	card = $("input[name=slide]").length;
+	
+	$("#status").html(index +" / " + card);
 	/* 삽질의 흔적,,,1 */
 	//전체 라디오 버튼의 개수
 	//card = $("input[name=slide]").length;
@@ -51,6 +56,7 @@ $(document).ready(function(){
 		//alert(temp);
 		var cnt = temp * -100;
 		$(".slideBox .slideList > li").css("transform", "translateX("+cnt +"%)");
+		$("#status").html((temp+1) +" / " + card);
 		
 	});
 	 
@@ -121,7 +127,8 @@ function slideCard(){
 		stop();
 		return;
 	}
-	console.log(index);
+	//console.log(index);
+	$("#status").html(index +" / " + card);
 	var cnt = (index-1) * -100;
 	$("#slide" + index).prop("checked", true);
 	$(".slideBox .slideList > li").css("transform", "translateX("+cnt +"%)");
@@ -145,20 +152,26 @@ function slideCard(){
 <body>
 
 <div id="header">
-	<%@include file="header/mainmenu.jsp" %>
+	<%@include file="../header/mainmenu.jsp" %>
 </div>
 
-<div class="section" style="background-color: pink;">
+<div class="section">
 	<!-- 카드 개수 : input -->
 	<input type="radio" name="slide" value="1" id="slide1" checked>
 	<c:forEach begin="2" end="${fn:length(list) }" varStatus="i">
 		<!-- i.count begin과 관계없이 1부터 시작 -->
 		<input type="radio" name="slide" value="${i.count+1 }" id="slide${i.count + 1 }">
 	</c:forEach>
-
-	<div class="slideBox" style="background-color: orange;">
-		<ul class="slideList" style="background-color: red;">
-		
+	
+	<div class="slideBox">
+		<!-- 학습 목록 -->
+		<div class="studyMenu">
+			<div class="studyItem">&nbsp<i class="fas fa-clipboard"></i>&nbsp낱말카드</div>
+			<div class="studyItem">&nbsp<i class="fas fa-school"></i>&nbsp학습하기</div>
+			<div class="studyItem">&nbsp<i class="fas fa-bomb"></i>&nbsp시험보기</div>
+			<div class="studyItem">&nbsp<i class="fas fa-question"></i>&nbsp?????</div>
+		</div>
+		<ul class="slideList">
 		<!-- 슬라이드 영역 -->
 		<c:forEach var="qna" items="${list }" begin="0" end="${fn:length(list)-1 }" varStatus="i">
 			<li>
@@ -174,8 +187,8 @@ function slideCard(){
 			</li>
 		</c:forEach>
 		<!-- 슬라이드 영역 종료 -->	
-
 		</ul>
+		<div id="status" style="text-align: center;">3/7</div>
 	</div>
 </div><!-- section end -->
 <div>
@@ -184,6 +197,7 @@ function slideCard(){
 	<span id="msg"></span>
 	<!-- <input type="button" value="증가" id="plusCard"> -->
 </div>
+<div style="height: 300px; background-color: red;"></div>
 
 </body>
 </html>

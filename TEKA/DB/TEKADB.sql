@@ -8,6 +8,7 @@ create table card
 	s_idx      int,                          -- 주제번호
 	m_idx      int,                  	     -- 작성자인덱스
 	c_regdate varchar2(100) not null 		 -- 카드등록일자
+	c_qCnt	   int							 -- 카드에 포함된 질문 개수
 )
 
 -- 시퀀스 
@@ -26,7 +27,10 @@ alter table card
 alter table card
 	add constraint fk_m_idx_card foreign key(m_idx)
 	references tekamember(m_idx)
-	
+
+--각 카드의 전체 질문 수 컬럼 추가 & 제한 조건 설정
+alter table card add c_qCnt int				--추가
+alter table card modify c_qCnt not null		--제한조건(null은 add가 아닌 modify로 추가한다.)
 -- 삭제
 drop table card
 drop sequence seq_c_idx
@@ -284,3 +288,25 @@ as
 		c_idx, m_idx, s_idx, c_title, c_content, c_isPublic, 
 		c_regdate
 	from card c join subject s using(s_idx)
+
+
+--5. 내 학습세트 조회용 : 카드 테이블 + 주제 테이블 + 나의 카드셋 + 멤버
+create or replace view studyCard
+as
+	select
+		c_idx, c_title, c_regdate, c_content, c_qCnt,
+		mc_idx,
+		m_idx, m_nickname,
+		s_idx, s_name
+	from card c join tekamember m using(m_idx)
+				join subject s using(s_idx)
+				join mycardset mc using(c_idx)
+
+select * from studyCard
+	
+	
+	
+	
+	
+	
+	

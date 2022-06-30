@@ -40,7 +40,7 @@
 <%@ include file="../header/mainmenu.jsp" %>
 </div>
 <div id="content">
-<%@ include file="../content/mainCardListContent.jsp" %>
+<%@ include file="../content/myCardListContent.jsp" %>
 </div>
 <div id="footer">
 foooooooooooooooooooooooooooooooooooooooooooooter

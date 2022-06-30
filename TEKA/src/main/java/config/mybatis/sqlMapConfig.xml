@@ -22,5 +22,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers>
 		<mapper resource="config/mybatis/mapper/tekamember.xml" />
 		<mapper resource="config/mybatis/mapper/card.xml" />
+		<mapper resource="config/mybatis/mapper/studyCard.xml" />
 	</mappers>
 </configuration>

@@ -143,6 +143,20 @@ function showMsg(){
 	}
 }
 
+function send(c, s){
+	var name = "${user.m_id}";
+	
+	if(name ==''){
+		if(!confirm("로그인 후에 이용할 수 있습니다.\n로그인 하시겠습니까?")) {
+			return;
+		}
+		
+		location.href="../tekamember/loginForm.do";
+		return;
+	}
+	
+	location.href='myCardInsert.do?c_idx=' + c + '&s_idx=' + s;
+}
 	
 </script>
 </head>
@@ -190,7 +204,7 @@ function showMsg(){
 					</button><br>
 					<span class="badge">${card.m_nickname }</span><br>
 					<input type="button" class="plusCard" value="미리보기">
-					<input type="button" class="plusCard" value="내 학습세트에 추가하기" onclick="location.href='myCardInsert.do?c_idx=${card.c_idx}&s_idx=${card.s_idx }'">
+					<input type="button" class="plusCard" value="내 학습세트에 추가하기" onclick="send(${card.c_idx},${card.s_idx });">
 				</div>
 			</div>
 		</c:forEach>

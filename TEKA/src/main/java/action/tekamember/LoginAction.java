@@ -77,7 +77,7 @@ public class LoginAction extends HttpServlet {
 					response.sendRedirect(url);
 					return;
 				}
-				response.sendRedirect("../card/list.do");
+				response.sendRedirect("../card/mainList.do");
 				
 			} catch (Exception e) {
 				// TODO: handle exception

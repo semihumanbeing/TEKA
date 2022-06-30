@@ -47,7 +47,25 @@
 .card-back {
 	transform: rotateX(180deg);
 }
+/* study menu */
+.studyMenu{
+	display: flex;
+	justify-content: space-between;
+}
 
+.studyItem{
+	border: 1px solid black;
+	width: 23%;
+	height: 50px;
+	border-radius    : 5px;
+	border			 : 2px solid black;
+	box-shadow       : 1px 1px 4px black;
+	box-sizing       : border-box;
+	text-align: left;
+	line-height: 50px;
+	font-size: 25px;
+	font-weight: 600;
+}
 
 /* slide css */
 
@@ -58,7 +76,7 @@
 
 .section .slideBox{
 	max-width  : 800px;
-	height     : 600px;
+	height     : 740px;
 	margin     : auto;
 	margin-top : 150px;
 	overflow   : hidden;
@@ -70,6 +88,7 @@
 	position    : relative;
 	width       : 800px;
 	height      : 600px;
+	margin-top: 30px;
 }
 
 .section .slideList > li{
@@ -91,10 +110,12 @@
 
 
 .section .slideList .left{
-	left : 30px;
+	left : 150px;
+	top: 600px;
 }
 .section .slideList .right{
-	right : 30px;
+	right : 150px;
+	top: 600px;
 }
 
 /* 초기위치 설정값 */

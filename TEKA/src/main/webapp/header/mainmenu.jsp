@@ -39,12 +39,12 @@ height: 80px;
 	//로그인 하지 않고 나의 학습세트로 이동 하려는 경우 -> 로그인 후에 나의 학습세트로 이동하도록 세션 트래킹
 	function myCardSet(){
 		
-		if(!confirm('로그인 후 이용가능합니다.\로그인 하시겠습니까?')) {
+		if(!confirm('로그인 후 이용가능합니다.\n로그인 하시겠습니까?')) {
 			return;
 		}
 		
 		//마이페이지 만들면 추가하기
-		var url_myCardSet = "myCardList.do";
+		var url_myCardSet = "../card/myCardList.do";
 		
 		location.href="../tekamember/loginForm.do?url=" + encodeURIComponent(url_myCardSet);
 	}
@@ -70,13 +70,13 @@ height: 80px;
 						<li><a href="../card/list.do?subject=java">Java</a></li>
 						<li><a href="../card/list.do?subject=spring">Spring</a></li>
 					</ul>
-				<li><a href="../card/list.do">모든 학습세트</a></li>
+				<li><a href="../card/mainList.do">모든 학습세트</a></li>
 				<li>
 					<c:if test="${empty user}">
 						<a href="#" onclick="myCardSet();">내 학습세트</a>
 					</c:if>
 					<c:if test="${!empty user}">
-						<a href="myCardList.do">내 학습세트</a>
+						<a href="../card/myCardList.do">내 학습세트</a>
 					</c:if>
 				</li>
 			</ul>
