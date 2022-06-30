@@ -44,7 +44,9 @@ height: 80px;
 		}
 		
 		//마이페이지 만들면 추가하기
+
 		var url_myCardSet = "../card/myCardList.do";
+
 		
 		location.href="../tekamember/loginForm.do?url=" + encodeURIComponent(url_myCardSet);
 	}
@@ -69,6 +71,7 @@ height: 80px;
 						<li><a href="../card/mainList.do?subject=datastructure">자료구조</a></li>
 						<li><a href="../card/mainList.do?subject=java">Java</a></li>
 						<li><a href="../card/mainList.do?subject=spring">Spring</a></li>
+
 					</ul>
 				<li><a href="../card/mainList.do">모든 학습세트</a></li>
 				<li>
@@ -87,7 +90,7 @@ height: 80px;
 			</c:if>
 			<!-- 회원가입 후 -->
 			<c:if test="${!empty user}">
-				<button id="makebtn" class="btn btn-success navbar-btn navbar-left" onclick="location.href='../card/insert.do'">만들기</button>
+				<button id="makebtn" class="btn btn-success navbar-btn navbar-left" onclick="location.href='../card/insertCardForm.do'">만들기</button>
 			</c:if>
 			
 			<form id="searchbar" class="navbar-form navbar-left">
