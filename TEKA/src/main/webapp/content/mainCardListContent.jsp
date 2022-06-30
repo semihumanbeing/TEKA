@@ -6,15 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
 .card-container {
 	text-decoration: none;
 	margin: auto;
 	width: 640px;
 	height: 300px;
-	border: 2px solid navy;
+	background-color:#d3d3d3;
 	border-radius: 10px;
- 	box-shadow: 1px 1px 4px purple;
  	display: flex;
 }
 
@@ -75,7 +75,7 @@
 	padding: 10px;
 	margin-left: 15px;
 	margin-top: 20px;
-	width: 150px;
+	width: 180px;
 	height: 280px;
 }
 .introduction{
@@ -91,13 +91,12 @@
 	grid-template-rows: 300px 300px;
 	row-gap: 50px;
 	column-gap: 20px;
-	border: 1px solid gray;
 	border-radius: 20px;
-	box-shadow: inset 3px 3px 5px 2px black;
 }
 
 #filter{
 	margin: auto;
+	padding-top: 10px;
 	width: 1460px;
 	height: 100px;
 }
@@ -157,7 +156,14 @@ function send(c, s){
 	
 	location.href='myCardInsert.do?c_idx=' + c + '&s_idx=' + s;
 }
-	
+
+function filter(){
+	var order = $("#order").val();
+	if(order!=''){
+		location.href='mainList.do?subject=${subject}&order='+order;
+	}
+}
+		
 </script>
 </head>
 <body>
@@ -168,15 +174,14 @@ function send(c, s){
 	
 	</c:if>
 	<div id="filter">
-		<hr>
 			<b>여기에서는 검색 필터를 지정할 수 있습니다.</b>
-			<select name="category" style="height: 40px;">
+			<select id="order" style="height: 40px;">
 				<option value="">검색조건</option>
 				<option value="newest">최신순</option>
 				<option value="mostLiked">추천순</option>
 				<option value="oldest">오래된순</option>
 			</select>
-			<input type="button" value="검색" style="height: 40px; width: 80px;">
+			<input type="button" value="검색" style="height: 40px; width: 80px;" onclick="filter();">
 		<hr>
 	</div>
 	<div id="grid_container">
@@ -204,7 +209,7 @@ function send(c, s){
 					</button><br>
 					<span class="badge">${card.m_nickname }</span><br>
 					<input type="button" class="plusCard" value="미리보기">
-					<input type="button" class="plusCard" value="내 학습세트에 추가하기" onclick="send(${card.c_idx},${card.s_idx });">
+					<input type="button" class="plusCard" value="내 학습세트에 추가" onclick="send(${card.c_idx},${card.s_idx });">
 				</div>
 			</div>
 		</c:forEach>
