@@ -87,7 +87,7 @@ height: 80px;
 			</c:if>
 			<!-- 회원가입 후 -->
 			<c:if test="${!empty user}">
-				<button id="makebtn" class="btn btn-success navbar-btn navbar-left" onclick="location.href='../card/insert.do'">만들기</button>
+				<button id="makebtn" class="btn btn-success navbar-btn navbar-left" onclick="location.href='../card/insertCardForm.do'">만들기</button>
 			</c:if>
 			
 			<form id="searchbar" class="navbar-form navbar-left">

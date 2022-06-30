@@ -277,10 +277,3 @@ select q_idx, c_idx, q_question, q_answer, q_correct,
 
 select * from qnaCard    
 
--- 4. 카드만들기용 : 카드테이블 + 주제테이블
-create or replace view insertCard
-as
-	select 
-		c_idx, m_idx, s_idx, c_title, c_content, c_isPublic, 
-		c_regdate
-	from card c join subject s using(s_idx)

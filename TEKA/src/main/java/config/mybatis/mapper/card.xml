@@ -23,12 +23,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCheckMyCard" parameterType="int" resultType="vo.MyCardSetVo">
 		select * from mycardset where c_idx=#{c_idx}
 	</select>
+	
+	<!-- selectOne : c_idx 1건 구하기 -->
+	<select id="selectCidx" parameterType="String" resultType="vo.ViewVo" >
+		select * from card where c_title=#{c_title}
+	</select>
 
   <!-- DML -->
-	<!-- 학습세트추가(카드만들기) -->
-	<insert id="insertCard" parameterType="vo.QnaVo">
-		<!-- insert into qna values(seq_q_idx.nextVal, seq_c_idx.nextVal, #{q_question}, #{q_answer}, default) -->
-		<!-- qna테이블에 저장한다. -->
+	<!-- 카드테이블 insert -->	
+	<insert id="cardInsert" parameterType="vo.ViewVo">
+		insert into card values( seq_c_idx.nextVal, #{c_title}, #{c_content}, '공개',
+								 #{s_idx}, #{m_idx}, sysdate)
+	</insert>
+	
+	
+	<!-- 질문답변테이블 insert -->	
+	<insert id="qnaInsert" parameterType="vo.ViewVo">
+		insert into qna values( seq_q_idx.nextVal, #{c_idx},
+		                        #{q_question}, #{q_answer}, 'true'
+								)
+	</insert>
+	<!-- 내학습세트 insert -->	
+	<insert id="myCardSetInsert" parameterType="vo.ViewVo">
+		insert into mycardset values(seq_mc_idx.nextVal, #{s_idx}, #{m_idx}, #{c_idx})
 	</insert>	
 	
 	<!-- 나의 학습세트에 카드 추가하기 -->
