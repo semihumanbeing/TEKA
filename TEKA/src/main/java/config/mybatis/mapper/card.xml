@@ -42,18 +42,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 
-<!-- 질문답변테이블 insert -->	
+	<!-- 질문답변테이블 insert -->	
 	<insert id="qnaInsert" parameterType="vo.ViewVo">
 		insert into qna values( seq_q_idx.nextVal, #{c_idx},
 		                        #{q_question}, #{q_answer}, 'true'
 								)
+	</insert>
 	
 	<!-- 나의 학습세트에 카드 추가하기 -->
 	<insert id="insertMyCard" parameterType="vo.MyCardSetVo">
 		insert into myCardSet values(seq_mc_idx.nextVal, #{s_idx}, #{m_idx}, #{c_idx})
-
 	</insert>
-<!-- 내학습세트 insert -->	
+	
+	
+	<!-- 내학습세트 insert -->	
 	<insert id="myCardSetInsert" parameterType="vo.ViewVo">
 		insert into mycardset values(seq_mc_idx.nextVal, #{s_idx}, #{m_idx}, #{c_idx})
 	</insert>		
