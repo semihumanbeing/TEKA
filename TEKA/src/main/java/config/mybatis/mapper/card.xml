@@ -6,13 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <!-- 전체 카드 조회 -->
 	<select id="selectAll" resultType="vo.ViewVo">
-		select * from subjectCard
+		select * from subjectCard order by c_regdate desc
 	</select>
 	
 
 	<!--특정 카드 조회-->
 	<select id="selectBySubject" parameterType="java.lang.String" resultType="vo.ViewVo">
-		select * from subjectCard where s_name=#{s_name}
+		select * from subjectCard 
+		where s_name=#{s_name}
+		
 	</select>
 
 <!-- 질문답변&카드 조회 -->

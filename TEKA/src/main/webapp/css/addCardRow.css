@@ -91,8 +91,14 @@ textarea {
 	margin : auto;
 }
 
+
 #makeCard{
 	
 	margin-top:100px;
 	
 }
+
+ #footer{
+ 	clear: both;
+ }
+

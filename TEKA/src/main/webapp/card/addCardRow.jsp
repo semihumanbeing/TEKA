@@ -84,6 +84,9 @@
 
 <!-- box종료 -->	
 </div>
+
+<div id="footer">
+	<%@ include file="../footer/footer.jsp" %>
 </div>
 
 </body>

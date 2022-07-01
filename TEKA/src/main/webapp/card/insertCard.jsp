@@ -63,12 +63,12 @@
 </head>
 <body>
 <!-- header -->
-	<div id="header">
-		<%@include file="../header/mainmenu.jsp" %>>
-	</div>
+<div id="header">
+	<%@include file="../header/mainmenu.jsp" %>>
+</div>
 <form>	
-<input type="hidden" name="m_idx" value="${user.m_idx}">
-<!-- 주제, 카드제목, 카드소개글 -->
+	<input type="hidden" name="m_idx" value="${user.m_idx}">
+	<!-- 주제, 카드제목, 카드소개글 -->
 	<div id="choose" style="position: fixed;">
 		<!-- 주제선택 -->
 		<div id="subjectSelect" class="radio">
@@ -93,11 +93,11 @@
 		</div>
 	</div>
 	
-<!-- 카드추가 -->
-	<div id="insertCard" style="width:70%; height:1000px; margin-top:50px;">
+
+	<!-- 카드추가 -->
+	<div id="insertCard" style="float:right; width:70%; height:1000px; margin-top:50px;">
 		<%@include file="addCardRow.jsp"%>
 	</div>
-<form>	
-	
+</form>	
 </body>
 </html>

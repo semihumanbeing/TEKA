@@ -43,7 +43,7 @@
 <%@ include file="../content/mainCardListContent.jsp" %>
 </div>
 <div id="footer">
-foooooooooooooooooooooooooooooooooooooooooooooter
+<%@ include file="../footer/footer.jsp" %>
 </div>
 </div>
 </body>
