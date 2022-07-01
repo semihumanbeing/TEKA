@@ -79,7 +79,7 @@
 	
 	<div id="cardSet_btn">
 		<!-- <a href="addCardSet(this.form);">학습세트 만들기</a> -->
-		<input type="button" value="학습세트 만들기" onclick="addCardSet(this.form);">
+		<input type="button" value="학습세트 만들기" id="makeCard" onclick="addCardSet(this.form);">
 	</div>
 
 <!-- box종료 -->	

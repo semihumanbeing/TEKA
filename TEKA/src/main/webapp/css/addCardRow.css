@@ -5,14 +5,13 @@
 	font-family: 윤고딕700;
 }
 
-/* 나중에 수정 */
+/* 나중에 수정 
 #container{
 	float:right;
-	width:40%;
+	width:70%;
 	height:1000px;
 	margin-top:50px;
-	
-}
+}*/
 
 #box, .list{
 	text-align: center;
@@ -20,6 +19,7 @@
 	width  : 900px;
 	margin-top: 30px;
 	height : 250px;
+	margin-right:100px;
 }
 
 .list{
@@ -29,11 +29,9 @@
 }
 
 .row{
-	border : 2px solid black;
 	margin-top: 30px;
 	height : 250px; 
 	box-shadow: 1px 1px 3px black;
-	border-radius: 15px;
 	counter-increment: number 1; /* 카운트 증가 */
 	/* display: table-row; */
 }
@@ -91,4 +89,10 @@ textarea {
 }
 .tArea{
 	margin : auto;
+}
+
+#makeCard{
+	
+	margin-top:100px;
+	
 }

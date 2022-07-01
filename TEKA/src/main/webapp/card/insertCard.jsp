@@ -55,7 +55,7 @@
 			return;
 		} */
 		
-		//f.method = "POST";
+		f.method = "POST";
 		f.action = "insertCard.do";		
 		f.submit();
 	}
@@ -94,7 +94,7 @@
 	</div>
 	
 <!-- 카드추가 -->
-	<div id="insertCard" style="width:70%; float: right;">
+	<div id="insertCard" style="width:70%; height:1000px; margin-top:50px;">
 		<%@include file="addCardRow.jsp"%>
 	</div>
 <form>	
