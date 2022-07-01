@@ -142,7 +142,7 @@ function showMsg(){
 	}
 }
 
-function send(c, s){
+function addToMyCards(c, s){
 	var name = "${user.m_id}";
 	
 	if(name ==''){
@@ -159,6 +159,7 @@ function send(c, s){
 
 function filter(){
 	var order = $("#order").val();
+	
 	if(order!=''){
 		location.href='mainList.do?subject=${subject}&order='+order;
 	}
@@ -209,7 +210,7 @@ function filter(){
 					</button><br>
 					<span class="badge">${card.m_nickname }</span><br>
 					<input type="button" class="plusCard" value="미리보기">
-					<input type="button" class="plusCard" value="내 학습세트에 추가" onclick="send(${card.c_idx},${card.s_idx });">
+					<input type="button" class="plusCard" value="내 학습세트에 추가" onclick="addToMyCards(${card.c_idx},${card.s_idx });">
 				</div>
 			</div>
 		</c:forEach>

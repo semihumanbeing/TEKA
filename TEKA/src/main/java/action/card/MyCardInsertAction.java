@@ -38,7 +38,7 @@ public class MyCardInsertAction extends HttpServlet {
 		//이미 추가 되어있는지 확인하기
 		MyCardSetVo vo1 = CardDao.getInstance().selectCheckMyCard(c_idx);
 		if(vo1 != null) {//이미 추가되어 있는 카드라면
-			response.sendRedirect("list.do?reason=exist");
+			response.sendRedirect("mainList.do?reason=exist");
 			return;
 		}else {
 			
@@ -49,7 +49,7 @@ public class MyCardInsertAction extends HttpServlet {
 			vo.setM_idx(user.getM_idx());
 			
 			int res = CardDao.getInstance().insertMyCard(vo);
-			response.sendRedirect("list.do?reason=success");
+			response.sendRedirect("mainList.do?reason=success");
 			return;
 		}
 		
