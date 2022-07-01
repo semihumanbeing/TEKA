@@ -94,7 +94,7 @@
 	</div>
 	
 <!-- 카드추가 -->
-	<div id="insertCard" style="float:right; width:70%; height:1000px; margin-top:50px;">
+	<div id="insertCard" style="width:70%; float: right;">
 		<%@include file="addCardRow.jsp"%>
 	</div>
 <form>	

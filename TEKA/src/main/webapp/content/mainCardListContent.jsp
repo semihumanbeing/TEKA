@@ -117,6 +117,17 @@
 	margin-top: 40px;
 }
 
+#box{
+	background: rgba(0, 0, 0, 0.7);
+	 height: 100%;
+	 background-position: center;
+	 background-repeat: no-repeat;
+	 background-size: cover;
+	 background-blend-mode: darken;
+	 -webkit-backface-visibility: hidden;
+
+}
+
 </style>
 
 <script type="text/javascript">
@@ -159,8 +170,27 @@ function send(c, s){
 }
 	
 </script>
+<script type="text/javascript">
+
+	function previewPopup(){
+		
+		centerBox();
+		$("#popupBox").show();
+		
+		$("#box").css( {  "background": "rgba(0, 0, 0, 0.7)",
+						  "height" : "100%",
+						  "background-size": "cover",
+						  "background-blend-mode": "darken"
+							} );
+	
+	
+	
+	}
+</script>
+
 </head>
-<body>
+<body id="box">
+<%@include file="previewPopup.jsp" %>	
 	<c:if test="${!empty subject }">
 		<div id="title">
 			<i class="fas fa-award" style="color: navy;"></i>&nbsp<b>${subject }</b>
@@ -203,7 +233,7 @@ function send(c, s){
 						추천 <span class="badge">${card.l_like}</span>
 					</button><br>
 					<span class="badge">${card.m_nickname }</span><br>
-					<input type="button" class="plusCard" value="미리보기">
+					<input type="button" class="plusCard" value="미리보기" onclick="previewPopup();">
 					<input type="button" class="plusCard" value="내 학습세트에 추가하기" onclick="send(${card.c_idx},${card.s_idx });">
 				</div>
 			</div>

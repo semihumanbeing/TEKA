@@ -27,6 +27,7 @@ alter table card
 alter table card
 	add constraint fk_m_idx_card foreign key(m_idx)
 	references tekamember(m_idx)
+	
 
 --각 카드의 전체 질문 수 컬럼 추가 & 제한 조건 설정
 alter table card add c_qCnt int				--추가
@@ -45,6 +46,7 @@ insert into card values(seq_c_idx.nextVal, '네트워크', 'OSI-7Layer', default
 select * from card
 
 
+--on delete cascade
 
 
 --/////////////////////////////////////////////////////////////////////////////////
@@ -131,7 +133,6 @@ insert into qna values(seq_q_idx.nextVal, 1, '오토박싱', '제가 객체로 �
 select * from qna
 
 
-
 --/////////////////////////////////////////////////////////////////////////////////
 
 --4. 멤버테이블
@@ -170,6 +171,10 @@ select * from tekamember
 insert into tekamember values(seq_tekamember_m_idx.nextVal, 'one',  '1111', '일길동', 'one@naver.com', default);
 insert into tekamember values(seq_tekamember_m_idx.nextVal, 'two',  '2222', '이길동', 'two@naver.com', default);
 insert into tekamember values(seq_tekamember_m_idx.nextVal, 'hong', '3333', '홍길동', 'hong@naver.com', '관리자');
+
+
+select * from tekamember
+
 
 
 
@@ -235,7 +240,6 @@ modify 컬럼명[자료형] default null
 --샘플데이터
 insert into likey values(seq_like_l_grade.nextVal, default, 1, 4);
 select * from likey 
-  
 
 
 -- 뷰   
@@ -282,16 +286,8 @@ select q_idx, c_idx, q_question, q_answer, q_correct,
 select * from qnaCard    
 
 
--- 4. 카드만들기용 : 카드테이블 + 주제테이블
-create or replace view insertCard
-as
-	select 
-		c_idx, m_idx, s_idx, c_title, c_content, c_isPublic, 
-		c_regdate
-	from card c join subject s using(s_idx)
 
-
---5. 내 학습세트 조회용 : 카드 테이블 + 주제 테이블 + 나의 카드셋 + 멤버
+--4. 내 학습세트 조회용 : 카드 테이블 + 주제 테이블 + 나의 카드셋 + 멤버
 create or replace view studyCard
 as
 	select

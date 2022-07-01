@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 카드테이블 insert -->	
 	<insert id="cardInsert" parameterType="vo.ViewVo">
 		insert into card values( seq_c_idx.nextVal, #{c_title}, #{c_content}, '공개',
-								 #{s_idx}, #{m_idx}, sysdate)
+								 #{s_idx}, #{m_idx}, sysdate, #{c_qCnt})
 	</insert>
 	
 	

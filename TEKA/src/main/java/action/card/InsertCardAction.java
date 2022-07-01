@@ -33,6 +33,13 @@ public class InsertCardAction extends HttpServlet {
 		String c_title   = request.getParameter("c_title");
 		String c_content = request.getParameter("c_content");
 		
+		//배열 파라미터 받기 (쌍으로 입력받으니까 두 배열의 길이는 무조건 같음)
+		String[] q_questionStrArray = request.getParameterValues("q_question");
+		String[] q_answerStrArray   = request.getParameterValues("q_answer");
+
+		//c_Qcnt 구하기
+		int c_qCnt = q_questionStrArray.length;
+		
 		//vo포장
 		ViewVo vo = new ViewVo();
 		
@@ -40,6 +47,7 @@ public class InsertCardAction extends HttpServlet {
 		vo.setM_idx(m_idx);
 		vo.setC_title(c_title);
 		vo.setC_content(c_content);
+		vo.setC_qCnt(c_qCnt);
 		
 		
 		//카드테이블 insert
@@ -58,10 +66,6 @@ public class InsertCardAction extends HttpServlet {
 		
 		//내 학습세트 테이블 insert
 		int myCardSetRes = ViewDao.getInstance().myCardSetInsert(vo);
-		
-		//배열 파라미터 받기 (쌍으로 입력받으니까 두 배열의 길이는 무조건 같음)
-		String[] q_questionStrArray = request.getParameterValues("q_question");
-		String[] q_answerStrArray   = request.getParameterValues("q_answer");
 		
 		for(int i=0; i<q_questionStrArray.length; i++) {
 				

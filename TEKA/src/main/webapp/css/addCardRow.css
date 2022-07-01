@@ -5,6 +5,15 @@
 	font-family: 윤고딕700;
 }
 
+/* 나중에 수정 */
+#container{
+	float:right;
+	width:40%;
+	height:1000px;
+	margin-top:50px;
+	
+}
+
 #box, .list{
 	text-align: center;
 	margin : auto;

@@ -43,6 +43,8 @@
 </head>
 <body>
 
+<div id="container">
+
 <div id="box">
 
 <!-- list영역 행추가 -->
@@ -81,6 +83,7 @@
 	</div>
 
 <!-- box종료 -->	
+</div>
 </div>
 
 </body>
