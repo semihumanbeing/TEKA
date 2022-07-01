@@ -13,23 +13,60 @@
 <style type="text/css">
 	
 #popupBox{
-	margin : auto;
-	width : 500px;
-	min-height:600px;
+	margin-top : 50px;
+	margin-bottom : 100px;
+	width :600px;
+	height:800px;
 	border : 3px solid black;
 	display : none;
 	position   : absolute;
 	background-color : white;
+	z-index : 100;
+	position:fixed;
+	top:150px;
+	left:30px;
+	box-shadow : rgba(0,0,0,0.7) 0 0 0 9999px, rgba(0,0,0,0.7) 2px 2px 3px 3px;
+	overflow:auto;
+}
+
+#container{
+	margin-left:8px;
+	font-family: 윤고딕700;
+}
+
+#preTitle{
+	margin-top:30px;
+	font-size: 30px;
+	height : 80px;
+}
+
+.qnaText{
+	font-size: 25px;
+	font-weight:550;
+}
+
+.question{
+	margin-top : 10px;
+	font-size:18px;
 	
-	
-	/*  background: rgba(0, 0, 0, 0.7);
-	 height: 100%;
-	 background-position: center;
-	 background-repeat: no-repeat;
-	 background-size: cover;
-	 background-blend-mode: darken; */
-	/*  -webkit-backface-visibility: hidden; */
-}	
+}
+
+.answer{
+	font-size:18px;
+}
+
+#madeBy{
+	font-size: 15px;
+	text-align: right;
+	margin-right : 10px;
+	font-weight:550;
+}
+
+#btnArea{
+	text-align:center;
+	margin-top : 10px;
+	margin-bottom : 30px;
+}
 
 </style>
 
@@ -61,40 +98,38 @@
 </head>
 <body>
 
-
 <div id="popupBox">
-	
+
+<div id="container">
 <!-- 카드제목 -->	
-	<div id="title">
-		<p>카드제목</p>
+	<div id="preTitle">
+		<p>제목: ${card.c_title}</p>
 	</div>
+
+<c:forEach var="pre" items="${previewList}" begin="1" end="3">
 	
-
-<c:forEach var="vo" items="${list}" begin="1" end="3">
-	<div id="question">
-		<hr>
-			<p>질문<br>
-			${vo.q_question}
-			</p>
-		<hr>
-		<br>
-		<p>답변<br>
-		${vo.q_answer}
-		</p>
-	</div>
-</c:forEach>
-
+	
+		<div class="question">
+			<p class="qnaText">질문</p>
+			${pre.q_question}
+			<hr><br>
+		</div>
+	
+		<div class="answer">
+			<p class="qnaText">답변</p>
+			${pre.q_answer}
+			<hr><br>
+		</div>
+</c:forEach>	
 <!-- 만든사람 user.m_nickname -->
-	<div id="made">
-		<p>made by ${user.m_nickname}</p>
-	</div>
-
-
+		<div id="madeBy">
+			<p>made by ${card.m_nickname}</p>
+		</div>
 <!-- 팝업닫기버튼  -->
-	<div>
+	<div id="btnArea">
 		<input type="button" id="hideBtn" value="닫기" onclick="hidePopup();">
 	</div>
+	</div>
 </div>
-
 </body>
 </html>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CardDao;
+import dao.ViewDao;
 import vo.ViewVo;
 
 /**
@@ -25,51 +26,55 @@ public class AllListAction extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//url Á¾·ù
+		//url ï¿½ï¿½ï¿½ï¿½
 		// http://localhost:9090/TEKA/card/list.do
 		// http://localhost:9090/TEKA/card/list.do?subject=
 		
 		String subject = request.getParameter("subject");
 		
 		
-		if(subject != null && !subject.isEmpty()) {//Æ¯Á¤ ÁÖÁ¦¸¦ ¿øÇÏ´Â °æ¿ì¿¡´Â Æ¯Á¤ ÁÖÁ¦¿¡ ºÎÇÕÇÏ´Â ³»¿ë¸¸À» ÀĞ¾î¿À±â
+		if(subject != null && !subject.isEmpty()) {//Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ë¸¸ï¿½ï¿½ ï¿½Ğ¾ï¿½ï¿½ï¿½ï¿½
 			
 			switch(subject) {
 			case "os":
-				subject = "¿î¿µÃ¼Á¦";
+				subject = "ìš´ì˜ì²´ì œ";
 				break;
 			case "network":
-				subject = "³×Æ®¿öÅ©";
+				subject = "ë„¤íŠ¸ì›Œí¬";
 				break;
 			case "algorithm":
-				subject = "¾Ë°í¸®Áò";
+				subject = "ì•Œê³ ë¦¬ì¦˜";
 				break;
 			case "datastructure":
-				subject = "ÀÚ·á±¸Á¶";
+				subject = "ìë£Œêµ¬ì¡°";
 				break;
 			case "java":
-				subject = "ÀÚ¹Ù";
+				subject = "ìë°”";
 				break;
 			case "spring":
-				subject = "½ºÇÁ¸µ";
+				subject = "ìŠ¤í”„ë§";
 				break;
 			}
 			
 			List<ViewVo> list = CardDao.getInstance().selectBySubject(subject);
+			List<ViewVo> previewList = ViewDao.getInstance().qnaCardselectList();
 			
 			request.setAttribute("list", list);
 			request.setAttribute("subject", subject);
+			request.setAttribute("previewList", previewList);
 			
 			//forward
 			String forward_page = "mainList.jsp";
 			RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 			disp.forward(request, response);
 			
-		}else { //ÁÖÁ¦°¡ ¾øÀ¸¸é ÀüÃ¼ ¸®½ºÆ® º¸±â
+		}else { //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			
 			List<ViewVo> list = CardDao.getInstance().selectList();
+			List<ViewVo> previewList = ViewDao.getInstance().qnaCardselectList();
 			
 			request.setAttribute("list", list);
+			request.setAttribute("previewList", previewList);
 			
 			//forward
 			String forward_page = "mainList.jsp";

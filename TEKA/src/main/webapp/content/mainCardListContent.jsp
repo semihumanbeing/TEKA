@@ -116,18 +116,6 @@
 	height: 60px;
 	margin-top: 40px;
 }
-
-#box{
-	background: rgba(0, 0, 0, 0.7);
-	 height: 100%;
-	 background-position: center;
-	 background-repeat: no-repeat;
-	 background-size: cover;
-	 background-blend-mode: darken;
-	 -webkit-backface-visibility: hidden;
-
-}
-
 </style>
 
 <script type="text/javascript">
@@ -173,24 +161,15 @@ function send(c, s){
 <script type="text/javascript">
 
 	function previewPopup(){
-		
 		centerBox();
 		$("#popupBox").show();
 		
-		$("#box").css( {  "background": "rgba(0, 0, 0, 0.7)",
-						  "height" : "100%",
-						  "background-size": "cover",
-						  "background-blend-mode": "darken"
-							} );
-	
-	
-	
 	}
+	
 </script>
 
 </head>
 <body id="box">
-<%@include file="previewPopup.jsp" %>	
 	<c:if test="${!empty subject }">
 		<div id="title">
 			<i class="fas fa-award" style="color: navy;"></i>&nbsp<b>${subject }</b>
@@ -215,6 +194,9 @@ function send(c, s){
 		</c:if>
 		
 		<c:forEach var="card" items="${ list }">
+		<!-- 미리보기팝업 -->
+		<%@include file="previewPopup.jsp" %>	
+			
 			<div class="card-container">
 				<div class="card">
 					<div class="card-inner">
