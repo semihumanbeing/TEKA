@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CardDao;
+import dao.ViewDao;
 import vo.ViewVo;
 
 /**
@@ -28,47 +29,54 @@ public class AllListAction extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// url Á¾·ù
+
+		// url ì¢…ë¥˜
 		// http://localhost:9090/TEKA/card/list.do
 		// http://localhost:9090/TEKA/card/list.do?subject=
 		// http://localhost:9090/TEKA/card/list.do?subject=?&order=?
 
-		String subject = request.getParameter("subject"); // ÁÖÁ¦
-		String order = request.getParameter("order"); // ÇÊÅÍ
+		String subject = request.getParameter("subject"); // ì£¼ì œ
+		String order = request.getParameter("order"); // í•„í„°
 
-		if (subject != null && !subject.isEmpty()) {// Æ¯Á¤ ÁÖÁ¦¸¦ ¿øÇÏ´Â °æ¿ì¿¡´Â Æ¯Á¤ ÁÖÁ¦¿¡ ºÎÇÕÇÏ´Â ³»¿ë¸¸À» ÀĞ¾î¿À±â
+		if (subject != null && !subject.isEmpty()) {// íŠ¹ì • ì£¼ì œë¥¼ ì›í•˜ëŠ” ê²½ìš°ì—ëŠ” íŠ¹ì • ì£¼ì œì— ë¶€í•©í•˜ëŠ” ë‚´ìš©ë§Œì„ ì½ì–´ì˜¤ê¸°
 
-			// ÁÖÁ¦ ¸®½ºÆ® °¡Á®¿À±â
+			// ì£¼ì œ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°
 			List<ViewVo> list = getSubjectList(subject);
+      // íŒì—…ì°½ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°
+      List<ViewVo> previewList = ViewDao.getInstance().qnaCardselectList();
 
-			// ÇÊÅÍ°¡ ÀÖÀ¸¸é Á¤·Ä
+			// í•„í„°ê°€ ìˆìœ¼ë©´ ì •ë ¬
 			if (order != null && !order.isEmpty()) {
 				Collections.sort(list, new ViewVoComp(order));
 			}
 
-			// ¸®Äù½ºÆ® ¹ÙÀÎµù
+			// ë¦¬í€˜ìŠ¤íŠ¸ ë°”ì¸ë”©
 			request.setAttribute("list", list);
 			request.setAttribute("subject", subject);
+      request.setAttribute("previewList", previewList);
 
 			// forward
 			String forward_page = "mainList.jsp";
 			RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 			disp.forward(request, response);
 
-		} else { // ÁÖÁ¦°¡ ¾øÀ¸¸é ÀüÃ¼ ¸®½ºÆ® º¸±â
+		} else { // ì£¼ì œê°€ ì—†ìœ¼ë©´ ì „ì²´ ë¦¬ìŠ¤íŠ¸ ë³´ê¸°
 
-			// ÀüÃ¼ ¸®½ºÆ® °¡Á®¿À±â
+			// ì „ì²´ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°
 			List<ViewVo> list = CardDao.getInstance().selectList();
-
-			// ÇÊÅÍ°¡ ÀÖÀ¸¸é Á¤·Ä
+      // íŒì—…ì°½ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°
+      List<ViewVo> previewList = ViewDao.getInstance().qnaCardselectList();
+			// í•„í„°ê°€ ìˆìœ¼ë©´ ì •ë ¬
 			if (order != null && !order.isEmpty()) {
 				Collections.sort(list, new ViewVoComp(order));
 			}
 
-			// ¸®Äù½ºÆ® ¹ÙÀÎµù
+			// ë¦¬í€˜ìŠ¤íŠ¸ ë°”ì¸ë”©
 			request.setAttribute("list", list);
+      request.setAttribute("previewList", previewList);
 
 			// forward
+
 			String forward_page = "mainList.jsp";
 			RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 			disp.forward(request, response);
@@ -76,27 +84,27 @@ public class AllListAction extends HttpServlet {
 
 	}
 
-	// ÁÖÁ¦ ¸®½ºÆ®¸¦ °¡Á®¿À´Â ¸Ş¼­µå
+	// ì£¼ì œ ë¦¬ìŠ¤íŠ¸ë¥¼ ê°€ì ¸ì˜¤ëŠ” ë©”ì„œë“œ
 	private List<ViewVo> getSubjectList(String subject) {
 
 		switch (subject) {
 		case "os":
-			subject = "¿î¿µÃ¼Á¦";
+			subject = "ìš´ì˜ì²´ì œ";
 			break;
 		case "network":
-			subject = "³×Æ®¿öÅ©";
+			subject = "ë„¤íŠ¸ì›Œí¬";
 			break;
 		case "algorithm":
-			subject = "¾Ë°í¸®Áò";
+			subject = "ì•Œê³ ë¦¬ì¦˜";
 			break;
 		case "datastructure":
-			subject = "ÀÚ·á±¸Á¶";
+			subject = "ìë£Œêµ¬ì¡°";
 			break;
 		case "java":
-			subject = "ÀÚ¹Ù";
+			subject = "ìë°”";
 			break;
 		case "spring":
-			subject = "½ºÇÁ¸µ";
+			subject = "ìŠ¤í”„ë§";
 			break;
 		}
 
@@ -105,7 +113,7 @@ public class AllListAction extends HttpServlet {
 
 	}
 	
-	// ÇÊÅÍ ¸®½ºÆ®¸¦ Á¤·ÄÇÏ´Â ³»ºÎ Å¬·¡½º
+	// í•„í„° ë¦¬ìŠ¤íŠ¸ë¥¼ ì •ë ¬í•˜ëŠ” ë‚´ë¶€ í´ë˜ìŠ¤
 	class ViewVoComp implements Comparator<ViewVo> {
 		String order;
 
