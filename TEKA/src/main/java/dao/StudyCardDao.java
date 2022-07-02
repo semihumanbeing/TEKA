@@ -11,27 +11,29 @@ import vo.ViewVo;
 public class StudyCardDao {
 	
 	SqlSessionFactory factory;
-	//single-ton : °´Ã¼ 1°³¸¸ »ý¼ºÇØ¼­ »ç¿ëÇÏÀÚ
+	//single-ton : ï¿½ï¿½Ã¼ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	static StudyCardDao single = null;
 
 	public static StudyCardDao getInstance() {
 
-		//°´Ã¼°¡ »ý¼ºµÇ¾î ÀÖÁö ¾ÊÀ¸¸é ¸¸µé¾î¶ó.
+		//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 		if (single == null) {
 			single = new StudyCardDao();
 		}
-		//ÀÌÀü¿¡ ¸¸µé¾î ³ù´ø °´Ã¼¸¦ ±×´ë·Î ¹ÝÈ¯ÇÑ´Ù.
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
 		return single;
 	}
 
-	//¿ÜºÎ¿¡¼­ »ý¼ºÇÏÁö ¸øÇÏµµ·Ï Á¢±ÙÁ¦ÇÑ. °´Ã¼´Â getInstance¸Þ¼Òµå¸¦ ÅëÇØ¼­¸¸ »ý¼º°¡´É.
+	//ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½Ã¼ï¿½ï¿½ getInstanceï¿½Þ¼Òµå¸¦ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	private StudyCardDao() {
 		// TODO Auto-generated constructor stub
 		factory = MyBatisConnector.getInstance().getSqlSessionFactory();
 	}
 	
-	//ÇÐ½ÀÇÏ±â word -> Áú¹®&´äº¯ Á¶È¸ÇÏ±â qnaCard ºä
+
+	//ï¿½Ð½ï¿½ï¿½Ï±ï¿½ word -> ï¿½ï¿½&ï¿½äº¯ ï¿½È¸ï¿½Ï±ï¿½ qnaCard ï¿½ï¿½
 	public List<ViewVo> selectCard(int c_idx) {
+
 		// TODO Auto-generated method stub
 		
 		List<ViewVo> list = null;

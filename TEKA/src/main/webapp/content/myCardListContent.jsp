@@ -68,6 +68,7 @@ function study(c_idx){
 
 </head>
 <body>
+
 	<c:if test="${!empty subject }">
 		<div id="title">
 			<i class="fas fa-award" style="color: navy;"></i>&nbsp<b>${subject }</b>

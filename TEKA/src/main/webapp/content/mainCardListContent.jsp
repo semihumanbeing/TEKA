@@ -115,7 +115,6 @@
 	height: 60px;
 	margin-top: 40px;
 }
-
 </style>
 
 <script type="text/javascript">
@@ -166,8 +165,18 @@ function filter(){
 }
 		
 </script>
+<script type="text/javascript">
+
+	function previewPopup(){
+		centerBox();
+		$("#popupBox").show();
+		
+	}
+	
+</script>
+
 </head>
-<body>
+<body id="box">
 	<c:if test="${!empty subject }">
 		<div id="title">
 			<i class="fas fa-award" style="color: navy;"></i>&nbsp<b>${subject }</b>
@@ -191,6 +200,9 @@ function filter(){
 		</c:if>
 		
 		<c:forEach var="card" items="${ list }">
+		<!-- 미리보기팝업 -->
+		<%@include file="previewPopup.jsp" %>	
+			
 			<div class="card-container">
 				<div class="card">
 					<div class="card-inner">
@@ -209,8 +221,10 @@ function filter(){
 						추천 <span class="badge">${card.l_like}</span>
 					</button><br>
 					<span class="badge">${card.m_nickname }</span><br>
-					<input type="button" class="plusCard" value="미리보기">
-					<input type="button" class="plusCard" value="내 학습세트에 추가" onclick="addToMyCards(${card.c_idx},${card.s_idx });">
+
+					<input type="button" class="plusCard" value="미리보기" onclick="previewPopup();">
+					<input type="button" class="plusCard" value="내 학습세트에 추가하기" onclick="send(${card.c_idx},${card.s_idx });">
+
 				</div>
 			</div>
 		</c:forEach>
