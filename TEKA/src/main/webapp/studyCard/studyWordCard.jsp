@@ -14,7 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- css -->
-<link rel="stylesheet" href="../css/slideCard.css">
+<link rel="stylesheet" href="../css/studyCard.css">
 <!-- FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
@@ -33,23 +33,8 @@ $(document).ready(function(){
 	card = $("input[name=slide]").length;
 	
 	$("#status").html(index +" / " + card);
-	/* 삽질의 흔적,,,1 */
-	//전체 라디오 버튼의 개수
-	//card = $("input[name=slide]").length;
-	//alert(card);
-	//alert(-100*4+'%');
-	
-	/* var temp =0;
-	for(var i = 1; i <= card; i++){
-		if($("input[id=slide"+i+"]:checked")){
-			temp = i;
-			alert(temp);
-			break;
-		}	
-	}	
-	temp = (i-1)* -100;
-	 */
-	
+
+	//슬라이드의 체크 상태가 변경되면 진행바를 변경시키기
 	$("input:radio[name='slide']").change(function(){
 		//1번 슬라이드 : 0, 2번 슬라이드 : 1 ,,, n번 슬라이드 : n-1
 		var temp = $(this).val() - 1;
@@ -57,38 +42,26 @@ $(document).ready(function(){
 		var cnt = temp * -100;
 		$(".slideBox .slideList > li").css("transform", "translateX("+cnt +"%)");
 		$("#status").html((temp+1) +" / " + card);
-		
+		var per = temp/(card-1)*100;
+		//alert(per);
+		$("#myBar").css("width", per+"%");
 	});
 	 
-	
+	//자동 재생 버튼을 누르면 시작
 	$("#playCard").click(function(){
-		location.href='?timer=use';//자기 자신에게 파라미터를 전달해주기
+		location.href='?c_idx=${param.c_idx}&timer=use';//자기 자신에게 파라미터를 전달해주기
 	});
 	
+	//정지 버튼을 누르면 정지
 	$("#stopCard").click(function(){
 		stop();
 	});
 	
-	/* $("#plusCard").click(function(){
-		plus();
-	}); */
-	
+	//파라미터가 있을때만, 재생 시작
 	if('${ param.timer == "use"}'=='true'){
 		play();
 	}
 });
-/* 삽질의 흔적,,,2 */
-/* let cnt = 1;
-function next(){
-	cnt = cnt + 1;
-	temp = (cnt-1) * -100;
-	$(".slideBox .slideList > li").css("margin-letf", temp);
-	
-}
-
-function prev(){
-	
-} */
 
 function play(){
 	if(timer == null){
@@ -104,6 +77,7 @@ function stop(){
 	$("#msg").text("자동 재생이 종료되었습니다.");
 }
 
+//flip과 slide를 나누어서 진행
 function playCard() {
 	var flip  = setTimeout(flipCard, 0);
 }
@@ -132,20 +106,9 @@ function slideCard(){
 	var cnt = (index-1) * -100;
 	$("#slide" + index).prop("checked", true);
 	$(".slideBox .slideList > li").css("transform", "translateX("+cnt +"%)");
+	var per = (index-1)/(card-1)*100;
+	$("#myBar").css("width", per+"%");
 }
-
-//test
-/* function plus(){
-	index++;
-	if(index > card){
-		index = card;
-	}
-	console.log(index);
-	var cnt = (index-1) * -100;
-	$("#slide" + index).prop("checked", true);
-	$(".slideBox .slideList > li").css("transform", "translateX("+cnt +"%)");
-	
-} */
 </script>
 
 </head>
@@ -176,19 +139,22 @@ function slideCard(){
 		<c:forEach var="qna" items="${list }" begin="0" end="${fn:length(list)-1 }" varStatus="i">
 			<li>
 				<!-- 이전 페이지로 이동한다.  -->
-				<label for="slide${i.index}" class="left">◀</label>
+				<label for="slide${i.index}" class="left"><span>◀</span></label>
 				<div class="card">
 					<div class="card-inner">
 						<div class="card-front">${qna.q_question }</div>
 						<div class="card-back">${qna.q_answer }</div>
 					</div>
 				</div>
-				<label for="slide${i.count+1 }" class="right">▶</label>
+				<label for="slide${i.count+1 }" class="right"><span>▶</span></label>
 			</li>
 		</c:forEach>
 		<!-- 슬라이드 영역 종료 -->	
 		</ul>
-		<div id="status" style="text-align: center;">3/7</div>
+		<div id="status" style="text-align: center;"></div>
+		<div id="progress">
+			<div id="myBar"></div>
+		</div>
 	</div>
 </div><!-- section end -->
 <div>

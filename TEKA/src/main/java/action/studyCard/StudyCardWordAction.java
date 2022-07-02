@@ -27,14 +27,15 @@ public class StudyCardWordAction extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int c_idx = Integer.parseInt(request.getParameter("c_idx"));
 		
-		List<ViewVo> list = StudyCardDao.getInstance().selectCard();
+		List<ViewVo> list = StudyCardDao.getInstance().selectCard(c_idx);
 		
 		request.setAttribute("list", list);
 		
 		
 		//forward
-		String forward_page = "slideCard.jsp";
+		String forward_page = "studyWordCard.jsp";
 		RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 		disp.forward(request, response);
 

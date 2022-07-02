@@ -31,14 +31,14 @@ public class StudyCardDao {
 	}
 	
 	//학습하기 word -> 질문&답변 조회하기 qnaCard 뷰
-	public List<ViewVo> selectCard() {
+	public List<ViewVo> selectCard(int c_idx) {
 		// TODO Auto-generated method stub
 		
 		List<ViewVo> list = null;
 		
 		SqlSession sqlSession = factory.openSession();
 		
-		list = sqlSession.selectList("studyCard.selectCard");
+		list = sqlSession.selectList("studyCard.selectCard", c_idx);
 		
 		sqlSession.close();
 

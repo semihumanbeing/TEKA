@@ -7,12 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-$(document).ready(function(){
-	$(".myCardContainer").click(function(){
-		alert("카드를 학습합니다.");
-		location.href="../studyCard/studyCardWord.do"
-	});
-});
+
+function study(c_idx){
+	alert(c_idx + "번 카드를 학습합니다.");
+	location.href="../studyCard/studyCardWord.do?c_idx="+c_idx;
+	
+}
+
+
 </script>
 <style type="text/css">
 .myCardContainer {
@@ -95,6 +97,7 @@ $(document).ready(function(){
 				<div class="myCardSubject label label-info">${card.s_name }</div>
 				<div class="myCardWord">${card.c_qCnt }단어</div>
 				<div class="myCardMake">${card.m_nickname }</div>
+				<input type="button" value="카드학습하기" onclick="study(${card.c_idx});"> 
 			</div>
 		</c:forEach>
 	</div>
