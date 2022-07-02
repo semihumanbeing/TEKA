@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="studyCard">
 	<!-- 질문답변&카드 조회 -->
-	<select id="selectCard" resultType="vo.ViewVo">
-		select * from qnaCard
+	<select id="selectCard" parameterType="int" resultType="vo.ViewVo">
+		select * from qnaCard where c_idx = #{c_idx}
 	</select>
 </mapper>

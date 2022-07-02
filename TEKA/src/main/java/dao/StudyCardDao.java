@@ -30,15 +30,17 @@ public class StudyCardDao {
 		factory = MyBatisConnector.getInstance().getSqlSessionFactory();
 	}
 	
-	//�н��ϱ� word -> ����&�亯 ��ȸ�ϱ� qnaCard ��
-	public List<ViewVo> selectCard() {
+
+	//�н��ϱ� word -> ��&�亯 �ȸ�ϱ� qnaCard ��
+	public List<ViewVo> selectCard(int c_idx) {
+
 		// TODO Auto-generated method stub
 		
 		List<ViewVo> list = null;
 		
 		SqlSession sqlSession = factory.openSession();
 		
-		list = sqlSession.selectList("studyCard.selectCard");
+		list = sqlSession.selectList("studyCard.selectCard", c_idx);
 		
 		sqlSession.close();
 
