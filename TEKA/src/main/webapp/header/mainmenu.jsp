@@ -58,7 +58,7 @@ height: 80px;
 		<div class="container-fluid">
 		
 			<div class="navbar-header">
-				<a class="navbar-brand" href="../card/main.do" style="font-size: x-large; font-weight: bolder;">QuizTIS</a>
+				<a class="navbar-brand" href="../card/main.do" style="font-size: x-large; font-weight: bolder;">TEKA</a>
 			</div>
 			
 			<ul class="nav navbar-nav">

@@ -7,4 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCard" parameterType="int" resultType="vo.ViewVo">
 		select * from qnaCard where c_idx = #{c_idx}
 	</select>
+	
+	<!-- c_idx로 m_nickname 구하기 (팝업창 사용) -->
+	<select id="selectNickname" parameterType="int" resultType="java.lang.String">
+		select m_nickname from studyCard where c_idx=#{c_idx}
+	</select>
+	
+	
 </mapper>
