@@ -10,14 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CardDao;
 import dao.StudyCardDao;
 import vo.ViewVo;
 
 /**
- * Servlet implementation class StudyCardWordAction
+ * Servlet implementation class StudyCardActionExample
  */
-@WebServlet("/studyCard/studyCardWord.do")
-public class StudyCardWordAction extends HttpServlet {
+@WebServlet("/studyCard/studyCardMain.do")
+public class StudyCardMainAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -28,13 +29,13 @@ public class StudyCardWordAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		int c_idx = Integer.parseInt(request.getParameter("c_idx"));
 		
-		//System.out.println(c_idx);
-		
 		List<ViewVo> list = StudyCardDao.getInstance().selectCard(c_idx);
 		
 		request.setAttribute("list", list);
+		
+		
 		//forward
-		String forward_page = "studyCardWord.jsp";
+		String forward_page = "studyCardMain.jsp";
 		RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 		disp.forward(request, response);
 

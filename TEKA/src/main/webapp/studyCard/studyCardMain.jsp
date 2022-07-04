@@ -127,9 +127,10 @@ function slideCard(){
 	</c:forEach>
 	
 	<div class="slideBox">
+		<div id="title" style="font-size: 25px; font-weight: 600;">${list[0].c_title }</div>
 		<!-- 학습 목록 -->
 		<div class="studyMenu">
-			<div class="studyItem">&nbsp<i class="fas fa-clipboard"></i>&nbsp낱말카드</div>
+			<div class="studyItem">&nbsp<i class="fas fa-clipboard"></i>&nbsp<a href="studyCardWord.do?c_idx=${param.c_idx }">낱말카드</a></div>
 			<div class="studyItem">&nbsp<i class="fas fa-school"></i>&nbsp학습하기</div>
 			<div class="studyItem">&nbsp<i class="fas fa-bomb"></i>&nbsp시험보기</div>
 			<div class="studyItem">&nbsp<i class="fas fa-question"></i>&nbsp?????</div>
