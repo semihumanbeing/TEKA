@@ -34,20 +34,24 @@ public class PopupAction extends HttpServlet {
 		
 		//c_idx에 해당하는 객체 구하기
 		List<ViewVo> previewList = ViewDao.getInstance().qnaCardList(c_idx);
-		//List<ViewVo> nickname    = StudyCardDao.getInstance().selectCard(c_idx);
+		
+		//m_nickname 구하기
+		String m_nickname = ViewDao.getInstance().selectNickname(c_idx);
 		
 		JSONObject json = new JSONObject();
 		
+		//반환할 결과 list 생성
 		List<String> list = new ArrayList<>();
 		
 		for(ViewVo res : previewList) {
 			
-			list.add(res.getC_title());
 			list.add(res.getQ_question());
 			list.add(res.getQ_answer());
 		}
 		
+		//map형식으로 jsonObject에 저장
 		json.put("list", list);
+		json.put("m_nickname", m_nickname);
 		
 		response.setContentType("text/json; charset=utf-8;");
 		response.getWriter().print(json.toJSONString());

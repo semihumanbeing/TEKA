@@ -54,7 +54,7 @@
 		<div class="card">
 			<div class="card-inner">
 				<div class="card-front">Click here!</div>
-				<div class="card-back">Welcome QuizTIS!</div>
+				<div class="card-back">Welcome TEKA!</div>
 			</div>
 		</div>
 		<div style="clear: both;"></div>
