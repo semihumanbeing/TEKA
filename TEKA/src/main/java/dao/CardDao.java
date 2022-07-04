@@ -11,25 +11,25 @@ import vo.MyCardSetVo;
 import vo.ViewVo;
 
 public class CardDao {
-	//single-ton : °´Ã¼ 1°³¸¸ »ý¼ºÇØ¼­ »ç¿ëÇÏÀÚ
+	//single-ton : ï¿½ï¿½Ã¼ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	static CardDao single = null;
 	
 	SqlSessionFactory factory;
 	public static CardDao getInstance() {
 
-		//°´Ã¼°¡ ¾øÀ¸¸é »ý¼ºÇØ¶ó
+		//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½
 		if (single == null)
 			single = new CardDao();
 
 		return single;
 	}
 
-	//¿ÜºÎ¿¡¼­ »ý¼ºÇÏÁö ¸»°Í
+	//ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private CardDao() {
 		factory = MyBatisConnector.getInstance().getSqlSessionFactory();
 	}
 	
-	//ÀüÃ¼Ä«µåÁ¶È¸	
+	//ï¿½ï¿½Ã¼Ä«ï¿½ï¿½ï¿½ï¿½È¸	
 	public List<ViewVo> selectList() {
 
 		List<ViewVo> list = null;
@@ -44,7 +44,7 @@ public class CardDao {
 	}
 
 	
-	//Çì´õ¿¡ Á¶°ÇÀ» °Ë»öÇÏ¸é ÁÖÁ¦ÀÌ¸§º°·Î ÇÊÅÍ¸µ ÇØ¼­ ¸ð¾Æº¸±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ø¼ï¿½ ï¿½ï¿½Æºï¿½ï¿½ï¿½
 	public List<ViewVo> selectBySubject(String subject) {
 		// TODO Auto-generated method stub
 		List<ViewVo> list = null;
@@ -58,7 +58,7 @@ public class CardDao {
 		return list;
 	}
 	
-	//³ªÀÇ ÇÐ½À ¼¼Æ® Ãß°¡ÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ð½ï¿½ ï¿½ï¿½Æ® ï¿½ß°ï¿½ï¿½Ï±ï¿½
 	public int insertMyCard(MyCardSetVo vo) {
 		// TODO Auto-generated method stub
 		int res = 0;
@@ -72,7 +72,7 @@ public class CardDao {
 		return res;
 	}
 	
-	//³ªÀÇ ÇÐ½À ¼¼Æ® Ãß°¡ÇÏ±â Àü ÀÌ¹Ì Ãß°¡µÇ¾ú´ÂÁö È®ÀÎÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ð½ï¿½ ï¿½ï¿½Æ® ï¿½ß°ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ß°ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½
 	public MyCardSetVo selectCheckMyCard(int c_idx) {
 		// TODO Auto-generated method stub
 		MyCardSetVo vo = null;
@@ -98,8 +98,4 @@ public class CardDao {
 		
 		return list;
 	} 
-
-	
-	
-	
 }
