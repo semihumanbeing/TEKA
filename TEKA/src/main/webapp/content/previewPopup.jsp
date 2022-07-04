@@ -13,10 +13,10 @@
 <style type="text/css">
 	
 #popupBox{
-	margin-top : 50px;
 	margin-bottom : 100px;
-	width :600px;
-	height:800px;
+	width :800px;
+	height:500px;
+	overflow : auto;
 	border : 3px solid black;
 	display : none;
 	position   : absolute;
@@ -25,8 +25,8 @@
 	position:fixed;
 	top:150px;
 	left:30px;
-	box-shadow : rgba(0,0,0,0.7) 0 0 0 9999px, rgba(0,0,0,0.7) 2px 2px 3px 3px;
-	overflow:auto;
+	box-shadow : rgba(0,0,0,0.7) 0 0 0 9999px, rgba(0,0,0,0.7) 2px 2px 2px 3px;
+	border-radius: 15px;
 }
 
 #container{
@@ -41,7 +41,7 @@
 }
 
 .qnaText{
-	font-size: 25px;
+	font-size: 18px;
 	font-weight:550;
 }
 
@@ -68,6 +68,11 @@
 	margin-bottom : 30px;
 }
 
+#horizon{
+	background-color: black;
+	height : 5px;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -91,10 +96,7 @@
 		
 		$("#popupBox").css({"left" : left, "top" : top});
 	}
-	
-	
 </script>
-
 </head>
 <body>
 
@@ -103,27 +105,35 @@
 <div id="container">
 <!-- 카드제목 -->	
 	<div id="preTitle">
-		<p>제목: ${card.c_title}</p>
+		<p><div id="c_title"></div></p>
 	</div>
 
-<c:forEach var="pre" items="${previewList}" begin="1" end="3">
-	
-	
+<!-- 미리보기 팝업개수 수정예정 -->
 		<div class="question">
-			<p class="qnaText">질문</p>
-			${pre.q_question}
-			<hr><br>
+			<hr class="horizon"><p class="qnaText">질문</p>
+			<div id="q_question"></div>
+			<br>
 		</div>
-	
 		<div class="answer">
 			<p class="qnaText">답변</p>
-			${pre.q_answer}
-			<hr><br>
+			<div id="q_answer"></div>
+			<hr class="horizon"><br>
 		</div>
-</c:forEach>	
+		
+		<div class="question">
+			<hr class="horizon"><p class="qnaText">질문</p>
+			<div id="q_question1"></div>
+			<br>
+		</div>
+		<div class="answer">
+			<p class="qnaText">답변</p>
+			<div id="q_answer1"></div>
+			<hr class="horizon"><br>
+		</div>
+		
 <!-- 만든사람 user.m_nickname -->
 		<div id="madeBy">
-			<p>made by ${card.m_nickname}</p>
+			<p>made by<div id="m_nickname"></div></p>
 		</div>
 <!-- 팝업닫기버튼  -->
 	<div id="btnArea">

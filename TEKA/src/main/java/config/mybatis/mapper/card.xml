@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="card">
 	
-<!-- 전체 카드 조회 -->
+	<!-- 전체 카드 조회 -->
 	<select id="selectAll" resultType="vo.ViewVo">
 		select * from subjectCard order by c_regdate desc
 	</select>
@@ -14,15 +14,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectBySubject" parameterType="java.lang.String" resultType="vo.ViewVo">
 		select * from subjectCard 
 		where s_name=#{s_name}
-		
 	</select>
-
-<!-- 질문답변&카드 조회 -->
-	<select id="selectCard" resultType="vo.ViewVo">
-		select * from qnaCard
+	
+	
+	<!-- 미리보기팝업 c_idx에 해당하는 객체 구하기 -->
+	<select id="preview" parameterType="int" resultType="vo.ViewVo">
+		select * from qnaCard where c_idx=#{c_idx}
 	</select>
-
-
+	
 	
 	<!-- 이미 추가된 카드인지 확인하기 -->
 	<select id="selectCheckMyCard" parameterType="int" resultType="vo.MyCardSetVo">

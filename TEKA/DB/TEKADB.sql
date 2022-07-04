@@ -283,7 +283,7 @@ select q_idx, c_idx, q_question, q_answer, q_correct,
    from qna q join card c    using(c_idx)
               join subject s using(s_idx)
 
-select * from qnaCard    
+select * from qnaCard
 
 
 

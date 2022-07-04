@@ -12,7 +12,7 @@ public class ViewDao {
 	
 	SqlSessionFactory factory;
 	
-	static ViewDao single = null; //staticº¯¼ö: ÇÁ·Î±×·¥ ½ÃÀÛ½Ã, Å¬·¡½º ³»¿¡ ´Ü 1°³, 1¹ø¸¸ »ı¼º
+	static ViewDao single = null; //staticï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½ï¿½ï¿½Û½ï¿½, Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 1ï¿½ï¿½, 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public static ViewDao getInstance() {
 		if (single == null)
 			single = new ViewDao();
@@ -22,7 +22,7 @@ public class ViewDao {
 		factory = MyBatisConnector.getInstance().getSqlSessionFactory();
 	}
 
-//c_idx °´Ã¼ 1°Ç ±¸ÇÏ±â
+//c_idx ï¿½ï¿½Ã¼ 1ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 	public ViewVo selectCIdx(String c_title) {
 		
 		//int c_idx = 0;
@@ -38,21 +38,22 @@ public class ViewDao {
 		//return c_idx;
 	}
 	
-//qnaCard ÀüÃ¼Á¶È¸
-	public List<ViewVo> qnaCardselectList(){
+	//c_idxì— í•´ë‹¹í•˜ëŠ” qnaCardí…Œì´ë¸” List êµ¬í•˜ê¸°
+	public List<ViewVo> qnaCardList(int c_idx){
 		
 		List<ViewVo> list = null;
 		
 		SqlSession sqlSession = factory.openSession();
 		
-		list = sqlSession.selectList("card.selectCard");
+		list = sqlSession.selectList("card.preview", c_idx);
 		
 		sqlSession.close();
 		
 		return list;
 	}
 	
-//qnaCard Å×ÀÌºí DML
+	
+//qnaCard DML
 	public int qnaInsert(ViewVo vo) {
 		
 		int res = 0;
@@ -66,7 +67,7 @@ public class ViewDao {
 		
 		return res;
 	}
-//qnaCard Å×ÀÌºí DML
+//qnaCard ï¿½ï¿½ï¿½Ìºï¿½ DML
 	public int cardInsert(ViewVo vo) {
 		
 		int res = 0;
@@ -80,7 +81,7 @@ public class ViewDao {
 		
 		return res;
 	}	
-	//qnaCard Å×ÀÌºí DML
+//qnaCard ï¿½ï¿½ï¿½Ìºï¿½ DML
 	public int myCardSetInsert(ViewVo vo) {
 		
 		int res = 0;

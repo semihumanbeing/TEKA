@@ -167,10 +167,28 @@ function filter(){
 </script>
 <script type="text/javascript">
 
-	function previewPopup(){
+	function previewPopup(c_idx){
+		
+		$.ajax({
+
+			url:'popup.do?c_idx=' + c_idx, //c_idx를 쿼리로 전송
+			dataType:'json',
+			success : function(resData){
+				//alert("success");
+				console.log(resData.list);
+				
+				// 전송된 형태 : ['자아아아바아ㅏ', 'ㅈㅂ', 'ㅈㅂ', '자아아아바아ㅏ', 'ㅈㅂㅈㅂ', 'ㅈㅂㅈㅂ']
+				$("#c_title").html(resData.list[0]);
+				$("#q_question").html(resData.list[1]);
+				$("#q_answer").html(resData.list[2]);
+				
+				$("#q_question1").html(resData.list[4]);
+				$("#q_answer1").html(resData.list[5]);
+			}
+		}); //ajax end
+		
 		centerBox();
 		$("#popupBox").show();
-		
 	}
 	
 </script>
@@ -221,8 +239,8 @@ function filter(){
 						추천 <span class="badge">${card.l_like}</span>
 					</button><br>
 					<span class="badge">${card.m_nickname }</span><br>
-
-					<input type="button" class="plusCard" value="미리보기" onclick="previewPopup();">
+					
+					<input type="button" class="plusCard" value="미리보기" onclick="previewPopup(${card.c_idx});">
 					<input type="button" class="plusCard" value="내 학습세트에 추가하기" onclick="send(${card.c_idx},${card.s_idx });">
 
 				</div>

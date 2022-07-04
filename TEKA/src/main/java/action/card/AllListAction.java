@@ -36,15 +36,13 @@ public class AllListAction extends HttpServlet {
 		// http://localhost:9090/TEKA/card/list.do?subject=?&order=?
 
 		String subject = request.getParameter("subject"); // 주제
-		String order = request.getParameter("order"); // 필터
+		String order   = request.getParameter("order"); // 필터
 
 		if (subject != null && !subject.isEmpty()) {// 특정 주제를 원하는 경우에는 특정 주제에 부합하는 내용만을 읽어오기
 
 			// 주제 리스트 가져오기
 			List<ViewVo> list = getSubjectList(subject);
-      // 팝업창 리스트 가져오기
-      List<ViewVo> previewList = ViewDao.getInstance().qnaCardselectList();
-
+			
 			// 필터가 있으면 정렬
 			if (order != null && !order.isEmpty()) {
 				Collections.sort(list, new ViewVoComp(order));
@@ -53,7 +51,6 @@ public class AllListAction extends HttpServlet {
 			// 리퀘스트 바인딩
 			request.setAttribute("list", list);
 			request.setAttribute("subject", subject);
-      request.setAttribute("previewList", previewList);
 
 			// forward
 			String forward_page = "mainList.jsp";
@@ -64,8 +61,7 @@ public class AllListAction extends HttpServlet {
 
 			// 전체 리스트 가져오기
 			List<ViewVo> list = CardDao.getInstance().selectList();
-      // 팝업창 리스트 가져오기
-      List<ViewVo> previewList = ViewDao.getInstance().qnaCardselectList();
+			
 			// 필터가 있으면 정렬
 			if (order != null && !order.isEmpty()) {
 				Collections.sort(list, new ViewVoComp(order));
@@ -73,10 +69,8 @@ public class AllListAction extends HttpServlet {
 
 			// 리퀘스트 바인딩
 			request.setAttribute("list", list);
-      request.setAttribute("previewList", previewList);
 
 			// forward
-
 			String forward_page = "mainList.jsp";
 			RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 			disp.forward(request, response);
