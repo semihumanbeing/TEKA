@@ -9,9 +9,11 @@
 <style type="text/css">
 #footer{
 	margin-top: 50px;
+	padding: 10px;
 	background-color: white;
 	color: black;
 	text-decoration: none;
+	clear: both;
 }
 </style>
 </head>

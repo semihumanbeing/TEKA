@@ -16,6 +16,7 @@
 <style type="text/css">
 /* main.css */
 #content {
+	min-height: 700px;
 	padding-top: 80px;
 	width: 55%;
 	margin-left: 0px;
@@ -89,9 +90,6 @@
 	transform: rotateX(180deg);
 }
 
-#footer{
-	clear: both;
-}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){

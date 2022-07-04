@@ -24,7 +24,7 @@ public class LogoutAction extends HttpServlet {
 
 		request.getSession().removeAttribute("user");
 		//request.getSession().removeAttribute("RSA_WEB_KEY");
-		response.sendRedirect("../card/list.do");
+		response.sendRedirect("../card/mainList.do");
 
 	}
 
