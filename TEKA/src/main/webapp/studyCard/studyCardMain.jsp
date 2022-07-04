@@ -153,9 +153,11 @@ function slideCard(){
 		<!-- 슬라이드 영역 종료 -->	
 		</ul>
 		<div id="status" style="text-align: center;"></div>
+		<!-- <div id="status" style="text-align: center;"></div>
 		<div id="progress">
 			<div id="myBar"></div>
-		</div>
+		</div> -->
+		
 	</div>
 </div><!-- section end -->
 <div>
