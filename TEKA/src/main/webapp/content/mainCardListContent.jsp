@@ -239,9 +239,11 @@ function filter(){
 						추천 <span class="badge">${card.l_like}</span>
 					</button><br>
 					<span class="badge">${card.m_nickname }</span><br>
+
 					
 					<input type="button" class="plusCard" value="미리보기" onclick="previewPopup(${card.c_idx});">
 					<input type="button" class="plusCard" value="내 학습세트에 추가하기" onclick="send(${card.c_idx},${card.s_idx });">
+
 
 				</div>
 			</div>
