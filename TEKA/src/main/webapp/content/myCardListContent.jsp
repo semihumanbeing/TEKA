@@ -10,7 +10,7 @@
 
 function study(c_idx){
 	alert(c_idx + "번 카드를 학습합니다.");
-	location.href="../studyCard/studyCardWord.do?c_idx="+c_idx;
+	location.href="../studyCard/studyCardMain.do?c_idx="+c_idx;
 	
 }
 

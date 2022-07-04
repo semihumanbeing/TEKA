@@ -14,7 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- css -->
-<link rel="stylesheet" href="../css/studyCard.css">
+<link rel="stylesheet" href="../css/studyCardWord.css">
 <!-- FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
@@ -115,9 +115,11 @@ function slideCard(){
 <body>
 
 <div id="header">
-	<%@include file="../header/mainmenu.jsp" %>
+	<%@include file="../header/studyCardHeader.jsp" %>
 </div>
-
+<div id="progress">
+	<div id="myBar"></div>
+</div>
 <div class="section">
 	<!-- 카드 개수 : input -->
 	<input type="radio" name="slide" value="1" id="slide1" checked>
@@ -127,35 +129,23 @@ function slideCard(){
 	</c:forEach>
 	
 	<div class="slideBox">
-		<div id="title" style="font-size: 25px; font-weight: 600;">${list[0].c_title }</div>
-		<!-- 학습 목록 -->
-		<div class="studyMenu">
-			<div class="studyItem">&nbsp<i class="fas fa-clipboard"></i>&nbsp<a href="studyCardWord.do?c_idx=${param.c_idx }">낱말카드</a></div>
-			<div class="studyItem">&nbsp<i class="fas fa-school"></i>&nbsp학습하기</div>
-			<div class="studyItem">&nbsp<i class="fas fa-bomb"></i>&nbsp시험보기</div>
-			<div class="studyItem">&nbsp<i class="fas fa-question"></i>&nbsp?????</div>
-		</div>
 		<ul class="slideList">
 		<!-- 슬라이드 영역 -->
 		<c:forEach var="qna" items="${list }" begin="0" end="${fn:length(list)-1 }" varStatus="i">
 			<li>
 				<!-- 이전 페이지로 이동한다.  -->
-				<label for="slide${i.index}" class="left"><span>◀</span></label>
+				<span style="z-index: 11"><label for="slide${i.index}" class="left"></label>◀</span>
 				<div class="card">
 					<div class="card-inner">
 						<div class="card-front">${qna.q_question }</div>
 						<div class="card-back">${qna.q_answer }</div>
 					</div>
 				</div>
-				<label for="slide${i.count+1 }" class="right"><span>▶</span></label>
+				<span><label for="slide${i.count+1 }" class="right"></label>▶</span>
 			</li>
 		</c:forEach>
 		<!-- 슬라이드 영역 종료 -->	
 		</ul>
-		<div id="status" style="text-align: center;"></div>
-		<div id="progress">
-			<div id="myBar"></div>
-		</div>
 	</div>
 </div><!-- section end -->
 <div>
