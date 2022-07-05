@@ -16,9 +16,9 @@
 		/* 추가할 div html코드 json배열 저장 */
 		var jsonHTML = {
 						row: "<div class=\"row\">",	
-						delBtn: "<div><input type=\"button\" value=\"삭제\" id=\"delBtn\" onclick=\"delRow();\">",
-						qArea: "<div class=\"tArea\"><div class=\"qArea\"><div class=\"cnt\"></div><p>질문</p><textarea COLS=35 ROWS=3 name=\"q_question\" class=\"form-control\"></textarea></div>",
-						aArea: "<div class=\"aArea\"><p>답변</p><textarea COLS=65 ROWS=8 name=\"q_answer\" class=\"form-control\"></textarea></div></div>",
+						delBtn: "<div><a onclick=\"delRow();\" id=\"delBtn\">삭제</a>",
+						qArea: "<div class=\"tArea\"><div class=\"qArea\"><div class=\"cnt\"></div><p>질문</p><textarea COLS=35 ROWS=3 name=\"q_question\"></textarea></div>",
+						aArea: "<div class=\"aArea\"><p>답변</p><textarea COLS=75 ROWS=8 name=\"q_answer\"></textarea></div></div>",
 						closeDiv: "</div>"	
 					  };
 		
@@ -51,8 +51,9 @@
 	<div class="list" style="display:table;">
 		<div class="row">
 			<!-- div 삭제 : this의 정보를 넘겨야 해당 행만 삭제가능 -->
-			<div><!-- input img로 휴지통 이미지 삽입 예정 -->
-				<input type="button" value="삭제" id="delBtn" onclick="delRow();">
+			<div>
+				<!-- <input type="button" value="삭제" id="delBtn" onclick="delRow();"> -->
+				<a onclick="delRow();" id="delBtn">삭제</a>
 			</div>
 			
 			<div class="tArea">
@@ -60,29 +61,27 @@
 				<div class="qArea">
 					<div class="cnt"></div>
 					<p>질문</p>
-					<textarea COLS=35 ROWS=3 name="q_question" class="form-control"></textarea>
+					<textarea cols=35 rows=3 name="q_question"></textarea>
 				</div>
 				<div class="aArea">
 					<p>답변</p>
-					<textarea COLS=65 ROWS=8 name="q_answer" class="form-control"></textarea>
+					<textarea cols=75 rows=8 name="q_answer"></textarea>
 				</div>			
 			</div>
 			
 		</div><!-- row end  -->
 	</div>
 <!-- list영역 종료 -->
-	<!-- draggable -->
 	<div id="insert_btn">
-		<!-- <a href="#" onclick="addRow();">카드추가</a> : href # -->
-		<input type="button" value="카드추가" onclick="addRow();">
+		<a onclick="addRow();" id="cardBtn">카드추가</a>
 	</div>
 	
 	<div id="cardSet_btn">
-		<!-- <a href="addCardSet(this.form);">학습세트 만들기</a> -->
 		<input type="button" value="학습세트 만들기" id="makeCard" onclick="addCardSet(this.form);">
 	</div>
 
 <!-- box종료 -->	
+</div>
 </div>
 
 <div id="footer">

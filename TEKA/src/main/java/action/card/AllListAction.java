@@ -66,7 +66,7 @@ public class AllListAction extends HttpServlet {
 			if (order != null && !order.isEmpty()) {
 				Collections.sort(list, new ViewVoComp(order));
 			}
-
+			
 			// 리퀘스트 바인딩
 			request.setAttribute("list", list);
 
@@ -142,7 +142,7 @@ public class AllListAction extends HttpServlet {
 			return ret;
 		}
 
+		
 	}
-
 	
 }

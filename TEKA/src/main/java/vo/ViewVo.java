@@ -19,7 +19,7 @@ public class ViewVo {
 	int s_idx;
 	int m_idx;
 	
-	//Æ¯Á¤ Ä«µåÀÇ qna°³¼ö
+	//Æ¯ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½ qnaï¿½ï¿½ï¿½ï¿½
 	int c_qCnt;
 	
 	public int getC_qCnt() {

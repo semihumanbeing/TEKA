@@ -12,7 +12,7 @@ public class ViewDao {
 	
 	SqlSessionFactory factory;
 	
-	static ViewDao single = null; //static����: ���α׷� ���۽�, Ŭ���� ���� �� 1��, 1���� ����
+	static ViewDao single = null;
 	public static ViewDao getInstance() {
 		if (single == null)
 			single = new ViewDao();
@@ -22,10 +22,9 @@ public class ViewDao {
 		factory = MyBatisConnector.getInstance().getSqlSessionFactory();
 	}
 
-//c_idx ��ü 1�� ���ϱ�
+	//c_title로 c_idx 구하기
 	public ViewVo selectCIdx(String c_title) {
 		
-		//int c_idx = 0;
 		ViewVo vo = null;
 		
 		SqlSession sqlSession = factory.openSession();
@@ -35,9 +34,7 @@ public class ViewDao {
 		sqlSession.close();
 		
 		return vo;
-		//return c_idx;
 	}
-	
 	//c_idx에 해당하는 qnaCard테이블 List 구하기
 	public List<ViewVo> qnaCardList(int c_idx){
 		
@@ -51,9 +48,17 @@ public class ViewDao {
 		
 		return list;
 	}
+	//c_idx로 m_nickname 구하기
+	public String selectNickname(int c_idx) {
+		
+		SqlSession sqlSession = factory.openSession();
+		String     m_nickname = sqlSession.selectOne("studyCard.selectNickname", c_idx);
+		sqlSession.close();
+		
+		return m_nickname; 
+	}
 	
-	
-//qnaCard DML
+	//qnaCard DML
 	public int qnaInsert(ViewVo vo) {
 		
 		int res = 0;
@@ -67,7 +72,7 @@ public class ViewDao {
 		
 		return res;
 	}
-//qnaCard ���̺� DML
+	//qnaCard ���̺� DML
 	public int cardInsert(ViewVo vo) {
 		
 		int res = 0;
@@ -81,7 +86,21 @@ public class ViewDao {
 		
 		return res;
 	}	
-//qnaCard ���̺� DML
+	//좋아요 insert
+	public int insertLiked(ViewVo vo) {
+		
+		int res = 0;
+		
+		SqlSession sqlSession = factory.openSession();
+		
+		res = sqlSession.insert("card.insertLiked", vo);
+		
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return res;
+	}
+	//qnaCard ���̺� DML
 	public int myCardSetInsert(ViewVo vo) {
 		
 		int res = 0;

@@ -123,7 +123,7 @@ $(document).ready(function(){
 	<div id="sub_content">
 		<div id="explain">
 			<p style="font-size: 25px; font-weight: 700;">
-				QuizTIS<br>
+				TEKA<br>
 				Technical Interview Study<br>
 				지금 바로 다른 사람의 학습법을 공유받으세요.<br>
 			</p>

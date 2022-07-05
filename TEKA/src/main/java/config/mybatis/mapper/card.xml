@@ -33,6 +33,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from card where c_title=#{c_title}
 	</select>
 	
+	<!-- 카드 검색 -->
+	<select id="cardCondition" parameterType="java.util.Map" resultType="vo.ViewVo">
+		select * from cardCondition
+		
+		<trim prefix="where" prefixOverrides="or">
+			<if test="c_title!=null">
+				 c_title like '%' || #{c_title} || '%'
+			</if>
+			
+			<if test="c_content!=null">
+				 or c_content like '%' || #{c_content} || '%'
+			</if>
+
+			<if test="m_nickname!=null">
+				 or m_nickname like '%' || #{m_nickname} || '%'
+			</if>
+		</trim>
+ 		order by c_regdate desc
+	</select>
+	
 	
 <!-- DML -->
 <!-- 카드테이블 insert -->	
@@ -41,7 +61,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 								 #{s_idx}, #{m_idx}, sysdate, #{c_qCnt})
 	</insert>
 	
-	
+	<!-- like insert -->
+	<insert id="insertLiked" parameterType="vo.ViewVo">
+		insert into likey values(seq_like_l_grade.nextVal, default, #{c_idx}, #{m_idx})
+	</insert>
 
 	<!-- 질문답변테이블 insert -->	
 	<insert id="qnaInsert" parameterType="vo.ViewVo">

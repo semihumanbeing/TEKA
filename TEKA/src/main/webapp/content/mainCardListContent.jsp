@@ -174,19 +174,49 @@ function filter(){
 			url:'popup.do?c_idx=' + c_idx, //c_idx를 쿼리로 전송
 			dataType:'json',
 			success : function(resData){
-				//alert("success");
-				console.log(resData.list);
+			
+				//m_nickname 출력
+				$("#m_nickname").html('made by' + ' ' + resData.m_nickname);
 				
-				// 전송된 형태 : ['자아아아바아ㅏ', 'ㅈㅂ', 'ㅈㅂ', '자아아아바아ㅏ', 'ㅈㅂㅈㅂ', 'ㅈㅂㅈㅂ']
-				$("#c_title").html(resData.list[0]);
-				$("#q_question").html(resData.list[1]);
-				$("#q_answer").html(resData.list[2]);
 				
-				$("#q_question1").html(resData.list[4]);
-				$("#q_answer1").html(resData.list[5]);
-			}
-		}); //ajax end
+				var jsonDiv = {
+								 table : "<table class=\"question\">",
+								 q : "<tr><td id=\"q_question\"></td>",
+								 a : "<td id=\"q_answer\"></td></tr>",
+								 end : "</table>"
+							  };
+				
+				var div = '';
+				
+				for(j in jsonDiv){
+					
+					div += jsonDiv[j];
+				}
+				
+				$(".res").append(div);
+				
+				//popup.jsp파일에 동적으로 요소추가 (list만큼 반복하기 때문에 모든 요소 출력가능)
+				for(i in resData.list){
+					
+					//i가 짝수 : q_question (i = 0 2 4...)
+					if(i%2==0){
+
+						$("#q_question").append(resData.list[i]).append("<br><br><br>");
+					
+					//아니면 홀수 : q_answer (i = 1 3 5...)					
+					}else {
+						
+						$("#q_answer").append(resData.list[i]).append("<br><br><br>");
+					}
+				}
+			}//success end
+		});
 		
+		//append했던 데이터 지우기
+		$("#q_question").remove();
+		$("#q_answer").remove();
+		$(".question").remove();
+
 		centerBox();
 		$("#popupBox").show();
 	}
@@ -213,7 +243,7 @@ function filter(){
 		<hr>
 	</div>
 	<div id="grid_container">
-		<c:if test="${empty list }">
+		<c:if test="${empty list}">
 			<div style="color: red; text-align: center; line-height: 333px;">카드가 없습니다.</div>
 		</c:if>
 		
@@ -239,15 +269,13 @@ function filter(){
 						추천 <span class="badge">${card.l_like}</span>
 					</button><br>
 					<span class="badge">${card.m_nickname }</span><br>
-
 					
 					<input type="button" class="plusCard" value="미리보기" onclick="previewPopup(${card.c_idx});">
 					<input type="button" class="plusCard" value="내 학습세트에 추가하기" onclick="addToMyCards(${card.c_idx},${card.s_idx });">
-
-
 				</div>
 			</div>
 		</c:forEach>
+	
 	</div>
 </body>
 </html>

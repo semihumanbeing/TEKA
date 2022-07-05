@@ -1,12 +1,12 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import service.MyBatisConnector;
-import vo.CardVo;
 import vo.MyCardSetVo;
 import vo.ViewVo;
 
@@ -98,4 +98,31 @@ public class CardDao {
 		
 		return list;
 	} 
+	
+	//카드검색
+	public List<ViewVo> cardCondition(Map map){
+		
+		List<ViewVo> list = null;
+		
+		SqlSession sqlSession = factory.openSession();
+		
+		list = sqlSession.selectList("card.cardCondition", map);
+		
+		sqlSession.close();
+		
+		return list;
+	}
+	
+	//c_title로 l_like 구하기
+	public int like(String c_title){
+		
+		SqlSession sqlSession = factory.openSession();
+		
+		int l_like = 0;
+		
+		l_like = sqlSession.selectOne("card.like", c_title);
+		
+		return l_like;
+	}
+	
 }

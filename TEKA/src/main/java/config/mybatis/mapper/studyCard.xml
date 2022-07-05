@@ -22,4 +22,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteWrongQnaCard" parameterType="vo.WrongQnaVo">
 		delete wrongQna where m_idx=#{m_idx} and q_idx=#{q_idx}
 	</delete>
+  
+	<!-- c_idx로 m_nickname 구하기 (팝업창 사용) -->
+	<select id="selectNickname" parameterType="int" resultType="java.lang.String">
+		select m_nickname from studyCard where c_idx=#{c_idx}
+	</select>
+	
+	
 </mapper>
