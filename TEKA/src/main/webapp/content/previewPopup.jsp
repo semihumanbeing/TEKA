@@ -6,9 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>카드세트팝업창</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 	
 #popupBox{
@@ -45,12 +43,36 @@
 	color : gray;
 }
 
-.question, .q, .answer, .a{
+.q{
 	margin-top : 10px;
 	margin-left : 12px;
 	font-size:18px;
 	float : left;
-	width : 45%;
+	width : 35%;
+	min-height:50px;
+}
+.a{
+	margin-top : 10px;
+	font-size:18px;
+	float : left;
+	width : 55%;
+	min-height:50px;
+}
+
+.question{
+	width:100%;
+	margin-left : 10px;
+	margin-top : 20px;
+}
+
+#q_question{
+	width : 26.5%;
+	font-size:18px;
+}
+
+#q_answer{
+	width : 50%;
+	font-size:18px;
 }
 
 #m_nickname{
@@ -77,7 +99,6 @@
 	right : 140px;
 	top : 85px;
 }
-
 </style>
 
 <script type="text/javascript">
@@ -111,7 +132,6 @@
 
 <!-- 팝업닫기버튼  -->
 	<div id="btnArea">
-		<!-- <input type="button" id="hideBtn" value="닫기" onclick="hidePopup();"> -->
 		<a onclick="hidePopup();" id="hideBtn">X</a>
 	</div>
 	

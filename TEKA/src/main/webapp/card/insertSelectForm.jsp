@@ -1,17 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html data-theme="dark">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>QuizTis 카드만들기</title>
-<!-- 부트스트랩 라이브러리등록 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- css파일 연결 -->
-<link rel="stylesheet" href="../css/mainmenuHeader.css">
-<link rel="stylesheet" href="../css/mainInsertCard.css">
-<link rel="stylesheet" href="../css/addCardRow.css">
+<title>Insert title here</title>
 <style type="text/css">
+
 #choose{
 	margin:auto;
 	width : 1350px;
@@ -51,59 +46,12 @@ textarea{
 	width:80%;
 	resize: none;
 }
-</style>
-<!-- 자바스크립트 -->
-<script type="text/javascript">
 
-	function addCardSet(f){
-		
-		var c_title    = f.c_title.value.trim(); 
-		var c_content  = f.c_content.value.trim();
-		var q_question = f.q_question.value.trim();	
-		var q_answer   = f.q_answer.value.trim();
-		var s_idx      = f.s_idx.value; //checked속성 -> 선택 안 되는 경우는 없음
-		
-		if(c_title==''){
-			alert('학습세트 제목을 입력해주세요.');
-			f.c_title.value='';
-			f.c_title.focus();
-			return;
-		}
-		if(c_content==''){
-			alert('학습세트 소개를 입력해주세요.');
-			f.c_content.value='';
-			f.c_content.focus();
-			return;
-		}
-		
-		/* if(q_question==''){
-			alert('질문을 입력해주세요.');
-			f.q_question.value='';
-			f.q_question.focus();
-			return;
-		}
-		if(q_answer==''){
-			alert('답변을 입력해주세요.');
-			f.q_answer.value='';
-			f.q_answer.focus();
-			return;
-		} */
-		
-		f.method = "POST";
-		f.action = "insertCard.do";		
-		f.submit();
-	}
-</script>
+</style>
 </head>
 <body>
-<!-- header -->
-<div id="header">
-	<%@include file="../header/mainmenu.jsp" %>
-</div>
-<form>	
-	<input type="hidden" name="m_idx" value="${user.m_idx}">
-	<!-- 주제/카드제목/소개 입력 -->
-	<!-- 주제, 카드제목, 카드소개글 -->
+
+<!-- 주제, 카드제목, 카드소개글 -->
 	<div id="choose">
 		<!-- 주제선택 -->
 		<hr>
@@ -129,11 +77,6 @@ textarea{
 		</div>
 	</div>
 <hr>
-	
-	<div id="insertCard">
-		<%@include file="addCardRow.jsp"%>
-	</div>
-</form>	
 
 </body>
 </html>
