@@ -35,27 +35,31 @@ public class ViewDao {
 		
 		return vo;
 	}
-	//c_idx에 해당하는 qnaCard테이블 List 구하기
-	public List<ViewVo> qnaCardList(int c_idx){
+	
+	//팝업 리스트 전체조회
+	public List<ViewVo> previewList(){
 		
 		List<ViewVo> list = null;
 		
 		SqlSession sqlSession = factory.openSession();
 		
-		list = sqlSession.selectList("card.preview", c_idx);
+		list = sqlSession.selectList("card.preview");
 		
 		sqlSession.close();
 		
 		return list;
 	}
-	//c_idx로 m_nickname 구하기
-	public String selectNickname(int c_idx) {
+	
+	//c_idx에 해당하는 닉네임/카드제목/소개글 구하기
+	public List<ViewVo> previewSelectThree(int c_idx) {
+		
+		List<ViewVo> list = null;
 		
 		SqlSession sqlSession = factory.openSession();
-		String     m_nickname = sqlSession.selectOne("studyCard.selectNickname", c_idx);
+		list = sqlSession.selectList("card.previewSelectThree", c_idx);
 		sqlSession.close();
 		
-		return m_nickname; 
+		return list; 
 	}
 	
 	//qnaCard DML
@@ -86,7 +90,7 @@ public class ViewDao {
 		
 		return res;
 	}	
-	//좋아요 insert
+	//좋아요 insert : 카드만들기 할 때 추가
 	public int insertLiked(ViewVo vo) {
 		
 		int res = 0;

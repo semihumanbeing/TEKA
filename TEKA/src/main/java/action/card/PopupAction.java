@@ -32,26 +32,48 @@ public class PopupAction extends HttpServlet {
 
 		int c_idx = Integer.parseInt(request.getParameter("c_idx")); //c_idx
 		
-		//c_idx에 해당하는 객체 구하기
-		List<ViewVo> previewList = ViewDao.getInstance().qnaCardList(c_idx);
+		List<ViewVo> previewList = null;
 		
-		//m_nickname 구하기
-		String m_nickname = ViewDao.getInstance().selectNickname(c_idx);
+		//previewPopup 전체 조회
+		previewList = ViewDao.getInstance().previewList();
 		
 		JSONObject json = new JSONObject();
 		
-		//반환할 결과 list 생성
+		//결과저장 : c_idx에 해당하는 질문/답변
 		List<String> list = new ArrayList<>();
-		
+
 		for(ViewVo res : previewList) {
 			
-			list.add(res.getQ_question());
-			list.add(res.getQ_answer());
+			//파라미터로 들어온 c_idx와 전체리스트의 c_idx가 일치할 때만 list에 추가
+			if(c_idx==res.getC_idx()) {
+
+				list.add(res.getQ_question());
+				list.add(res.getQ_answer());
+			}
 		}
 		
-		//map형식으로 jsonObject에 저장
+		//응답할 데이터 저장
 		json.put("list", list);
-		json.put("m_nickname", m_nickname);
+		
+		
+		//m_nickname 구하기
+		previewList = ViewDao.getInstance().previewSelectThree(c_idx);
+		
+		
+		for(ViewVo vo : previewList) {
+			
+			String c_title    = vo.getC_title();
+			String c_content  = vo.getC_content();
+			String m_nickname = vo.getM_nickname();
+			
+			json.put("c_title", c_title);
+			json.put("c_content", c_content);
+			json.put("m_nickname", m_nickname);
+			//조회는 카드개수만큼 되지만, 위 데이터들은 1개씩만 필요하므로 1회 반복 후 강제탈출
+			break;
+		}
+		
+		//응답할 데이터 저장
 		
 		response.setContentType("text/json; charset=utf-8;");
 		response.getWriter().print(json.toJSONString());

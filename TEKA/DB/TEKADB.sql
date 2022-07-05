@@ -330,7 +330,6 @@ select * from cardCondition
 
 drop view cardCondition
 
-
 --4. 내 학습세트 조회용 : 카드 테이블 + 주제 테이블 + 나의 카드셋 + 멤버
 create or replace view studyCard
 as
@@ -346,4 +345,19 @@ as
 --m_idx -> 카드를 학습세트에 추가한 사용자의 번호
 --m_nickname -> 카드를 만든 사람의 이름
 select * from studyCard
+
+
+
+
+-- 5. 미리보기 팝업 조회용 (qna + tekamember + subject)
+create or replace view previewPopup
+as
+select c_idx, c_title, c_content, c_isPublic,
+	   q_question, q_answer, q_correct,
+	   m_idx, m_nickname, s_idx, s_name
+from card c join qna q        using(c_idx)
+		    join tekamember t using(m_idx)
+		    join subject s    using(s_idx)
+
+select * from previewPopup
 	
