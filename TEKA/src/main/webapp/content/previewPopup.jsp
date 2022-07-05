@@ -75,14 +75,29 @@
 	font-size:18px;
 }
 
-#m_nickname{
-	font-size: 33px;
+.madeBy {
+	font-size: 25px;
 	text-align: left;
-	font-weight:550;
-	height : 100px;
-	margin-bottom : 25px;
+	font-weight:500;
+	margin-bottom : 60px;
 	margin-top : 60px;
 	margin-left : 25px;
+	width : 80%;
+}
+
+th{
+	width : 10%;
+	height : 30px;
+}
+
+td{
+	width : 60%;
+	font-size: 20px;
+}
+
+#m_nickname{
+	margin-left:26px;
+	font-size:18px;
 }
 
 #btnArea{
@@ -135,8 +150,20 @@
 		<a onclick="hidePopup();" id="hideBtn">X</a>
 	</div>
 	
-<!-- 만든사람 -->
-		<div id="m_nickname"></div>
+<!-- 카드제목/소개글/만든사람 -->
+		<table class="madeBy">
+			<tr>
+				<th>제목</th>
+				<td><div id="c_title"></div></td>
+			</tr>
+			<tr>
+				<th>소개</th>
+				<td><div id="c_content"></div></td>
+			</tr>
+			<span class="badge" id="m_nickname"></span>	
+		</table>
+<hr>			
+
 		
 		<div>
 			<div class="q">

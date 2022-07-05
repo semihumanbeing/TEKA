@@ -176,7 +176,9 @@ function filter(){
 			success : function(resData){
 			
 				//m_nickname 출력
-				$("#m_nickname").html('made by' + ' ' + resData.m_nickname);
+				$("#m_nickname").html('madeBy' + ' ' + resData.m_nickname);
+				$("#c_title").html(resData.c_title);
+				$("#c_content").html(resData.c_content);
 				
 				
 				var jsonDiv = {
