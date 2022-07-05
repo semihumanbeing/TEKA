@@ -86,6 +86,20 @@ public class ViewDao {
 		
 		return res;
 	}	
+	//좋아요 insert
+	public int insertLiked(ViewVo vo) {
+		
+		int res = 0;
+		
+		SqlSession sqlSession = factory.openSession();
+		
+		res = sqlSession.insert("card.insertLiked", vo);
+		
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return res;
+	}
 	//qnaCard ���̺� DML
 	public int myCardSetInsert(ViewVo vo) {
 		

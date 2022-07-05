@@ -51,6 +51,37 @@ height: 80px;
 		location.href="../tekamember/loginForm.do?url=" + encodeURIComponent(url_myCardSet);
 	}
 	
+	//카드 검색
+	function search(){
+		
+		var selectSearch = $("#selectSearch").val();
+		var text         = $("#text").val().trim();
+		
+		if(selectSearch != "all" && text==''){
+			alert('검색어를 입력해주세요.');
+			$("#text").val('');
+			$("#text").focus();
+			return;
+		}
+		
+		location.href="../card/cardSearch.do?selectSearch=" + selectSearch + "&text=" + encodeURIComponent(text);
+	}
+	
+	
+	$(function(){
+	
+		//주소창에 파라미터 search가 비어있지 않을 때만 해당 코드를 실행해라
+		if( "${not empty param.selectSearch}" == "true" ){
+			$("#selectSearch").val('${param.selectSearch}');
+		}
+		
+		//전체검색 실행시, 검색어 지우기
+		if( "${ param.selectSearch eq 'all' }" == "true" ){
+			
+			$("#text").val('');
+		}
+	});
+	
 </script>
 </head>
 <body>
@@ -93,12 +124,18 @@ height: 80px;
 				<button id="makebtn" class="btn btn-success navbar-btn navbar-left" onclick="location.href='../card/insertCardForm.do'">만들기</button>
 			</c:if>
 			
-			<form id="searchbar" class="navbar-form navbar-left">
+			<div id="searchbar" class="navbar-form navbar-left">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="카드 찾기">
+					<select id="selectSearch" class="form-control">
+						<option value="all">전체검색</option>
+						<option value="c_title">카드제목</option>
+						<option value="c_content">카드소개글</option>
+						<option value="m_nickname">닉네임</option>
+					</select>
+					<input class="form-control" placeholder="카드 찾기" value="${param.text}" id="text" onkeyup="if(window.event.keyCode==13){search();}">
 				</div>
-				<button type="submit" class="btn btn-default">검색</button>
-			</form>
+				<input type="button" class="btn btn-default" value="검색" onclick="search();">
+			</div>
 			
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${empty user }">

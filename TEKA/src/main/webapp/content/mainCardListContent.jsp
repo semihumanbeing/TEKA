@@ -178,11 +178,12 @@ function filter(){
 				//m_nickname 출력
 				$("#m_nickname").html('made by' + ' ' + resData.m_nickname);
 				
+				
 				var jsonDiv = {
-								q : "<div class=\"question\">",
-								q_question : "<div id=\"q_question\"></div></div>",
-								a: "<div class=\"answer\">",
-								q_answer : "<div id=\"q_answer\"></div></div>"
+								 table : "<table class=\"question\">",
+								 q : "<tr><td id=\"q_question\"></td>",
+								 a : "<td id=\"q_answer\"></td></tr>",
+								 end : "</table>"
 							  };
 				
 				var div = '';
@@ -200,12 +201,12 @@ function filter(){
 					//i가 짝수 : q_question (i = 0 2 4...)
 					if(i%2==0){
 
-						$("#q_question").append(resData.list[i]).append("<br><hr><br>");
+						$("#q_question").append(resData.list[i]).append("<br><br><br>");
 					
 					//아니면 홀수 : q_answer (i = 1 3 5...)					
 					}else {
 						
-						$("#q_answer").append(resData.list[i]).append("<br><hr><br>");
+						$("#q_answer").append(resData.list[i]).append("<br><br><br>");
 					}
 				}
 			}//success end
@@ -215,7 +216,6 @@ function filter(){
 		$("#q_question").remove();
 		$("#q_answer").remove();
 		$(".question").remove();
-		$(".answer").remove();
 
 		centerBox();
 		$("#popupBox").show();
@@ -243,7 +243,7 @@ function filter(){
 		<hr>
 	</div>
 	<div id="grid_container">
-		<c:if test="${empty list }">
+		<c:if test="${empty list}">
 			<div style="color: red; text-align: center; line-height: 333px;">카드가 없습니다.</div>
 		</c:if>
 		
@@ -269,15 +269,13 @@ function filter(){
 						추천 <span class="badge">${card.l_like}</span>
 					</button><br>
 					<span class="badge">${card.m_nickname }</span><br>
-
 					
 					<input type="button" class="plusCard" value="미리보기" onclick="previewPopup(${card.c_idx});">
 					<input type="button" class="plusCard" value="내 학습세트에 추가하기" onclick="addToMyCards(${card.c_idx},${card.s_idx });">
-
-
 				</div>
 			</div>
 		</c:forEach>
+	
 	</div>
 </body>
 </html>

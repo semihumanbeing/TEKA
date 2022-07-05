@@ -258,6 +258,7 @@ as
     	join subject s using(s_idx)
 
 select * from likedCard
+
     	
 -- 2. 카드테이블 + 멤버테이블 + 주제테이블
 create or replace view subjectCard
@@ -285,6 +286,18 @@ select q_idx, c_idx, q_question, q_answer, q_correct,
 
 select * from qnaCard
 
+
+-- 3-1. qnaCard 뷰 + m_nickname/s_name
+create or replace view cardCondition
+as
+select c_idx, c_title, c_content, c_isPublic, c_regdate,
+       s_idx, m_idx, m_nickname, s_name
+   from card c join subject s using(s_idx)
+               join tekamember using(m_idx)
+
+select * from cardCondition
+
+drop view cardCondition
 
 
 --4. 내 학습세트 조회용 : 카드 테이블 + 주제 테이블 + 나의 카드셋 + 멤버
