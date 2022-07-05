@@ -219,6 +219,9 @@ create table likey
    c_idx   int,           --카드번호(FK)
    m_idx   int            --멤버번호(FK)
 )
+--기본키
+alter table likey
+add constraint pk_likey_l_idx primary key(l_idx);
 
 --외래키
 alter table likey
@@ -241,7 +244,35 @@ modify 컬럼명[자료형] default null
 insert into likey values(seq_like_l_grade.nextVal, default, 1, 4);
 select * from likey 
 
+--/////////////////////////////////////////////////////////////////////////////////
 
+--7. 즐겨찾기 & 오답 테이블
+create table wrongqna
+(
+	wq_idx		int,
+	q_idx		int,
+	c_idx		int,
+	m_idx		int
+)
+
+create sequence seq_wrongqna_wq_idx
+
+--기본키 
+alter table wrongqna
+add constraint pk_wrongQna_wq_idx primary key(wq_idx);
+
+--외래키 
+alter table wrongqna
+add constraint fk_wrongqna_q_idx foreign key(q_idx) references qna(q_idx) on delete cascade
+
+alter table wrongqna
+add constraint fk_wrongqna_c_idx foreign key(c_idx) references card(c_idx) on delete cascade
+
+alter table wrongqna
+add constraint fk_wrongqna_m_idx foreign key(m_idx) references tekamember(m_idx) on delete cascade
+
+select * from wrongqna
+delete wrongQna where m_idx=1
 -- 뷰   
 --/////////////////////////////////////////////////////////////////////////////////
 
@@ -299,5 +330,7 @@ as
 				join subject s using(s_idx)
 				join mycardset mc using(c_idx)
 
+--m_idx -> 카드를 학습세트에 추가한 사용자의 번호
+--m_nickname -> 카드를 만든 사람의 이름
 select * from studyCard
 	

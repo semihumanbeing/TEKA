@@ -73,13 +73,13 @@ public class CardDao {
 	}
 	
 	//���� �н� ��Ʈ �߰��ϱ� �� �̹� �߰��Ǿ����� Ȯ���ϱ�
-	public MyCardSetVo selectCheckMyCard(int c_idx) {
+	public MyCardSetVo selectCheckMyCard(MyCardSetVo check) {
 		// TODO Auto-generated method stub
 		MyCardSetVo vo = null;
 		
 		SqlSession sqlSession = factory.openSession();
 		
-		vo = sqlSession.selectOne("card.selectCheckMyCard", c_idx);
+		vo = sqlSession.selectOne("card.selectCheckMyCard", check);
 		
 		sqlSession.close();
 		

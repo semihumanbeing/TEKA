@@ -104,7 +104,7 @@
 #title{
 	margin: auto;
 	width: 1460px;
-	height: 50px;
+	height: 100px;
 	line-height: 100px;
 	font-size: 45px;
 }

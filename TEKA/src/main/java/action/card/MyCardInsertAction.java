@@ -34,19 +34,20 @@ public class MyCardInsertAction extends HttpServlet {
 		
 		int c_idx = Integer.parseInt(request.getParameter("c_idx"));
 		int s_idx = Integer.parseInt(request.getParameter("s_idx"));
+		int m_idx = user.getM_idx();
 		
-		//�̹� �߰� �Ǿ��ִ��� Ȯ���ϱ�
-		MyCardSetVo vo1 = CardDao.getInstance().selectCheckMyCard(c_idx);
-		if(vo1 != null) {//�̹� �߰��Ǿ� �ִ� ī����
+		//삽입할 데이터 포장하기
+		MyCardSetVo vo = new MyCardSetVo();
+		vo.setC_idx(c_idx);
+		vo.setS_idx(s_idx);
+		vo.setM_idx(m_idx);
+		
+		//카드의 추가여부를 보는 것이 아니라 -> 특정 회원에 대해서 특정 카드가 추가 되었는지를 확인해야 한다.
+		MyCardSetVo vo1 = CardDao.getInstance().selectCheckMyCard(vo);
+		if(vo1 != null) {//값이 있다면, 있다고 알려주기
 			response.sendRedirect("mainList.do?reason=exist");
 			return;
 		}else {
-			
-			//���� �н���Ʈ�� insert
-			MyCardSetVo vo = new MyCardSetVo();
-			vo.setC_idx(c_idx);
-			vo.setS_idx(s_idx);
-			vo.setM_idx(user.getM_idx());
 			
 			int res = CardDao.getInstance().insertMyCard(vo);
 			response.sendRedirect("mainList.do?reason=success");

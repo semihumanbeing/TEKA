@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import service.MyBatisConnector;
 import vo.ViewVo;
+import vo.WrongQnaVo;
 
 public class StudyCardDao {
 	
@@ -45,5 +46,44 @@ public class StudyCardDao {
 		sqlSession.close();
 
 		return list;
+	}
+
+	public List<Integer> selectWrongNumber(WrongQnaVo vo) {
+		// TODO Auto-generated method stub
+		List<Integer> list;
+		
+		SqlSession sqlSession = factory.openSession();
+		
+		list = sqlSession.selectList("studyCard.selectWrongNumber", vo);
+		
+		sqlSession.close();
+		
+		return list;
+	}
+
+	public int insertWrongQnaCard(WrongQnaVo vo) {
+		// TODO Auto-generated method stub
+		int res = 0;
+		
+		SqlSession sqlSession = factory.openSession(true);
+		
+		res = sqlSession.insert("studyCard.insertWrongQnaCard", vo);
+		
+		sqlSession.close();
+		
+		return res;
+	}
+
+	public int deleteWrongQnaCard(WrongQnaVo vo) {
+		// TODO Auto-generated method stub
+		int res = 0;
+		
+		SqlSession sqlSession = factory.openSession(true);
+		
+		res = sqlSession.delete("studyCard.deleteWrongQnaCard", vo);
+		
+		sqlSession.close();
+		
+		return res;
 	}
 }

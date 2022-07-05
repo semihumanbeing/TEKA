@@ -50,8 +50,40 @@ height: 80px;
 		
 		location.href="../tekamember/loginForm.do?url=" + encodeURIComponent(url_myCardSet);
 	}
-	
+
+	$(document).ready(function(){
+		$(".dropDownToggle").click(function(){
+			$(".dropDownMenu").toggleClass("drop");
+		});
+	});
 </script>
+<style type="text/css">
+.dropDownMenu{
+		display: none;
+		width: 150px;
+		height: 180px; 
+		background-color: white;	
+		padding: 0;
+		border: 1px solid gray;
+		border-radius: 2px;
+		box-shadow: 1px 1px 5px 1px gray;
+}
+
+.dropDownMenu li{
+	list-style: none;
+	line-height: 30px;
+	padding-left: 25px;
+}
+
+.dropDownMenu a{
+	text-decoration: none;
+	color: black;
+}
+
+.drop{
+	display: block;
+}
+</style>
 </head>
 <body>
 	<nav id="bar" class="navbar navbar-inverse navbar-fixed-top">
@@ -61,10 +93,11 @@ height: 80px;
 				<a class="navbar-brand" href="../card/main.do" style="font-size: x-large; font-weight: bolder;">QuizTIS</a>
 			</div>
 			
+			
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="../card/main.do">홈페이지</a></li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">주제 <span class="caret"></span></a>
-					<ul class="dropdown-menu">
+				<li><a href="../card/main.do">홈페이지</a></li>
+				<li class="dropDown"><a class="dropDownToggle" href="#" style="width: 150px;height: 65px;">주제 <span class="caret"></span></a>
+					<ul class="dropDownMenu">
 						<li><a href="../card/mainList.do?subject=os">운영체제</a></li>
 						<li><a href="../card/mainList.do?subject=network">네트워크</a></li>
 						<li><a href="../card/mainList.do?subject=algorithm">알고리즘</a></li>

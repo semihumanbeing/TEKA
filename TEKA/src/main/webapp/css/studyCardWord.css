@@ -12,15 +12,17 @@ body{
 /* card css */
 .card {	
 	width        : 100%;
-	height       : 600px;
+	height       : 100%;
 	border-radius: 15px;
+	margin-top: 10px;
 }
+
 .card-inner {
 	position   : relative;
 	width      : 100%;
-	height     : 600px;
+	height     : 100%;
 	text-align : center;
-	transition : transform 0.8s;
+	transition : transform 0.5s;
 	transform-style : preserve-3d; 	
 	border-radius: 20px;
 	
@@ -29,11 +31,11 @@ body{
 	transform: rotateX(180deg);
 }
 .card-front, .card-back {
-	position : absolute;
+	position : absolute; 
 	top      : 0%;
 	bottom   : 0%;
 	width    : 100%;
-	height   : 600px;
+	height   : 100%;
 	background-color : white;
 	border-radius    : 10px;
 	border			 : 2px solid black;
@@ -80,10 +82,9 @@ body{
 
 .section .slideBox{
 	max-width  : 900px;
-	height     : 800px;
+	height     : 700px;
 	/* margin     : auto; */
 	margin-left: 200px;
-	margin-top : 30px;
 	overflow   : hidden;
 }
 
@@ -92,15 +93,15 @@ body{
 	font-size   : 0;
 	position    : relative;
 	width       : 900px;
-	height      : 610px;
-	margin-top: 30px;
+	height      : 620px;
+	margin-top: 10px;
 }
 
 .section .slideList > li{
 	display        : inline-block;
 	vertical-align : middle;
 	width	       : 100%;
-	height         : 600px;
+	height         : 620px;
 	transition     : 0.3s; /* 슬라이드 속도 설정 */
 }
 
@@ -108,7 +109,7 @@ body{
 	position  : absolute;
 	z-index   : 1;
 	top       : 50%;
-	padding   : 30px;
+	padding   : 27px;
 	width	  : 350px;
 	cursor    : pointer; /* 마우스가 올라갔을 때, 커서 -> 포인터 변경 */
 	border    : 4px solid red;
@@ -141,4 +142,29 @@ body{
 	width: 0%;
 	height: 100%;
 	background-color: navy;
+}
+
+#btnBox{
+	margin-left: 200px;	
+}
+
+.checked{
+	height: 50px; 
+	font-size: 40px; 
+	text-align: right; 
+	margin-right: 15px;
+}
+
+.checkBtn{
+	width: 50px;
+	height: 50px;
+	background-color: white; 
+	border: 0;
+	line-height: 50px;
+	color: gold;
+}
+
+.checkBtn:hover{
+	background-color: #fafbe6; 
+	border-radius: 35px;
 }

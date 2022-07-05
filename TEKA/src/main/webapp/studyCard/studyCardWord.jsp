@@ -25,6 +25,30 @@ var index = 1;
 var card = 0;
 $(document).ready(function(){
 	
+	//즐겨찾기 버튼 초기화
+	$.ajax({
+		
+		type: "GET",
+		url	: "checkWrong.do",
+		data: {"c_idx":"${param.c_idx}", "m_idx":"${user.m_idx}"},
+		dataType:'json',
+		success: function(res_data){
+			if(res_data.res){
+				alert('초기화 성공');
+				for(var i=0; i<res_data.list.length; i++){
+					$("#star"+res_data.list[i]).val("★");
+				}
+			}else{
+				alert('초기화 실패. 틀린문제(즐겨찾기)가 없습니다.');
+			}
+			
+		},
+		error:	function(err){
+			alert(err.responseText);
+		}
+		
+	});
+	
 	
 	$(".card").click(function(){
 		$(this).toggleClass("flipped");
@@ -61,6 +85,64 @@ $(document).ready(function(){
 	if('${ param.timer == "use"}'=='true'){
 		play();
 	}
+	
+	//class가 checkBtn인 모든 버튼에 대해서 click이벤트가 발생한다면,,,
+	//현재 클릭한 태그만 값을 바꾼다.(모든 태그의 값을 바꾸지 않음)
+	$(".checkBtn").click(function(){
+		//name값을 얻어오는 방법
+		var q_idx = $(this).attr("name");
+		var c_idx = "${param.c_idx}";
+		var m_idx = "${user.m_idx}";
+		
+		//alert(q_idx);
+		//alert(c_idx);
+		//alert(m_idx);
+		
+		if($(this).val()=="☆"){
+			$(this).val("★");
+			
+			
+			//q_idx값에 해당하는 질문의 q_Correct를 true로
+			$.ajax({
+				type:"GET",
+				url :"wrongQna.do",
+				data:{"q_idx": q_idx, "c_idx": c_idx},
+				dataType: 'json',
+				success : function(res_data){
+					if(res_data.res){
+						alert('즐겨찾기 성공');
+					}else{
+						alert('즐겨찾기 실패');
+					}
+				},
+				error   : function(err){
+					alert(err.responseText);
+				}
+				
+			});
+		}else{
+			$(this).val("☆");
+			
+			//q_idx값에 해당하는 질문의 q_Correct를 false로
+			$.ajax({
+				type:"GET",
+				url :"CorrectQna.do",
+				data:{"q_idx": q_idx, "c_idx": c_idx},
+				dataType: 'json',
+				success : function(res_data){
+					if(res_data.res){
+						alert('즐겨찾기 해제 성공');
+					}else{
+						alert('즐겨찾기 해제 실패');
+					}
+				},
+				error   : function(err){
+					alert(err.responseText);
+				}
+				
+			});
+		}
+	});
 });
 
 function play(){
@@ -134,7 +216,8 @@ function slideCard(){
 		<c:forEach var="qna" items="${list }" begin="0" end="${fn:length(list)-1 }" varStatus="i">
 			<li>
 				<!-- 이전 페이지로 이동한다.  -->
-				<span style="z-index: 11"><label for="slide${i.index}" class="left"></label>◀</span>
+				<div class="checked"><input class="checkBtn" id="star${qna.q_idx }" type="button" value="☆" name="${qna.q_idx }"></div>
+				<span style="z-index: 11;"><label for="slide${i.index}" class="left"></label>◀</span>
 				<div class="card">
 					<div class="card-inner">
 						<div class="card-front">${qna.q_question }</div>
@@ -148,13 +231,13 @@ function slideCard(){
 		</ul>
 	</div>
 </div><!-- section end -->
-<div>
-	<input type="button" value="재생" id="playCard">
-	<input type="button" value="정지" id="stopCard">
+<div id="btnBox">
+	<input type="button" value="▶" id="playCard">
+	<input type="button" value="∥" id="stopCard">
 	<span id="msg"></span>
+	<input type="button" value="∞" id="shuffleCard" onclick="location.href='?c_idx=${param.c_idx}&opt=random'">
 	<!-- <input type="button" value="증가" id="plusCard"> -->
 </div>
-<div style="height: 300px; background-color: red;"></div>
-
+<div style="height: 500px;"></div>
 </body>
 </html>

@@ -35,6 +35,8 @@ public class MyCardListAction extends HttpServlet {
 		
 		List<ViewVo> list = CardDao.getInstance().selectMyCardList(user.getM_idx());
 		
+		//System.out.println(user.getM_idx());
+		
 		request.setAttribute("list", list);
 		
 

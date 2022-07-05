@@ -24,8 +24,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 이미 추가된 카드인지 확인하기 -->
-	<select id="selectCheckMyCard" parameterType="int" resultType="vo.MyCardSetVo">
-		select * from mycardset where c_idx=#{c_idx}
+	<select id="selectCheckMyCard" parameterType="vo.MyCardSetVo" resultType="vo.MyCardSetVo">
+		select * from mycardset where c_idx=#{c_idx} and m_idx=#{m_idx}
 	</select>
 	
 	<!-- selectOne : c_idx 1건 구하기 -->
