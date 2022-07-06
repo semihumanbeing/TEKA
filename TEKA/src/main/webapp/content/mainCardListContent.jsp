@@ -226,8 +226,31 @@ function filter(){
 <!-- 좋아요 기능 자바스크립트 -->
 <script type="text/javascript">
 	
-	var empty = "<span class=\"love\"> 🤍 </span>";
-	var full  = "<span class=\"love\"> ❤️ </span>";
+	
+	$(function(){
+		
+		//로그인하지 않았다면 초기화이벤트 종료
+		if("${user.m_idx}"==null) return;
+		
+		//로그인한 상태라면, 현재 m_idx가 좋아요한 카드 조회 -> 이모티콘 채우기
+		if("${user.m_idx}"!=null){
+			
+			$.ajax({
+				url:'../card/likeCheck.do',
+				data:{"m_idx":"${user.m_idx}"},
+				dataType:'json',
+				success : function(res){
+					
+					if(res.liked){
+						
+						for(i in res.likedList){
+							$("#liked"+res.likedList[i]).val("❤️");
+						}//for end
+					}//if end
+				}
+			});//ajax end
+		}
+	});
 	
 	function liked(c_idx, s_idx){
 		
@@ -247,19 +270,17 @@ function filter(){
 			success : function(resData){
 				
 				//좋아요+1 insert가 정상적으로 처리되었다면
-				if(resData.res==1){
+				if(resData.res==1){ 
 
-					//추가하면 내 학습세트페이지로 이동
-					if(!confirm(c_idx + '번 카드를 추천합니다.\n내 학습세트에 추가하시겠습니까?')) {
-						//결과 재요청
-						location.href="../card/mainList.do";
-					}
+					if(!confirm(c_idx + '번 카드를 추천합니다.\n내 학습세트에 추가하시겠습니까?')) return;
+					//alert(c_idx + '번 카드를 추천합니다.');
+					//결과 재요청
+					location.href="../card/mainList.do";
 					//이미 학습세트에 추가되어있을 경우
 					addToMyCards(c_idx, s_idx);
-					showMsg();
-				}
+				
 				//이미 좋아요를 눌러서 누를 수 없는 경우, 좋아요 취소
-				if(resData.already==0){
+				}else if(resData.already==0){ 
 					
 					if(!confirm('이미 추천하는 카드입니다.\n추천을 취소하시겠습니까?')) return;
 					
@@ -276,6 +297,7 @@ function filter(){
 			}
 		});//ajax end
 	}//liked end
+	
 </script>
 </head>
 <body id="box">
@@ -319,9 +341,10 @@ function filter(){
 				
 				<div class="side">
 					<span class="label label-info">${card.s_name}</span>
-					<button type="button" class="btn btn-xs btn-primary" onclick="liked(${card.c_idx},${card.s_idx });" id="likeBtn">
-						추천 <span class="love"> 🤍 </span><span class="badge">${card.l_like}</span>
-					</button><br>
+					<button type="button" class="btn btn-xs btn-primary" onclick="liked(${card.c_idx},${card.s_idx });">
+						추천 <span class="badge">${card.l_like}</span>
+					</button><input type="button" value="🤍" id="liked${card.c_idx}" disabled="disabled"><br>
+										
 					<span class="badge">${card.m_nickname }</span><br>
 					
 					<input type="button" class="plusCard" value="미리보기" onclick="previewPopup(${card.c_idx});">

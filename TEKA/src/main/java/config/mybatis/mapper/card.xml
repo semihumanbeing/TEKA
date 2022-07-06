@@ -114,5 +114,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select sum(l_like) as l_like from likey where c_idx=#{c_idx}
 	</select>
 	
+	<!-- 좋아요 수 체크하기 -->
+	<select id="likeCheck" parameterType="int" resultType="vo.ViewVo">
+		select * from likey where m_idx=#{m_idx} and l_like>0
+	</select>
+	
+	
+	
 	
 </mapper>
