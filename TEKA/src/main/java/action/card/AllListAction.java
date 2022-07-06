@@ -58,7 +58,7 @@ public class AllListAction extends HttpServlet {
 			disp.forward(request, response);
 
 		} else { // 주제가 없으면 전체 리스트 보기
-
+			
 			// 전체 리스트 가져오기
 			List<ViewVo> list = CardDao.getInstance().selectList();
 			

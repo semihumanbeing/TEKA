@@ -222,9 +222,61 @@ function filter(){
 		centerBox();
 		$("#popupBox").show();
 	}
-	
 </script>
+<!-- 좋아요 기능 자바스크립트 -->
+<script type="text/javascript">
+	
+	var empty = "<span class=\"love\"> 🤍 </span>";
+	var full  = "<span class=\"love\"> ❤️ </span>";
+	
+	function liked(c_idx, s_idx){
+		
+		//로그인하지 않았을 경우
+		if(${empty user}){
+			
+			if(!confirm("로그인 후에 이용할 수 있습니다.\n로그인 하시겠습니까?")) return;
+			location.href="../tekamember/loginForm.do";
+			return;
+		}
+		
+		//현재 m_idx와 c_idx로 조회했을 때, 좋아요를 누르지 않았을 경우 좋아요 누를 수 있음
+		$.ajax({
+			url:'../card/likeInsert.do',
+			data:{"m_idx": "${user.m_idx}", "c_idx":c_idx},
+			dataType:'json',
+			success : function(resData){
+				
+				//좋아요+1 insert가 정상적으로 처리되었다면
+				if(resData.res==1){
 
+					//추가하면 내 학습세트페이지로 이동
+					if(!confirm(c_idx + '번 카드를 추천합니다.\n내 학습세트에 추가하시겠습니까?')) {
+						//결과 재요청
+						location.href="../card/mainList.do";
+					}
+					//이미 학습세트에 추가되어있을 경우
+					addToMyCards(c_idx, s_idx);
+					showMsg();
+				}
+				//이미 좋아요를 눌러서 누를 수 없는 경우, 좋아요 취소
+				if(resData.already==0){
+					
+					if(!confirm('이미 추천하는 카드입니다.\n추천을 취소하시겠습니까?')) return;
+					
+					$.ajax({
+						url : '../card/deleteLiked.do',
+						data : {"c_idx":c_idx, "m_idx": "${user.m_idx}"},
+						dataType : 'json',
+						success : function(resData){
+							//결과 재요청
+							location.href="../card/mainList.do";
+						}
+					});// inner ajax end
+				}//if already end
+			}
+		});//ajax end
+	}//liked end
+</script>
 </head>
 <body id="box">
 	<c:if test="${!empty subject }">
@@ -267,8 +319,8 @@ function filter(){
 				
 				<div class="side">
 					<span class="label label-info">${card.s_name}</span>
-					<button type="button" class="btn btn-xs btn-primary">
-						추천 <span class="badge">${card.l_like}</span>
+					<button type="button" class="btn btn-xs btn-primary" onclick="liked(${card.c_idx},${card.s_idx });" id="likeBtn">
+						추천 <span class="love"> 🤍 </span><span class="badge">${card.l_like}</span>
 					</button><br>
 					<span class="badge">${card.m_nickname }</span><br>
 					
