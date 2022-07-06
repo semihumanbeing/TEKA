@@ -257,7 +257,7 @@ update likey set l_like=1 where c_idx=50 and m_idx=6;
 update likey set l_like=1 where c_idx=49 and m_idx=6;
 update likey set l_like=1 where c_idx=62 and m_idx=6;
 
-select * from likey 
+select * from likey where l_like>0
 
 --해당 카드의 전체 좋아요 개수 조회
 select sum(l_like) from likey where c_idx=61

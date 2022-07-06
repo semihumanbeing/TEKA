@@ -21,17 +21,18 @@ public class LikeyDao {
 		factory = MyBatisConnector.getInstance().getSqlSessionFactory();
 	}
 	
-//	//현재 좋아요 수 조회
-//	public List<ViewVo> selectLike(ViewVo vo) {
-//		
-//		List<ViewVo> list = null;
-//		
-//		SqlSession sqlSession = factory.openSession();
-//		list = sqlSession.selectList("card.selectLike", vo);
-//		sqlSession.close();
-//
-//		return list;
-//	}
+	//현재 유저의 좋아요 수 조회
+	public List<ViewVo> likeCheck(int m_idx) {
+		
+		List<ViewVo> list = null;
+		
+		SqlSession sqlSession = factory.openSession();
+		list = sqlSession.selectList("card.likeCheck", m_idx);
+		sqlSession.close();
+
+		return list;
+	}
+	
 	//c_idx, m_idx에 해당하는 객체 1건 구하기
 	public ViewVo selectLike(ViewVo vo) {
 		
