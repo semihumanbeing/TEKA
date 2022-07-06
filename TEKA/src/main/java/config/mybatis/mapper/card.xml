@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 카드조회 -->	
 	<!-- 전체 카드 조회 -->
 	<select id="selectAll" resultType="vo.ViewVo">
-		select * from subjectCard order by c_regdate desc
+		select * from likedCard	order by c_regdate desc
 	</select>
 	
 	<!--특정 카드 조회-->
@@ -92,5 +92,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectMyCardList" parameterType="int" resultType="vo.ViewVo">
 		select * from studyCard where m_idx=#{m_idx}
 	</select>
+	
+	
+	<!-- c_idx / m_idx로 현재 l_like 조회 -->
+	<select id="selectLike" parameterType="vo.ViewVo" resultType="vo.ViewVo">
+		select l_like from likey where c_idx=#{c_idx} and m_idx=#{m_idx}
+	</select>
+	
+	<!-- l_like + 1 (좋아요 버튼 클릭 시) -->
+	<update id="liked" parameterType="vo.ViewVo">
+		update likey set l_like=1 where c_idx=#{c_idx} and m_idx=#{m_idx}	
+	</update>
+	
+	<!-- 좋아요 취소 : 다시 0으로 변경 -->
+	<update id="deleteLike" parameterType="vo.ViewVo">
+		update likey set l_like=0 where c_idx=#{c_idx} and m_idx=#{m_idx}
+	</update>
+	
+	<!-- c_idx의 전체 좋아요 개수 구하기 -->
+	<select id="totalLike" parameterType="vo.ViewVo" resultType="vo.ViewVo">
+		select sum(l_like) as l_like from likey where c_idx=#{c_idx}
+	</select>
+	
 	
 </mapper>

@@ -210,7 +210,7 @@ select * from subject
 
 --6. 좋아요
 --시퀀스
-create sequence seq_like_l_grade
+create sequence seq_like_l_idx
 
 create table likey
 (
@@ -241,8 +241,26 @@ modify 컬럼명[자료형] default null
 
 
 --샘플데이터
-insert into likey values(seq_like_l_grade.nextVal, default, 1, 4);
+insert into likey values(seq_like_l_idx.nextVal, default, 62, 3);
+insert into likey values(seq_like_l_idx.nextVal, default, 63, 3);
+insert into likey values(seq_like_l_idx.nextVal, default, 51, 3);
+insert into likey values(seq_like_l_idx.nextVal, default, 50, 3);
+insert into likey values(seq_like_l_idx.nextVal, default, 49, 3);
+
+-- 1인당 좋아요 개수에 제한이 없을 때 사용할 명령
+--update likey set l_like=(select nvl(max(l_like),0)+1 from likey) where c_idx=61 and m_idx=6
+
+
+update likey set l_like=0 where c_idx=61 and m_idx=6;
+
+update likey set l_like=1 where c_idx=50 and m_idx=6;
+update likey set l_like=1 where c_idx=49 and m_idx=6;
+update likey set l_like=1 where c_idx=62 and m_idx=6;
+
 select * from likey 
+
+--해당 카드의 전체 좋아요 개수 조회
+select sum(l_like) from likey where c_idx=61
 
 --/////////////////////////////////////////////////////////////////////////////////
 
@@ -279,29 +297,27 @@ delete wrongQna where m_idx=1
 -- 1. 카드테이블 + 멤버테이블 + 좋아요테이블 + 주제테이블
 create or replace view likedCard
 as
-	select
-		c_idx, c_title, c_content, c_isPublic, c_regdate,	
-      	m_nickname,											
-        l_like, 											
-        s_name	
-    from card c join tekamember m using(m_idx)
-    	join likey l using(c_idx)
-    	join subject s using(s_idx)
-
-select * from likedCard
-
+	select 
+	  s.*,
+	  (select nvl(sum(l_like),0)
+	  	from likey 
+	  	where c_idx=s.c_idx) as l_like
+	from (select * from subjectCard) s 
+	
+select * from likedCard	order by c_regdate desc
     	
 -- 2. 카드테이블 + 멤버테이블 + 주제테이블
 create or replace view subjectCard
 as
 	select
-		c_idx, c_title, c_content, c_isPublic, c_regdate,		
+		c_idx, c_title, c_content, c_isPublic, c_regdate,
       	m_nickname,											
         s_name, s_idx	
     from card c join tekamember m using(m_idx)
-    	join subject s using(s_idx)		
+    	join subject s using(s_idx)	
 
 select * from subjectCard
+
 
 --뷰에 s_idx추가!
 drop view subjectCard
