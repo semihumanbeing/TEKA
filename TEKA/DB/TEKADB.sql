@@ -231,6 +231,7 @@ alter table likey
    add constraint fk_likey_m_idx foreign key(m_idx) references tekamember(m_idx)
 
 alter table likey rename column l_grade to l_idx
+
 -- 테이블 생성 이후 default 표현식 추가 / 변경
 alter table 테이블명
 modify 컬럼명[자료형] default 기본값
@@ -241,11 +242,11 @@ modify 컬럼명[자료형] default null
 
 
 --샘플데이터
-insert into likey values(seq_like_l_idx.nextVal, default, 62, 3);
-insert into likey values(seq_like_l_idx.nextVal, default, 63, 3);
-insert into likey values(seq_like_l_idx.nextVal, default, 51, 3);
-insert into likey values(seq_like_l_idx.nextVal, default, 50, 3);
-insert into likey values(seq_like_l_idx.nextVal, default, 49, 3);
+insert into likey values(seq_like_l_idx.nextVal, default, 1, 4);
+insert into likey values(seq_like_l_idx.nextVal, default, 2, 4);
+insert into likey values(seq_like_l_idx.nextVal, default, 3, 4);
+insert into likey values(seq_like_l_idx.nextVal, default, 4, 4);
+insert into likey values(seq_like_l_idx.nextVal, default, 5, 4);
 
 -- 1인당 좋아요 개수에 제한이 없을 때 사용할 명령
 --update likey set l_like=(select nvl(max(l_like),0)+1 from likey) where c_idx=61 and m_idx=6
@@ -257,7 +258,9 @@ update likey set l_like=1 where c_idx=50 and m_idx=6;
 update likey set l_like=1 where c_idx=49 and m_idx=6;
 update likey set l_like=1 where c_idx=62 and m_idx=6;
 
-select * from likey where l_like>0
+select * from mycardset
+
+select * from likey
 
 --해당 카드의 전체 좋아요 개수 조회
 select sum(l_like) from likey where c_idx=61

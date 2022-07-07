@@ -66,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- like insert -->
 	<insert id="insertLiked" parameterType="vo.ViewVo">
-		insert into likey values(seq_like_l_grade.nextVal, default, #{c_idx}, #{m_idx})
+		insert into likey values(seq_like_l_idx.nextVal, default, #{c_idx}, #{m_idx})
 	</insert>
 
 	<!-- 질문답변테이블 insert -->	
