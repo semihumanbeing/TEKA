@@ -124,5 +124,14 @@ public class CardDao {
 		
 		return l_like;
 	}
+
+	public int deleteMyCard(MyCardSetVo vo) {
+		// TODO Auto-generated method stub
+		int res = 0;
+		SqlSession sqlSession = factory.openSession(true);
+		res = sqlSession.delete("card.deleteMyCard", vo);
+		sqlSession.close();
+		return res;
+	}
 	
 }

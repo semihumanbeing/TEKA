@@ -140,10 +140,10 @@ function showMsg(){
 	}
 }
 
-function addToMyCards(c, s){
-	var name = "${user.m_id}";
-	
-	if(name ==''){
+function addOrDeleteMyCards(c, s){
+	var user = "${user.m_id}";
+	//로그인 정보 확인
+	if(user ==''){
 		if(!confirm("로그인 후에 이용할 수 있습니다.\n로그인 하시겠습니까?")) {
 			return;
 		}
@@ -151,6 +151,8 @@ function addToMyCards(c, s){
 		location.href="../tekamember/loginForm.do";
 		return;
 	}
+	
+	//$("#addelete").text("");
 	
 	location.href='myCardInsert.do?c_idx=' + c + '&s_idx=' + s;
 }
@@ -341,7 +343,7 @@ function filter(){
 					<span class="badge">${card.m_nickname }</span><br>
 					
 					<input type="button" class="plusCard btn" value="미리보기" onclick="previewPopup(${card.c_idx});">
-					<input type="button" class="plusCard btn" value="내 학습세트에 추가" onclick="addToMyCards(${card.c_idx},${card.s_idx });">
+					<input type="button" id="addelete" class="plusCard btn" value="내 학습세트에 추가" onclick="addOrDeleteMyCards(${card.c_idx},${card.s_idx });">
 				</div>
 			</div>
 		</c:forEach>

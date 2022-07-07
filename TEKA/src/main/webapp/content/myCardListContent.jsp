@@ -11,10 +11,25 @@
 function study(c_idx){
 	alert(c_idx + "번 카드를 학습합니다.");
 	location.href="../studyCard/studyCardMain.do?c_idx="+c_idx;
-	
 }
 
-
+function deleteCard(c_idx){
+	$.ajax({
+		url : 'myCardDelete.do',
+		data: {"c_idx":c_idx},
+		success: function(res){
+			if(res.result){
+				alert("삭제 성공");
+				//현재 페이지 호출(=새로고침)
+				location.href="";
+			}
+		},
+		error  : function(err){
+			alert("삭제 실패");
+			alert(err.responseText);
+		}
+	});
+}
 </script>
 <style type="text/css">
 .myCardContainer {
@@ -99,6 +114,7 @@ function study(c_idx){
 				<div class="myCardWord">${card.c_qCnt }단어</div>
 				<div class="myCardMake">${card.m_nickname }</div>
 				<input type="button" value="카드학습하기" onclick="study(${card.c_idx});"> 
+				<input type="button" value="카드삭제하기" onclick="deleteCard(${card.c_idx});"> 
 			</div>
 		</c:forEach>
 	</div>
