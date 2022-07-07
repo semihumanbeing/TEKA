@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import dao.LikeyDao;
+import dao.ViewDao;
 import vo.ViewVo;
 
 /**
@@ -40,6 +41,10 @@ public class LikeInsertAction extends HttpServlet {
 		
 		//DB에 좋아요+1 하기 전, l_like의 값 조회
 		ViewVo resVo = LikeyDao.getInstance().selectLike(vo);
+		if(resVo == null) {
+			int insertLiked = ViewDao.getInstance().insertLiked(vo);
+			resVo = LikeyDao.getInstance().selectLike(vo);
+		}
 		
 		//l_like가 0인 경우 좋아요+1 DB insert 
 		if(resVo.getL_like()==0) {
