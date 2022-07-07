@@ -128,8 +128,10 @@ $(document).ready(function(){
 				지금 바로 다른 사람의 학습법을 공유받으세요.<br>
 			</p>
 		</div><br>
-		<input class="tutorial" type="button" value="로그인"   onclick="location.href='../tekamember/loginForm.do'">
-		<input class="tutorial" type="button" value="회원가입" onclick="location.href='../tekamember/signUpForm.do'">
+		<c:if test="${empty user }">
+			<input class="tutorial" type="button" value="로그인"   onclick="location.href='../tekamember/loginForm.do'">
+			<input class="tutorial" type="button" value="회원가입" onclick="location.href='../tekamember/signUpForm.do'">
+		</c:if>
 	</div>
 </div>
 <div id="footer">

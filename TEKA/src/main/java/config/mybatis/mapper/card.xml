@@ -119,7 +119,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from likey where m_idx=#{m_idx} and l_like>0
 	</select>
 	
-	
-	
+	<!-- 나의학습세트에서 삭제하기 -->
+	<delete id="deleteMyCard" parameterType="vo.MyCardSetVo">
+		delete from mycardset where c_idx=#{c_idx} and m_idx=#{m_idx}
+	</delete>
 	
 </mapper>
