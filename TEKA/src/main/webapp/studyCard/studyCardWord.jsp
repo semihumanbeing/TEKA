@@ -126,8 +126,8 @@ $(document).ready(function(){
 			//q_idx값에 해당하는 질문의 q_Correct를 false로
 			$.ajax({
 				type:"GET",
-				url :"CorrectQna.do",
-				data:{"q_idx": q_idx, "c_idx": c_idx},
+				url :"correctQna.do",
+				data:{"q_idx": q_idx},
 				dataType: 'json',
 				success : function(res_data){
 					if(res_data.res){
