@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import dao.StudyCardDao;
+import vo.TekaMemberVo;
 import vo.WrongQnaVo;
 
 /**
  * Servlet implementation class StudyCardWrongQnaAction
  */
-@WebServlet("/studyCard/CorrectQna.do")
+@WebServlet("/studyCard/correctQna.do")
 public class StudyCardCorrectQnaAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,14 +29,13 @@ public class StudyCardCorrectQnaAction extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		JSONObject json = new JSONObject();
+		TekaMemberVo user = (TekaMemberVo) request.getSession().getAttribute("user");
 		
 		int q_idx = Integer.parseInt(request.getParameter("q_idx"));
-		int c_idx = Integer.parseInt(request.getParameter("c_idx"));
-		int m_idx = Integer.parseInt(request.getParameter("m_idx"));
+		int m_idx = user.getM_idx();
 		
 		WrongQnaVo vo = new WrongQnaVo();
 		vo.setQ_idx(q_idx);
-		vo.setC_idx(c_idx);
 		vo.setM_idx(m_idx);
 		
 		int res = StudyCardDao.getInstance().deleteWrongQnaCard(vo);
