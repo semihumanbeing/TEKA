@@ -30,6 +30,7 @@
 
 h1{
   margin: 0px;
+  font-weight: 800px;
 }
 p {
 	font-size: 14px;
@@ -39,6 +40,9 @@ p {
 	margin: 20px 0 30px;
 }
 
+body {
+	background: #0a092d;
+}
 span {
 	font-size: 12px;
 	margin-top: -15px;
@@ -93,7 +97,7 @@ a {
 	width: 768px;
 	max-width: 100%;
 	min-height: 480px;
-	margin-top: 100px;
+	margin-top: 50px;
 }
 .formContainer {
 	position: absolute;
@@ -117,6 +121,7 @@ a {
 
 .overlay {
 	background: #c2b0da;
+	background: linear-gradient(to right, #b25858, #9a3dff);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -246,8 +251,8 @@ a {
 	}
 </script>
 </head>
+<!-- 브라우저에서 뒤로가기로 로그인 페이지 넘어올 수 없도록 지정 -->
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
-	<div><%@include file="../header/mainmenu.jsp" %></div>
 	<div class="container" id="container">
 		<div class="formContainer logInContainer">
 			<form id="loginForm" name="loginForm">

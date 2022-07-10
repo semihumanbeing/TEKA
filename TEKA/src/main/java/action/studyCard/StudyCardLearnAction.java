@@ -18,8 +18,8 @@ import vo.ViewVo;
 /**
  * Servlet implementation class StudyCardWordAction
  */
-@WebServlet("/studyCard/studyCardWord.do")
-public class StudyCardWordAction extends HttpServlet {
+@WebServlet("/studyCard/studyCardLearn.do")
+public class StudyCardLearnAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -36,25 +36,13 @@ public class StudyCardWordAction extends HttpServlet {
 		
 		int c_idx = Integer.parseInt(request.getParameter("c_idx"));
 		String type = request.getParameter("type");
-		String random = request.getParameter("opt");
-		//System.out.println(c_idx);
-		
-		List<ViewVo> list = null;
-		
-		if(random != null && !random.isEmpty()) {//순서를 섞으라는 명령이 들어왔다면,,,
 			
-			list = StudyCardDao.getInstance().selectCard(c_idx);
-			Collections.shuffle(list);
-			
-		}else {//아니면 일반 출력
-			list = StudyCardDao.getInstance().selectCard(c_idx);
-		}
-		
+		List<ViewVo> list = StudyCardDao.getInstance().selectCard(c_idx);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("type", type);
 		//forward
-		String forward_page = "studyCardWord.jsp";
+		String forward_page = "studyCardLearn.jsp";
 		RequestDispatcher disp = request.getRequestDispatcher(forward_page);
 		disp.forward(request, response);
 

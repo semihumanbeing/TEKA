@@ -5,10 +5,6 @@
 	padding : 0px;
 }
 
-body{
-	background-color: #f5f3f3;
-}
-
 /* card css */
 .card {	
 	width        : 100%;
@@ -36,7 +32,6 @@ body{
 	bottom   : 0%;
 	width    : 100%;
 	height   : 100%;
-	background-color : white;
 	border-radius    : 10px;
 	border			 : 2px solid black;
 	box-shadow       : 1px 1px 4px black;
@@ -49,6 +44,9 @@ body{
 	align-items     : center;
 	justify-content : center;
 	line-height     : 30px;
+	white-space: normal;
+	background: #2e3856;
+	color: white;
 }
 .card-back {
 	transform: rotateX(180deg);
@@ -112,17 +110,21 @@ body{
 	padding   : 27px;
 	width	  : 350px;
 	cursor    : pointer; /* 마우스가 올라갔을 때, 커서 -> 포인터 변경 */
-	border    : 4px solid red;
+	border    : 4px solid #3ccfcf;
 }
 
 
 .section .slideList .left{
 	left : 50px;
-	top: 480px;
+	top: 600px;
+	border-bottom-left-radius: 40px;
+	border-top-left-radius: 40px;
 }
 .section .slideList .right{
 	right : 50px;
-	top: 480px;
+	top: 600px;
+	border-bottom-right-radius: 40px;
+	border-top-right-radius: 40px;
 }
 
 /* 초기위치 설정값 */
@@ -134,37 +136,67 @@ body{
 	position: relative;
 	width: 100%;
 	height: 3px;
-	background-color: white;
+	background-color: black;
 	border-radius: 5px;
+	box-shadow: 1px 1px 3px 1px black;
 }
 #myBar{
 	position: absolute;
 	width: 0%;
 	height: 100%;
-	background-color: navy;
+	background-color: purple;
 }
 
 #btnBox{
 	margin-left: 200px;	
+	background-color: #0a092d; 
+	width: 900px; 
+	display: flex; 
+	justify-content: space-around;
+	box-shadow: 1px 1px 3px 1px #dadce0;
+	height: 80px;
+}
+
+#btnBox > input{
+	width: 30%; 
+	height: 60px;
+	border: 1px solid #282e3e; 
+	background-color: #13141b; 
+	color: #3ccfcf; 
+	border: 2px solid #3ccfcf;
+	margin-top: 10px;
 }
 
 .checked{
-	height: 50px; 
+	height: 55px; 
+	width: 55px;
 	font-size: 40px; 
 	text-align: right; 
 	margin-right: 15px;
+	border-radius: 35px;
+	border: 2px dotted yellow;
+	line-height: 50px;
+	box-sizing: border-box;
 }
 
 .checkBtn{
 	width: 50px;
 	height: 50px;
-	background-color: white; 
+	border: 2px dotted yellow;
+	background-color: transparent; 
 	border: 0;
 	line-height: 50px;
 	color: gold;
 }
 
 .checkBtn:hover{
-	background-color: #fafbe6; 
+	background-color: #979958;
 	border-radius: 35px;
+}
+
+#msg{
+	color: white;
+	margin-left: 550px;
+	font-size: 18px; 
+	font-weight: 600;
 }

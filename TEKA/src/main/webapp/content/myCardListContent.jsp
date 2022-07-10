@@ -42,21 +42,23 @@ function deleteCard(c_idx){
 }
 
 .myCardTitle{
-	border: 1px solid black;
 	font-size: 30px;
 	font-weight: 700;
+	margin: 20px 0px 0px 20px;
 }
 
 .myCardSubject{
 	font-size: 20px;
 	display: inline-block;;
 	width: 20%;
+	/* 상 우 하 좌 */
+	margin: 20px 0px 0px 20px;
 }
 
 .myCardWord{
 	display: inline-block;;
 	text-align:center;
-	width: 55%;
+	width: 15%;
 }
 
 #grid_container{
@@ -77,6 +79,17 @@ function deleteCard(c_idx){
 	margin: auto;
 	width: 1460px;
 	height: 100px;
+}
+
+.myBtn{
+	margin: 50px 0px 0px 20px;
+	width: 150px; 
+	height: 80px;
+	background-color: white;
+	border: 0;
+	box-shadow: 1px 1px 3px grey;
+	font-size: 15px;
+	font-weight: 300;
 }
 
 </style>
@@ -110,11 +123,29 @@ function deleteCard(c_idx){
 		<c:forEach var="card" items="${ list }">
 			<div class="myCardContainer">
 				<div class="myCardTitle">${card.c_title }</div>
-				<div class="myCardSubject label label-info">${card.s_name }</div>
+				<!-- 주제별로 색상을 다르게 설정 -->
+				<c:if test="${card.s_name eq '운영체제' }">
+					<div class="myCardSubject label label-info" style="background-color: red;">${card.s_name }</div>
+				</c:if>
+				<c:if test="${card.s_name eq '네트워크' }">
+					<div class="myCardSubject label label-info" style="background-color: orange;">${card.s_name }</div>
+				</c:if>
+				<c:if test="${card.s_name eq '알고리즘' }">
+					<div class="myCardSubject label label-info" style="background-color: navy;">${card.s_name }</div>
+				</c:if>
+				<c:if test="${card.s_name eq '자료구조' }">
+					<div class="myCardSubject label label-info" style="background-color: green;">${card.s_name }</div>
+				</c:if>
+				<c:if test="${card.s_name eq '자바' }">
+					<div class="myCardSubject label label-info" style="background-color: blue;">${card.s_name }</div>
+				</c:if>
+				<c:if test="${card.s_name eq '스프링' }">
+					<div class="myCardSubject label label-info" style="background-color: purple;">${card.s_name }</div>
+				</c:if>
 				<div class="myCardWord">${card.c_qCnt }단어</div>
-				<div class="myCardMake">${card.m_nickname }</div>
-				<input type="button" value="카드학습하기" onclick="study(${card.c_idx});"> 
-				<input type="button" value="카드삭제하기" onclick="deleteCard(${card.c_idx});"> 
+				<div class="myCardMake badge">${card.m_nickname }</div><br>
+				<input class="myBtn" type="button" value="카드학습하기" onclick="study(${card.c_idx});"> 
+				<input class="myBtn" type="button" value="카드삭제하기" onclick="deleteCard(${card.c_idx});"> 
 			</div>
 		</c:forEach>
 	</div>

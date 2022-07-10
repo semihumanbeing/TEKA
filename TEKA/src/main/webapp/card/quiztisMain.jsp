@@ -14,6 +14,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <style type="text/css">
+body{
+	background: #2e015f;
+}
+
 /* main.css */
 #content {
 	min-height: 700px;
@@ -30,30 +34,36 @@
 	float: left;
 	margin-top: 120px;
 	margin-left: 50px;
+	color: white;
 }
 
 /* content */
-.tutorial {
-	display: block;
+.mainBtn {
 	width: 160px;
 	height: 30px;
 	margin: auto;
 }
 
+.tutorial{
+	margin-left: 200px;
+}
+
 /* card */
 #card-container{
-	background-color: #CFD8FF;
+	background: #CFD8FF;
+	background: linear-gradient(to right, #b25858, #9a3dff);
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 	width: 70%;
 	height: 330px; 
 	border-radius: 100px;
 	margin: auto;
 	margin-top: 50px;
-	border: 1px solid #CFD8FF;
+	border: 1px solid #9E5B40;
 }
 
 .card {
 	line-height: 270px;
-	width: 300px;
+	width: 400px;
 	height: 270px;
 	margin: 0 auto;
 	margin-top: 5%;
@@ -79,7 +89,7 @@
 	width: 100%;
 	height: 100%;
 	background-color: white;
-	border-radius: 10px;
+	border-radius: 50px;
 	box-shadow: 1px 1px 4px black;
 	box-sizing: border-box;
 	-webkit-backface-visibility: hidden; /* Safari */
@@ -89,6 +99,7 @@
 .card-back {
 	transform: rotateX(180deg);
 }
+
 
 </style>
 <script type="text/javascript">
@@ -116,8 +127,10 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div><br>
-		<input class="tutorial" type="button" value="나도 만들어보기"    onclick="location.href='test.do'"><br>
-		<input class="tutorial" type="button" value="다른 학습세트보기"  onclick="location.href='mainList.do'">
+		<div class="tutorial">
+			<input class="mainBtn btn btn-info" type="button" value="나도 만들어보기"    onclick="location.href='test.do'">
+			<input class="mainBtn btn btn-info" type="button" value="다른 학습세트보기"  onclick="location.href='mainList.do'">
+		</div>
 	</div>
 	
 	<div id="sub_content">
@@ -129,8 +142,8 @@ $(document).ready(function(){
 			</p>
 		</div><br>
 		<c:if test="${empty user }">
-			<input class="tutorial" type="button" value="로그인"   onclick="location.href='../tekamember/loginForm.do'">
-			<input class="tutorial" type="button" value="회원가입" onclick="location.href='../tekamember/signUpForm.do'">
+			<input class="mainBtn btn btn-success" type="button" value="로그인"   onclick="location.href='../tekamember/loginForm.do'">
+			<input class="mainBtn btn btn-success" type="button" value="회원가입" onclick="location.href='../tekamember/signUpForm.do'">
 		</c:if>
 	</div>
 </div>

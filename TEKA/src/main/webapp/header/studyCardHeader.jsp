@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +17,10 @@
 #headContainer{
 	width: 100%;
 	height: 80px;
-	background-color: pink;
+	background-color: #222222;
 	display: flex;
 	justify-content: space-between;
+	color: white;
 }
 
 #nav{
@@ -41,7 +44,7 @@ html, body, hr{
 	z-index: 1;
 	width: 300px;
 	height: 165px;
-	background-color: #efa4b1;
+	background-color: #b0adad;
 	top:80px;
 }
 
@@ -69,11 +72,11 @@ html, body, hr{
 
 #dropDown:hover{
 	border-radius: 5px;
-	background-color: #f8dde2;
+	background-color: #b0adad;
 }
 
 .dropDownItem a:hover {
-	background-color: #f8dde2;
+	background-color: #d0aaaa;
 }
 
 .icon{
@@ -90,7 +93,7 @@ html, body, hr{
 	margin-top: 15px;
 	margin-right: 50px;
 	border-radius: 5px;
-	background-color: #f8dde2;
+	background-color: #b0adad;
 	color: black;
 	font-size: 20px;
 }
@@ -113,18 +116,71 @@ $(document).ready(function(){
 <div id="headContainer">
 	<div id="nav">
 		<div id="dropDownContainer">
-			<span><i class="fas fa-clipboard"></i></span>
-			<div id="dropDown">
-				<span class="dropDownBtn">낱말카드</span>
-				<div class="dropDownItem">
-					<a href="#"><span class="icon"><i class="fas fa-school"></i></span>학습하기</a>
-					<a href="#"><span class="icon"><i class="fas fa-bomb"></i></span>테스트</a>
-					<a href="#"><span class="icon"><i class="fas fa-question"></i></span>?????</a>
-					<hr>
-					<a href="#"><span class="icon"><i class="fas fa-home"></i></span>홈</a>
-				</div>
-				<span><i class="fas fa-chevron-circle-down"></i></span>
-			</div>
+			
+			<!-- 낱말카드를 학습하는 경우 -->
+			<c:if test="${type eq 'word'}">
+				<span><i class="fas fa-clone"></i></span>
+				<div id="dropDown">
+					<span class="dropDownBtn">낱말카드</span>
+					<div class="dropDownItem">
+						<a href="studyCardLearn.do?c_idx=${param.c_idx }&type=learn"><span class="icon"><i class="fas fa-brain"></i></span>학습하기</a>
+						<a href="studyCardTest.do?c_idx=${param.c_idx }&type=test"><span class="icon"><i class="fas fa-hourglass-start"></i></span>시험보기</a>
+						<a href="studyCardStar.do?c_idx=${param.c_idx }&type=star"><span class="icon"><i class="fas fa-star"></i></span>관심질문</a>
+						<hr>
+						<a href="studyCardMain.do?c_idx=${param.c_idx}"><span class="icon"><i class="fas fa-home"></i></span>홈</a>
+					</div>
+					<span><i class="fas fa-chevron-circle-down"></i></span>
+				</div>	
+			</c:if>
+			
+			<!-- 학습세트를 문제 풀이 하는 경우 -->
+			<c:if test="${type eq 'learn' }">
+				<span><i class="fas fa-brain"></i></span>
+				<div id="dropDown">
+					<span class="dropDownBtn">학습하기</span>
+					<div class="dropDownItem">
+						<a href="studyCardWord.do?c_idx=${param.c_idx }&type=word"><span class="icon"><i class="fas fa-clone"></i></span>낱말카드</a>
+						<a href="studyCardTest.do?c_idx=${param.c_idx }&type=test"><span class="icon"><i class="fas fa-hourglass-start"></i></span>시험보기</a>
+						<a href="studyCardStar.do?c_idx=${param.c_idx }&type=star"><span class="icon"><i class="fas fa-star"></i></span>관심질문</a>
+						<hr>
+						<a href="studyCardMain.do?c_idx=${param.c_idx}"><span class="icon"><i class="fas fa-home"></i></span>홈</a>
+					</div>
+					<span><i class="fas fa-chevron-circle-down"></i></span>
+				</div>	
+			</c:if>
+			
+			<!-- 학습세트를 시험 보는 경우 -->
+			<c:if test="${type eq 'test'}">
+				<span><i class="fas fa-hourglass-start"></i></span>
+				<div id="dropDown">
+					<span class="dropDownBtn">시험보기</span>
+					<div class="dropDownItem">
+						<a href="studyCardWord.do?c_idx=${param.c_idx }&type=word"><span class="icon"><i class="fas fa-clone"></i></span>낱말카드</a>
+						<a href="studyCardLearn.do?c_idx=${param.c_idx }&type=learn"><span class="icon"><i class="fas fa-brain"></i></span>학습하기</a>
+						<a href="studyCardStar.do?c_idx=${param.c_idx }&type=star"><span class="icon"><i class="fas fa-star"></i></span>관심질문</a>
+						<hr>
+						<a href="studyCardMain.do?c_idx=${param.c_idx}"><span class="icon"><i class="fas fa-home"></i></span>홈</a>
+					</div>
+					<span><i class="fas fa-chevron-circle-down"></i></span>
+				</div>	
+			</c:if>
+			
+			<!-- 즐겨찾기한 카드만 보는 경우 -->
+			<c:if test="${type eq 'star'}">
+				<span><i class="fas fa-star"></i></span>
+				<div id="dropDown">
+					<span class="dropDownBtn">관심질문</span>
+					<div class="dropDownItem">
+						<a href="studyCardWord.do?c_idx=${param.c_idx }&type=word"><span class="icon"><i class="fas fa-clone"></i></span>낱말카드</a>
+						<a href="studyCardLearn.do?c_idx=${param.c_idx }&type=learn"><span class="icon"><i class="fas fa-brain"></i></span>학습하기</a>
+						<a href="studyCardTest.do?c_idx=${param.c_idx }&type=test"><span class="icon"><i class="fas fa-hourglass-start"></i></span>시험보기</a>
+						<hr>
+						<a href="studyCardMain.do?c_idx=${param.c_idx}"><span class="icon"><i class="fas fa-home"></i></span>홈</a>
+					</div>
+					<span><i class="fas fa-chevron-circle-down"></i></span>
+				</div>	
+			</c:if>
+			
 		</div>
 	</div>
 	
