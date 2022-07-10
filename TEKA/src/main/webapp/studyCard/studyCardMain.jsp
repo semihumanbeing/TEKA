@@ -105,7 +105,7 @@ $(document).ready(function(){
 </script>
 
 </head>
-<body>
+<body style="background-color: #0a092d;">
 <%@include file="../content/previewPopup.jsp" %>
 
 <div id="header">
@@ -121,13 +121,16 @@ $(document).ready(function(){
 	</c:forEach>
 	
 	<div class="slideBox">
-		<div id="title" style="font-size: 25px; font-weight: 600;">${list[0].c_title }</div>
+		<div id="title" style="font-size: 25px; font-weight: 600; color: white;">
+			${list[0].c_title }<br>
+			<span style="font-size: 18px; font-weight: 400; color: white;">안녕하세요, ${user.m_nickname }님! 오늘은 어떤 학습을 하시겠어요?</span>
+		</div>
 		<!-- 학습 목록 -->
 		<div class="studyMenu">
-			<div class="studyItem">&nbsp<i class="fas fa-clipboard"></i>&nbsp<a href="studyCardWord.do?c_idx=${param.c_idx }">낱말카드</a></div>
-			<div class="studyItem">&nbsp<i class="fas fa-school"></i>&nbsp학습하기</div>
-			<div class="studyItem">&nbsp<i class="fas fa-bomb"></i>&nbsp시험보기</div>
-			<div class="studyItem">&nbsp<i class="fas fa-question"></i>&nbsp?????</div>
+			<div class="studyItem">&nbsp<i class="fas fa-clone"></i>&nbsp <a href="studyCardWord.do?c_idx=${param.c_idx }&type=word">낱말카드</a></div>
+			<div class="studyItem">&nbsp<i class="fas fa-brain"></i>&nbsp <a href="studyCardLearn.do?c_idx=${param.c_idx }&type=learn">학습하기</a></div>
+			<div class="studyItem">&nbsp<i class="fas fa-hourglass-start"></i>&nbsp <a href="studyCardTest.do?c_idx=${param.c_idx }&type=test">시험보기</a></div>
+			<div class="studyItem">&nbsp<i class="fas fa-star"></i>&nbsp <a href="studyCardStar.do?c_idx=${param.c_idx }&type=star">관심질문</a></div>
 		</div>
 		<ul class="slideList">
 		<!-- 슬라이드 영역 -->
@@ -146,7 +149,7 @@ $(document).ready(function(){
 		</c:forEach>
 		<!-- 슬라이드 영역 종료 -->	
 		</ul>
-		<div id="status" style="text-align: center;"></div>
+		<div id="status" style="text-align: center; color: white; font-size: 15px;"></div>
 	</div>
 </div><!-- section end -->
 <div style="text-align: center;"><input class="btn btn-success" type="button" value="카드 한 눈에 보기" style="text-align:center; width: 150px; height: 40px;" onclick="previewPopup(${param.c_idx});"></div>
