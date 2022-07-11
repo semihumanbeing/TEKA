@@ -60,37 +60,33 @@ $(document).ready(function(){
 				$("#c_title").html(resData.c_title);
 				$("#c_content").html(resData.c_content);
 				
-				
-				var jsonDiv = {
-								 table : "<table class=\"question\">",
-								 q : "<tr><td id=\"q_question\"></td>",
-								 a : "<td id=\"q_answer\"></td></tr>",
-								 end : "</table>"
-							  };
-				
-				var div = '';
-				
-				for(j in jsonDiv){
+				for(i in resData.question){
 					
-					div += jsonDiv[j];
-				}
-				
-				$(".res").append(div);
-				
-				//popup.jsp파일에 동적으로 요소추가 (list만큼 반복하기 때문에 모든 요소 출력가능)
-				for(i in resData.list){
+					var jsonDiv = {
+									 table : "<table class=\"question\">",
+									 q : "<tr><th><textarea cols=\"40\" readonly=\"readonly\" class=\"q_question" + i + "\"",	
+									 qCss: "style=\"border:none; border-bottom: thick double #C2B0DA; resize:none; font-size:17px;\"></textarea></th>",
+									 a : "<th><textarea cols=\"80\" readonly=\"readonly\" class=\"q_answer" + i + "\"",
+									 aCss:"style=\"border:none; border-bottom: thick double #C2B0DA; resize:none; font-size:17px; vertical-align: bottom;\"></textarea></th></tr>",
+									 qText:	"<tr><th class=\"qnaText\">질문</th>",
+									 aText: "<th class=\"qnaText\">답변</th></tr></table>"
+								  };
 					
-					//i가 짝수 : q_question (i = 0 2 4...)
-					if(i%2==0){
-
-						$("#q_question").append(resData.list[i]).append("<br><br><br>");
+					var div = '';
 					
-					//아니면 홀수 : q_answer (i = 1 3 5...)					
-					}else {
+					for(j in jsonDiv){
 						
-						$("#q_answer").append(resData.list[i]).append("<br><br><br>");
+						div += jsonDiv[j];
 					}
-				}
+					
+					$(".res").append(div);
+				
+					$(".q_question" + i).append(resData.question[i]);
+					$(".q_question" + i).height(1).height($(".q_question" + i).prop('scrollHeight'));
+					
+					$(".q_answer" + i).append(resData.answer[i]);
+					$(".q_answer" + i).height(1).height($(".q_answer" + i).prop('scrollHeight'));
+				}	
 			}//success end
 		});
 		

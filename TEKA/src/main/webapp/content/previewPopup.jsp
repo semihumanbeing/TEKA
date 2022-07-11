@@ -37,13 +37,7 @@
 	height : 80px;
 }
 
-.qnaText{
-	font-size: 20px;
-	font-weight:500;
-	color : gray;
-}
-
-.q{
+/* .q{
 	margin-top : 10px;
 	margin-left : 12px;
 	font-size:18px;
@@ -57,23 +51,7 @@
 	float : left;
 	width : 55%;
 	min-height:50px;
-}
-
-.question{
-	width:100%;
-	margin-left : 10px;
-	margin-top : 20px;
-}
-
-#q_question{
-	width : 26.5%;
-	font-size:18px;
-}
-
-#q_answer{
-	width : 50%;
-	font-size:18px;
-}
+} */
 
 .madeBy {
 	font-size: 25px;
@@ -113,6 +91,22 @@ td{
 	/* fixed는 뷰포인트로 위치지정 */
 	right : 140px;
 	top : 85px;
+}
+.qnaText{
+	font-size: 18px;
+	text-align: left;
+	color:#C2B0DA;
+}	
+
+.question{
+	width:100%;
+	margin-left : 10px;
+	margin-top : 30px;
+	margin-bottom : 30px;
+}
+/* 클릭시 포커스 없애기 */
+textarea:focus{
+	outline: none;
 }
 </style>
 
@@ -164,19 +158,8 @@ td{
 		</table>
 <hr>			
 
-		
-		<div>
-			<div class="q">
-				<p class="qnaText">질문</p><br>
-			</div>
-			<div class="a">
-				<p class="qnaText">답변</p><br>
-			</div>
-		</div>
-<!-- 동적 요소 추가 -->
-	<div class="res"></div>
-
-	</div>
+	<!-- 동적 요소 추가 -->
+		<div class="res"></div></div>
 </div>
 </body>
 </html>
