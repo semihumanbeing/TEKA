@@ -40,20 +40,23 @@ public class PopupAction extends HttpServlet {
 		JSONObject json = new JSONObject();
 		
 		//결과저장 : c_idx에 해당하는 질문/답변
-		List<String> list = new ArrayList<>();
+		List<String> question = new ArrayList<>();
+		List<String> answer   = new ArrayList<>();
+		
 
 		for(ViewVo res : previewList) {
 			
 			//파라미터로 들어온 c_idx와 전체리스트의 c_idx가 일치할 때만 list에 추가
 			if(c_idx==res.getC_idx()) {
 
-				list.add(res.getQ_question());
-				list.add(res.getQ_answer());
+				question.add(res.getQ_question());
+				answer.add(res.getQ_answer());
 			}
 		}
 		
 		//응답할 데이터 저장
-		json.put("list", list);
+		json.put("question", question);
+		json.put("answer", answer);
 		
 		
 		//m_nickname 구하기

@@ -83,6 +83,15 @@ p{
 	text-decoration: none;
 }
 
+#makeCard{
+	
+	width:50px;
+	border : 1px solie black;
+	
+}
+
+
+
 #delBtn{
 	float: right; /* 우측정렬 */
 	text-decoration: none;
